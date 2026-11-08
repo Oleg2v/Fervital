@@ -163,9 +163,11 @@ const STEPS: StepFn[] = [
     const t0 = performance.now();
     const webgl = useUi.getState().tier === "webgl";
     while (webgl && anim.pull < 0.95 && performance.now() - t0 < 4000 && skipFrom < step) await wait(60, my, step);
-    if (skipFrom >= step) {
+    if (skipFrom >= step || (webgl && anim.pull < 0.9)) {
+      // never leave the demo waiting on a slow GPU: land the slab
       anim.pull = 1;
       anim.pullVel = 0;
+      useRack.getState().setPulledOut(true);
     }
     await wait(600, my, step);
   },

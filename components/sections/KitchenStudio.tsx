@@ -206,6 +206,8 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
         setAssets(a);
         setEnabled(en);
         setSource(data.source);
+        window.clearInterval(timer);
+        setElapsed((performance.now() - t0) / 1000); // analysis time — rendering is not counted
         setPhase("ready");
         setCompare(0.5);
         await reveal(a, slab, en, my);
@@ -214,7 +216,6 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
       } finally {
         window.clearInterval(timer);
         window.clearInterval(stepTimer);
-        setElapsed((performance.now() - t0) / 1000);
         setStep(4);
       }
     },

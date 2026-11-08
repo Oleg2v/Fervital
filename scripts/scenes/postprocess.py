@@ -4,8 +4,9 @@
 
 Writes (per scene) to public/scenes/:
   <scene>.jpg               beauty: plain sRGB encoding of 2^exposure * linear radiance (Standard view), q88
-  <scene>_diffuse.png       diffuse lighting (Diffuse Direct + Indirect, no albedo),
-                            RGB, encoded sqrt(value / diffuseScale)
+  <scene>_diffuse.png       diffuse lighting without albedo, RGB, encoded sqrt(value / diffuseScale):
+                            (Diffuse Direct + Diffuse Indirect) * (1 - specular albedo) of the
+                            placeholder, so that beauty = albedo * diffuse + gloss (see below)
   <scene>_gloss.jpg         glossy contribution of the replaceable surfaces, plain sRGB
                             transfer of the linear value (black elsewhere)
   <scene>_mask_<id>.png     antialiased visibility mask per replaceable surface
@@ -15,6 +16,7 @@ report and writes debug overlays to the work dir.
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -88,6 +90,32 @@ def fill_nearest(a, iters=16, default=1.0):
         valid |= new
     a[~valid] = default
     return a
+
+
+def inside_quad_frac(quad, mask):
+    """Fraction of (coverage-weighted) mask pixels whose centre lies inside the convex quad."""
+    h, w = mask.shape
+    ys, xs = np.mgrid[0:h, 0:w]
+    px, py = xs + 0.5, ys + 0.5
+    q = np.asarray(quad, dtype=np.float64)
+    signs = []
+    for i in range(4):
+        x0, y0 = q[i]
+        x1, y1 = q[(i + 1) % 4]
+        signs.append((x1 - x0) * (py - y0) - (y1 - y0) * (px - x0))
+    signs = np.stack(signs)
+    inside = np.all(signs >= 0, axis=0) | np.all(signs <= 0, axis=0)
+    return float((mask * inside).sum() / max(mask.sum(), 1e-9))
+
+
+def compact_json(obj):
+    """indent=2 JSON, but numeric arrays (quads, bboxes, sizes) stay on one line."""
+    txt = json.dumps(obj, ensure_ascii=False, indent=2)
+    num_list = re.compile(r"\[\s*(-?[0-9.eE+-]+(?:,\s*-?[0-9.eE+-]+)*)\s*\]")
+    txt = num_list.sub(lambda m: "[" + ", ".join(v.strip() for v in m.group(1).split(",")) + "]", txt)
+    list_of_lists = re.compile(r"\[\s*(\[[^\[\]]*\](?:,\s*\[[^\[\]]*\])*)\s*\]")
+    txt = list_of_lists.sub(lambda m: "[" + ", ".join(re.split(r",\s*(?=\[)", m.group(1))) + "]", txt)
+    return txt + "\n"
 
 
 def process(scene, work, report):
@@ -166,7 +194,7 @@ def process(scene, work, report):
         if sel.sum() < 50:
             per[sid] = {"pixels": int(sel.sum())}
             continue
-        lum = lambda a: (a[sel] @ np.array([0.2126, 0.7152, 0.0722]))
+        lum = lambda a: (a[sel] @ np.array([0.2126, 0.7152, 0.0722]))  # noqa: E731
         alb = meta["albedo"]
         recon = alb * diffuse + gloss
         recon_web = alb * dec_d + dec_g
@@ -190,6 +218,7 @@ def process(scene, work, report):
             "blender_standard_png_vs_own_srgb_mae_8bit": float(
                 np.abs(blender_png[sel] - sceneio.srgb_encode(beauty * gain)[sel]).mean() * 255),
             "clipped_frac(beauty*gain>1)": float((beauty[sel].max(-1) * gain > 1.0).mean()),
+            "mask_px_inside_quad_frac": inside_quad_frac(surfaces[sid]["quad"], m),
         }
     rep["surfaces"] = per
     report[scene] = rep
@@ -259,8 +288,7 @@ def main():
     ordered = {k: data[k] for k in ("kitchen", "bathroom") if k in data}
     os.makedirs(os.path.dirname(DATA), exist_ok=True)
     with open(DATA, "w") as fh:
-        json.dump(ordered, fh, ensure_ascii=False, indent=2)
-        fh.write("\n")
+        fh.write(compact_json(ordered))
     print(json.dumps(report, indent=1))
     with open(os.path.join(args.work, "report.json"), "w") as fh:
         json.dump(report, fh, indent=1)

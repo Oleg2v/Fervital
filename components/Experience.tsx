@@ -139,6 +139,8 @@ export default function Experience() {
   const live = view === "live";
 
   useEffect(() => {
+    // test hook for automated QA / the demo recorder
+    (window as unknown as Record<string, unknown>).__stores = { useUi, useDemo };
     startSync();
     useUi.getState().setTier(detectTier());
     const tick = window.setInterval(() => useDemo.getState().expireDue(), 1000);

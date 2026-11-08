@@ -69,45 +69,49 @@ function Controller() {
 
   useFrame((state, rawDt) => {
     const cap = (window as unknown as { __captureDt?: number }).__captureDt;
-    const dt = cap ?? Math.min(rawDt, 1 / 30);
+    // real-time physics: integrate in small sub-steps so slow frames don't slow the choreography
+    const frameDt = cap ?? Math.min(rawDt, 0.25);
+    const dt = frameDt; // camera smoothing below follows real time too
     const st = useRack.getState();
     const slab = st.override ? SLAB_BY_ID[st.override] : RACK_A[st.index];
 
-    // camera index (critically damped)
-    {
-      const target = st.index;
-      // shortest way round the loop
-      if (Math.abs(target - anim.camIndex) > RACK_SIZE / 2) anim.camIndex += Math.sign(target - anim.camIndex) * RACK_SIZE;
-      const w = 6.2;
-      anim.camVel += (w * w * (target - anim.camIndex) - 2 * w * anim.camVel) * dt;
-      anim.camIndex += anim.camVel * dt;
-    }
-
-    // pull spring — heavy, slightly under-damped: the 600 ms settle
-    {
-      const w = st.dragging ? 11 : 7.2;
-      const z = st.dragging ? 0.95 : 0.7;
-      const prevVel = anim.pullVel;
-      const acc = w * w * (st.pullTarget - anim.pull) - 2 * z * w * anim.pullVel;
-      anim.pullVel += acc * dt;
-      anim.pull += anim.pullVel * dt;
-      anim.pull = Math.max(-0.02, Math.min(1.06, anim.pull));
-      // pendulum: the hanging partition swings when the rail decelerates
-      const railAcc = (anim.pullVel - prevVel) / Math.max(dt, 1e-4);
-      const ws = 6.6, zs = 0.22;
-      const sAcc = -ws * ws * anim.sway - 2 * zs * ws * anim.swayVel - railAcc * 0.0045;
-      anim.swayVel += sAcc * dt;
-      anim.sway += anim.swayVel * dt;
-      anim.sway = Math.max(-0.05, Math.min(0.05, anim.sway));
-    }
-
-    // bookmatch hinge
-    {
-      const target = st.bookmatch ? 1 : 0;
-      const w = 5.4, z = 0.62;
-      anim.bookVel += (w * w * (target - anim.book) - 2 * z * w * anim.bookVel) * dt;
-      anim.book += anim.bookVel * dt;
-      anim.book = Math.max(-0.04, Math.min(1.08, anim.book));
+    let remaining = frameDt;
+    while (remaining > 1e-6) {
+      const h = Math.min(remaining, 1 / 120);
+      remaining -= h;
+      // camera index (critically damped)
+      {
+        const target = st.index;
+        if (Math.abs(target - anim.camIndex) > RACK_SIZE / 2) anim.camIndex += Math.sign(target - anim.camIndex) * RACK_SIZE;
+        const w = 6.2;
+        anim.camVel += (w * w * (target - anim.camIndex) - 2 * w * anim.camVel) * h;
+        anim.camIndex += anim.camVel * h;
+      }
+      // pull spring — heavy, slightly under-damped: the 600 ms settle
+      {
+        const w = st.dragging ? 11 : 7.2;
+        const z = st.dragging ? 0.95 : 0.7;
+        const prevVel = anim.pullVel;
+        const acc = w * w * (st.pullTarget - anim.pull) - 2 * z * w * anim.pullVel;
+        anim.pullVel += acc * h;
+        anim.pull += anim.pullVel * h;
+        anim.pull = Math.max(-0.02, Math.min(1.06, anim.pull));
+        // pendulum: the hanging partition swings when the rail decelerates
+        const railAcc = (anim.pullVel - prevVel) / h;
+        const ws = 6.6, zs = 0.22;
+        const sAcc = -ws * ws * anim.sway - 2 * zs * ws * anim.swayVel - railAcc * 0.0045;
+        anim.swayVel += sAcc * h;
+        anim.sway += anim.swayVel * h;
+        anim.sway = Math.max(-0.05, Math.min(0.05, anim.sway));
+      }
+      // bookmatch hinge
+      {
+        const target = st.bookmatch ? 1 : 0;
+        const w = 5.4, z = 0.62;
+        anim.bookVel += (w * w * (target - anim.book) - 2 * z * w * anim.bookVel) * h;
+        anim.book += anim.bookVel * h;
+        anim.book = Math.max(-0.04, Math.min(1.08, anim.book));
+      }
     }
 
     const out = anim.pull > 0.9 && Math.abs(anim.pullVel) < 0.6;
@@ -297,6 +301,9 @@ function ActivePartition({ quality, steel, edge }: { quality: Quality; steel: TH
   const hinge = useRef<THREE.Group>(null);
   const rake = useRef<THREE.SpotLight>(null);
   const rakeTarget = useMemo(() => new THREE.Object3D(), []);
+  const twinLight = useRef<THREE.SpotLight>(null);
+  const twinTarget = useMemo(() => new THREE.Object3D(), []);
+  const post = useRef<THREE.Group>(null);
   const { L, H, T } = slabDims(slab);
 
   const [hi, setHi] = useState<{ id: string; map: THREE.Texture; normal: THREE.Texture | null } | null>(null);
@@ -357,6 +364,12 @@ function ActivePartition({ quality, steel, edge }: { quality: Quality; steel: TH
       hinge.current.rotation.y = Math.PI * (1 - b) * 0.999;
       hinge.current.visible = anim.book > 0.002;
       hinge.current.position.x = 0.004 + (1 - Math.min(1, b)) * (T + 0.006);
+      if (twinLight.current) twinLight.current.intensity = 16 * Math.min(1, b) * smooth(0.5, 1, anim.pull);
+    }
+    if (post.current) {
+      const b = Math.max(0, Math.min(1, anim.book));
+      post.current.position.y = b * 2.6; // slides up on its carriage, out of frame
+      post.current.visible = b < 0.95;
     }
     if (rake.current) {
       const t = state.clock.elapsedTime;
@@ -378,12 +391,15 @@ function ActivePartition({ quality, steel, edge }: { quality: Quality; steel: TH
             <mesh material={steel} position={[0, TOP + 0.05, 0]}>
               <boxGeometry args={[0.045, 0.07, FRAME_L]} />
             </mesh>
-            <mesh material={steel} position={[0, TOP - FRAME_H / 2 + 0.06, FRAME_L / 2]}>
-              <boxGeometry args={[0.05, FRAME_H, 0.05]} />
-            </mesh>
-            <mesh material={steel} position={[-0.05, TOP - 0.9, FRAME_L / 2 + 0.01]}>
-              <cylinderGeometry args={[0.014, 0.014, 0.62, 12]} />
-            </mesh>
+            {/* front post + handle: they step aside when the book opens, so the seam reads clean */}
+            <group ref={post}>
+              <mesh material={steel} position={[0, TOP - FRAME_H / 2 + 0.06, FRAME_L / 2]}>
+                <boxGeometry args={[0.05, FRAME_H, 0.05]} />
+              </mesh>
+              <mesh material={steel} position={[-0.05, TOP - 0.9, FRAME_L / 2 + 0.01]}>
+                <cylinderGeometry args={[0.014, 0.014, 0.62, 12]} />
+              </mesh>
+            </group>
             {/* telescopic rail extension */}
             <mesh material={steel} position={[0, TOP + 0.19, -0.1]}>
               <boxGeometry args={[0.022, 0.035, FRAME_L + 0.2]} />
@@ -402,6 +418,18 @@ function ActivePartition({ quality, steel, edge }: { quality: Quality; steel: TH
               <mesh material={edge} position={[T / 2 + 0.001, 0, L / 2 + 0.002]}>
                 <boxGeometry args={[T, H, L]} />
               </mesh>
+              <primitive object={twinTarget} position={[0, -H * 0.1, L * 0.5]} />
+              <spotLight
+                ref={twinLight}
+                target={twinTarget}
+                position={[-2.4, H * 0.95, L * 0.35]}
+                angle={1.0}
+                penumbra={1}
+                distance={10}
+                decay={1.4}
+                intensity={0}
+                color="#f3f1ec"
+              />
             </group>
             <primitive object={rakeTarget} />
             <spotLight

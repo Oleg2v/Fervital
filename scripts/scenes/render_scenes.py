@@ -1,17 +1,26 @@
 """Procedural "sample room" scenes for the slab visualiser (kitchen + bathroom).
 
-Run with the Blender-as-a-module Python (bpy 5.0.x):
+Run with the Blender-as-a-module Python (bpy 5.0.x, Cycles CPU + OpenImageDenoise):
 
-    python scripts/scenes/render_scenes.py --scene kitchen            # final renders
-    python scripts/scenes/render_scenes.py --scene kitchen --preview  # quick low-res beauty
-    python scripts/scenes/postprocess.py                              # -> public/scenes + data/scenes.json
+    export SCENES_WORK=/some/tmp/dir                      # EXRs + metadata go here
+    python scripts/scenes/render_scenes.py --scene kitchen  --samples 80 --threshold 0.02
+    python scripts/scenes/render_scenes.py --scene bathroom --samples 80 --threshold 0.02
+    python scripts/scenes/postprocess.py                  # -> public/scenes/* + data/scenes.json
+
+    --preview          quick low-res beauty (+ passes) for look development
+    --meta-only        rebuild the scene and only recompute the projected surface quads
+
+View transform is "Standard" (plain sRGB, exposure 0): the web compositor rebuilds a
+replaced surface as  albedo * diffuse + gloss  in linear and sRGB-encodes it, so the
+beauty must use the same pipeline. Light levels are set so the replaceable surfaces
+stay below 1.0 except right next to the windows.
 
 Every scene is rendered three times with identical light transport. Only what
 *camera rays* see changes between the renders (Light Path "Is Camera Ray" mix
-in every material):
+inserted into every material, see add_overrides / set_mode):
 
   beauty   normal materials (+ Cryptomatte object pass for the masks and the raw
-           light passes for verification)
+           light passes, used by postprocess.py to verify the other two)
   diffuse  camera rays see a white (albedo 1) Lambertian surface, so the
            denoised Combined equals Diffuse Direct + Diffuse Indirect
   gloss    replaceable surfaces show only their specular lobe (Principled with a
@@ -19,8 +28,9 @@ in every material):
            Direct + Glossy Indirect); everything else is black
 
 Doing it this way (instead of reading the raw light passes) means OIDN denoises
-the lighting/gloss passes too. Outputs are multilayer EXRs + a small JSON with
-the camera-projected surface rectangles, written to --work.
+the lighting/gloss passes too. Each replaceable surface is its own object with the
+neutral placeholder material (Principled, base 0.78, roughness 0.35); the slab
+objects include their visible 30-40 mm edges.
 """
 import argparse
 import json
@@ -763,7 +773,7 @@ def build_bathroom():
     H = 2.7
     WALL_T = 0.25
     m_ph = mat_placeholder()
-    m_plaster = mat_plaster("M_plaster", (0.47, 0.43, 0.375))
+    m_plaster = mat_plaster("M_plaster", (0.47, 0.445, 0.41))
     m_ceiling = mat_plaster("M_ceiling", (0.62, 0.60, 0.565), var=0.03, bump=0.03)
     m_oak = mat_wood("M_smoked_oak", (0.040, 0.030, 0.023), (0.085, 0.066, 0.050), rough=0.5, vertical=False)
     m_black = mat_principled("M_black_steel", (0.018, 0.018, 0.018), rough=0.45, rough_var=0.08, spec=0.5)
@@ -796,7 +806,7 @@ def build_bathroom():
     # full-height clad wall behind the vanity (replaceable surface)
     box("wall", x_left, x_right, y_back - CL, y_back, 0.0, H, m_ph, bevel=0.0015)
     # left wall with a tall frosted window close to the clad wall
-    wy0, wy1, wz0, wz1 = 0.95, 2.15, 0.95, 2.40
+    wy0, wy1, wz0, wz1 = 1.30, 2.50, 0.95, 2.40
     box("wall_left_a", x_left - WALL_T, x_left, y_front - 0.3, wy0, 0.0, H, m_plaster)
     box("wall_left_b", x_left - WALL_T, x_left, wy1, y_back + 0.3, 0.0, H, m_plaster)
     box("wall_left_c", x_left - WALL_T, x_left, wy0, wy1, 0.0, wz0, m_plaster)
@@ -853,7 +863,7 @@ def build_bathroom():
     cyl_y("tap_ctrl_body", cx, y_back - CL - 0.035, y_back - CL - 0.008, tz, 0.016, m_brass, segs=32)
     tube_curve("tap_ctrl_lever", [(cx, y_back - CL - 0.03, tz), (cx, y_back - CL - 0.035, tz - 0.07)], 0.0045, m_brass)
     # round mirror, black rim, warm halo
-    mz, mr, my = 1.62, 0.40, y_back - CL - 0.035
+    mz, mr, my = 1.60, 0.40, y_back - CL - 0.035
     mirror = cylinder("mirror", 0, 0, -0.003, 0.003, mr - 0.004, m_mirror, segs=128)
     mirror.location, mirror.rotation_euler = (bcx, my, mz), (math.radians(90), 0, 0)
     rim = lathe("mirror_rim", [(mr - 0.004, -0.006), (mr + 0.004, -0.006), (mr + 0.004, 0.012),
@@ -862,7 +872,7 @@ def build_bathroom():
     # black back plate 4..10 mm behind the glass (towards the wall, +Y)
     back = cylinder("mirror_back", 0, 0, -0.003, 0.003, mr - 0.03, m_black, segs=64)
     back.location, back.rotation_euler = (bcx, my + 0.007, mz), (math.radians(90), 0, 0)
-    light("mirror_halo", "AREA", (bcx, y_back - CL - 0.016, mz), rot=(math.radians(90), 0, 0), energy=24.0 * G,
+    light("mirror_halo", "AREA", (bcx, y_back - CL - 0.016, mz), rot=(math.radians(90), 0, 0), energy=28.0 * G,
           color=kelvin(3000), size=0.70, shape="DISK")
     # sparse accessories: stoneware bottle + small green glazed dish
     lathe("bottle", [(0.0, 0.0), (0.032, 0.0), (0.036, 0.01), (0.037, 0.13), (0.03, 0.16), (0.012, 0.175),
@@ -879,14 +889,14 @@ def build_bathroom():
     light("slot_light", "AREA", (1.7, y_back - 0.28, H - 0.01), rot=(math.radians(14), 0, 0),
           energy=3.0 * G, color=kelvin(3200), size=3.2, size_y=0.04, spread=math.radians(70))
     light("fill_light", "AREA", (2.3, y_front + 0.05, 1.6), rot=(math.radians(-90), 0, 0),
-          energy=12.0 * G, color=(0.96, 0.97, 1.0), size=1.8, size_y=1.6)
+          energy=6.0 * G, color=(0.96, 0.97, 1.0), size=1.8, size_y=1.6)
 
     world = bpy.data.worlds.new("World")
     world.use_nodes = True
     world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.0, 0.0, 0.0, 1.0)
     bpy.context.scene.world = world
 
-    cam = level_camera((2.62, 0.55, 1.50), yaw_deg=25.0, lens=28.0, shift_x=0.0, shift_y=-0.15)
+    cam = level_camera((2.62, 0.55, 1.50), yaw_deg=25.0, lens=28.0, shift_x=0.0, shift_y=-0.14)
 
     surfaces = {
         "vanity": dict(orientation="horizontal", sizeMm=[1600, 560],
