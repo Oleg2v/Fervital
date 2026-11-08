@@ -1,0 +1,5162 @@
+[
+ {
+  "id": "FV-CAL-2170-01",
+  "tex": "calacatta-oro",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה אורו",
+   "en": "Calacatta Oro"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2950,
+  "heightMm": 1720,
+  "thicknessMm": 20,
+  "areaM2": 5.07,
+  "block": "2170",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 3730,
+  "crop": {
+   "u": 0.0032,
+   "v": 0.3487,
+   "w": 0.96,
+   "h": 0.5616,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן חם עם ורידים רחבים אפורים-זהובים באלכסון, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Warm white with broad grey-gold diagonal veining, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 1,
+   "label": "A-01"
+  },
+  "hero": true,
+  "mean": "#e0ddd6",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-NMQ-3984-01",
+  "tex": "nero-marquina-extra",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה אקסטרה",
+   "en": "Nero Marquina Extra"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2840,
+  "heightMm": 1640,
+  "thicknessMm": 30,
+  "areaM2": 4.66,
+  "block": "3984",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 1230,
+  "crop": {
+   "u": 0.0036,
+   "v": 0.3766,
+   "w": 0.96,
+   "h": 0.5491,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור עמוק עם ורידים לבנים חדים כברק, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Deep black with sharp, lightning-white veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 2,
+   "label": "A-02"
+  },
+  "hero": true,
+  "mean": "#3e3f3f",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-ONX-1525-01",
+  "tex": "onice-miele",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס דבש",
+   "en": "Onice Miele"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2550,
+  "heightMm": 1610,
+  "thicknessMm": 20,
+  "areaM2": 4.11,
+  "block": "1525",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 2920,
+  "crop": {
+   "u": 0.0023,
+   "v": 0.0555,
+   "w": 0.96,
+   "h": 0.6024,
+   "rot": 0
+  },
+  "desc": {
+   "he": "דבש וענבר בשכבות גליות שקופות-למחצה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Honey and amber in translucent, wavy layers, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 3,
+   "label": "A-03"
+  },
+  "hero": true,
+  "mean": "#c89a6a",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-STA-2614-01",
+  "tex": "statuario-venato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו ונאטו",
+   "en": "Statuario Venato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3100,
+  "heightMm": 1840,
+  "thicknessMm": 20,
+  "areaM2": 5.7,
+  "block": "2614",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 4090,
+  "crop": {
+   "u": 0,
+   "v": 0.3801,
+   "w": 0.96,
+   "h": 0.5662,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן קר ובוהק עם ורידים אפורים חדים ושבורים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Bright cool white with sharp, broken grey veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 4,
+   "label": "A-04"
+  },
+  "hero": true,
+  "mean": "#eaeaea",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-VAL-4643-01",
+  "tex": "verde-alpi",
+  "family": "verde-alpi",
+  "kind": "marble",
+  "name": {
+   "he": "ורדה אלפי",
+   "en": "Verde Alpi"
+  },
+  "origin": {
+   "he": "עמק אאוסטה · איטליה",
+   "en": "Aosta Valley · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2730,
+  "heightMm": 1750,
+  "thicknessMm": 20,
+  "areaM2": 4.78,
+  "block": "4643",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 1420,
+  "crop": {
+   "u": 0.0033,
+   "v": 0.2568,
+   "w": 0.96,
+   "h": 0.6212,
+   "rot": 180
+  },
+  "desc": {
+   "he": "ירוק-יער כהה עם ורידים ירקרקים-לבנים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Dark forest green with pale green-white veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 5,
+   "label": "A-05"
+  },
+  "hero": true,
+  "mean": "#161d1a",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-TRV-4755-01",
+  "tex": "travertino-classico",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו קלאסיקו",
+   "en": "Travertino Romano Classico"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2990,
+  "heightMm": 1710,
+  "thicknessMm": 30,
+  "areaM2": 5.11,
+  "block": "4755",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 790,
+  "crop": {
+   "u": 0.009,
+   "v": 0.1322,
+   "w": 0.96,
+   "h": 0.5472,
+   "rot": 0
+  },
+  "desc": {
+   "he": "בז׳ בהיר עם שכבות אופקיות בחיתוך ורידי, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Light beige with horizontal vein-cut banding, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 6,
+   "label": "A-06"
+  },
+  "hero": true,
+  "mean": "#dfcbab",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-GRB-2140-01",
+  "tex": "santa-cecilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "סנטה ססיליה",
+   "en": "Santa Cecilia"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 2990,
+  "heightMm": 1850,
+  "thicknessMm": 30,
+  "areaM2": 5.53,
+  "block": "2140",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 710,
+  "crop": {
+   "u": 0.0061,
+   "v": 0.0286,
+   "w": 0.96,
+   "h": 0.592,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זהב, חום וגרגירים כהים בנימור גס, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Gold, brown and dark grains in a coarse mottle, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 7,
+   "label": "A-07"
+  },
+  "hero": true,
+  "mean": "#89775b",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-CAR-3450-01",
+  "tex": "carrara-classico",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה קלאסיקו",
+   "en": "Carrara Classico"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2970,
+  "heightMm": 1880,
+  "thicknessMm": 20,
+  "areaM2": 5.58,
+  "block": "3450",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 930,
+  "crop": {
+   "u": 0.0026,
+   "v": 0.1009,
+   "w": 0.96,
+   "h": 0.6056,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן-אפור קריר עם ורידים אפורים נוצתיים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Cool grey-white with feathery grey veining, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 8,
+   "label": "A-08"
+  },
+  "hero": true,
+  "mean": "#e5e9eb",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-CAL-3562-01",
+  "tex": "calacatta-gold",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה גולד",
+   "en": "Calacatta Gold"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "leathered",
+  "lengthMm": 3160,
+  "heightMm": 1940,
+  "thicknessMm": 30,
+  "areaM2": 6.13,
+  "block": "3562",
+  "seq": 1,
+  "blockSize": 4,
+  "priceM2": 2830,
+  "crop": {
+   "u": 0.0073,
+   "v": 0.2359,
+   "w": 0.94,
+   "h": 0.5723,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן בהיר עם ורידים דקים בגוון דבש, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Bright white with fine honey-coloured veins, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 9,
+   "label": "A-09"
+  },
+  "hero": false,
+  "mean": "#f3f2ef",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-3697-01",
+  "tex": "onice-azzurro",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס אצורו",
+   "en": "Onice Azzurro"
+  },
+  "origin": {
+   "he": "בלוצ׳יסטן · פקיסטן",
+   "en": "Balochistan · Pakistan"
+  },
+  "finish": "polished",
+  "lengthMm": 2600,
+  "heightMm": 1640,
+  "thicknessMm": 20,
+  "areaM2": 4.26,
+  "block": "3697",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 2570,
+  "crop": {
+   "u": 0.0245,
+   "v": 0.2255,
+   "w": 0.94,
+   "h": 0.5884,
+   "rot": 0
+  },
+  "desc": {
+   "he": "כחול-פטרול וחלודה בזרימה סוערת, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Petrol blue and rust in a stormy flow, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 10,
+   "label": "A-10"
+  },
+  "hero": false,
+  "mean": "#60665f",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3237-01",
+  "tex": "nero-marquina-classico",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה קלאסיקו",
+   "en": "Nero Marquina Classico"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2950,
+  "heightMm": 1650,
+  "thicknessMm": 30,
+  "areaM2": 4.87,
+  "block": "3237",
+  "seq": 1,
+  "blockSize": 4,
+  "priceM2": 1120,
+  "crop": {
+   "u": 0.0068,
+   "v": 0.2694,
+   "w": 0.94,
+   "h": 0.5272,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור-פחם עם רשת צפופה של ורידים לבנים דקים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Charcoal black with a dense web of fine white veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 11,
+   "label": "A-11"
+  },
+  "hero": false,
+  "mean": "#494949",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-1766-01",
+  "tex": "travertino-noce",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו נוצ׳ה",
+   "en": "Travertino Romano Noce"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2970,
+  "heightMm": 1600,
+  "thicknessMm": 30,
+  "areaM2": 4.75,
+  "block": "1766",
+  "seq": 1,
+  "blockSize": 4,
+  "priceM2": 620,
+  "crop": {
+   "u": 0.0277,
+   "v": 0.2335,
+   "w": 0.94,
+   "h": 0.503,
+   "rot": 0
+  },
+  "desc": {
+   "he": "חום-אגוז עם שכבות גליות בגווני חול, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Walnut brown with wavy sand-toned strata, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 12,
+   "label": "A-12"
+  },
+  "hero": false,
+  "mean": "#a08d75",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-1703-01",
+  "tex": "onice-rosso",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס רוסו",
+   "en": "Onice Rosso"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2850,
+  "heightMm": 1690,
+  "thicknessMm": 20,
+  "areaM2": 4.82,
+  "block": "1703",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 2820,
+  "crop": {
+   "u": 0.0096,
+   "v": 0.1887,
+   "w": 0.94,
+   "h": 0.5594,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שכבות יין, ורוד ושמנת, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Layers of wine, rose and cream, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 13,
+   "label": "A-13"
+  },
+  "hero": false,
+  "mean": "#8f7165",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-STA-4778-01",
+  "tex": "statuario-nuvolato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו נובולאטו",
+   "en": "Statuario Nuvolato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2920,
+  "heightMm": 1870,
+  "thicknessMm": 30,
+  "areaM2": 5.46,
+  "block": "4778",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 3330,
+  "crop": {
+   "u": 0.0234,
+   "v": 0.2404,
+   "w": 0.94,
+   "h": 0.6041,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-אפרפר עם עננות רכה וורידים חיוורים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Soft grey-white with cloudy movement and pale veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 14,
+   "label": "A-14"
+  },
+  "hero": false,
+  "mean": "#d7d7d7",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-2370-01",
+  "tex": "branco-siena",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "בראנקו סיינה",
+   "en": "Branco Siena"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3110,
+  "heightMm": 1970,
+  "thicknessMm": 30,
+  "areaM2": 6.13,
+  "block": "2370",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 480,
+  "crop": {
+   "u": 0.0004,
+   "v": 0.1159,
+   "w": 0.94,
+   "h": 0.5974,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-אפור עם נקודות פלפל שחורות, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Grey-white with black pepper speckle, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 15,
+   "label": "A-15"
+  },
+  "hero": false,
+  "mean": "#b7b4af",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-2236-01",
+  "tex": "calacatta-oro",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה אורו",
+   "en": "Calacatta Oro"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3070,
+  "heightMm": 1970,
+  "thicknessMm": 20,
+  "areaM2": 6.05,
+  "block": "2236",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 3390,
+  "crop": {
+   "u": 0.0049,
+   "v": 0.315,
+   "w": 0.96,
+   "h": 0.614,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן חם עם ורידים רחבים אפורים-זהובים באלכסון, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Warm white with broad grey-gold diagonal veining, honed finish, 20 mm thick"
+  },
+  "status": "sold",
+  "rack": {
+   "rack": "A",
+   "slot": 16,
+   "label": "A-16"
+  },
+  "hero": true,
+  "mean": "#e0ddd6",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-BAS-2398-01",
+  "tex": "basalto-etna",
+  "family": "basalt",
+  "kind": "basalt",
+  "name": {
+   "he": "בזלת אטנה",
+   "en": "Basalto Etna"
+  },
+  "origin": {
+   "he": "אטנה, סיציליה · איטליה",
+   "en": "Etna, Sicily · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2910,
+  "heightMm": 1520,
+  "thicknessMm": 20,
+  "areaM2": 4.42,
+  "block": "2398",
+  "seq": 1,
+  "blockSize": 4,
+  "priceM2": 480,
+  "crop": {
+   "u": 0.0234,
+   "v": 0.1845,
+   "w": 0.94,
+   "h": 0.4927,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-פחם אחיד עם גרגיר וולקני עדין, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Even charcoal grey with a fine volcanic grain, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 17,
+   "label": "A-17"
+  },
+  "hero": false,
+  "mean": "#313132",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-3806-01",
+  "tex": "onice-bianco",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס ביאנקו",
+   "en": "Onice Bianco"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2730,
+  "heightMm": 1390,
+  "thicknessMm": 20,
+  "areaM2": 3.79,
+  "block": "3806",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 2810,
+  "crop": {
+   "u": 0.0003,
+   "v": 0.0458,
+   "w": 0.94,
+   "h": 0.4821,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-פנינה עם גלים אפורים רכים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Pearl white with soft grey waves, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 18,
+   "label": "A-18"
+  },
+  "hero": false,
+  "mean": "#cdcbc7",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-4681-01",
+  "tex": "vermelho-brasilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "ורמלו ברזיליה",
+   "en": "Vermelho Brasília"
+  },
+  "origin": {
+   "he": "באהיה · ברזיל",
+   "en": "Bahia · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3140,
+  "heightMm": 1880,
+  "thicknessMm": 30,
+  "areaM2": 5.9,
+  "block": "4681",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 640,
+  "crop": {
+   "u": 0.0116,
+   "v": 0.2163,
+   "w": 0.94,
+   "h": 0.5658,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אדום-חלודה עם גרגירים כהים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Rust red with dark grains, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 19,
+   "label": "A-19"
+  },
+  "hero": false,
+  "mean": "#8b5d41",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-2082-01",
+  "tex": "carrara-gioia",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ג׳ויה",
+   "en": "Carrara Gioia"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3190,
+  "heightMm": 1950,
+  "thicknessMm": 20,
+  "areaM2": 6.22,
+  "block": "2082",
+  "seq": 1,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0298,
+   "v": 0.011,
+   "w": 0.94,
+   "h": 0.5735,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן עם נטייה כחלחלה וורידים אפורים רכים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "White with a blue-grey cast and soft grey veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 20,
+   "label": "A-20"
+  },
+  "hero": false,
+  "mean": "#b6b8bd",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3526-01",
+  "tex": "nero-marquina-dorato",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה דוראטו",
+   "en": "Nero Marquina Dorato"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2840,
+  "heightMm": 1700,
+  "thicknessMm": 20,
+  "areaM2": 4.83,
+  "block": "3526",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 1080,
+  "crop": {
+   "u": 0.0025,
+   "v": 0.0564,
+   "w": 0.94,
+   "h": 0.57,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור עם ורידים אפורים-זהובים מעוננים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Black with clouded grey-gold veins, polished finish, 20 mm thick"
+  },
+  "status": "held",
+  "rack": {
+   "rack": "A",
+   "slot": 21,
+   "label": "A-21"
+  },
+  "hero": false,
+  "mean": "#1a1a1a",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-3808-01",
+  "tex": "travertino-oro",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו אורו",
+   "en": "Travertino Oro"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2940,
+  "heightMm": 1690,
+  "thicknessMm": 20,
+  "areaM2": 4.97,
+  "block": "3808",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 550,
+  "crop": {
+   "u": 0.0146,
+   "v": 0.2362,
+   "w": 0.94,
+   "h": 0.5367,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זהוב-חרדל עם פסים אופקיים צפופים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Mustard gold with dense horizontal bands, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 22,
+   "label": "A-22"
+  },
+  "hero": false,
+  "mean": "#ae9253",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-2655-01",
+  "tex": "azul-noturno",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "אזול נוטורנו",
+   "en": "Azul Noturno"
+  },
+  "origin": {
+   "he": "מינאס ז׳ראיס · ברזיל",
+   "en": "Minas Gerais · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 3160,
+  "heightMm": 1950,
+  "thicknessMm": 30,
+  "areaM2": 6.16,
+  "block": "2655",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.029,
+   "v": 0.3728,
+   "w": 0.94,
+   "h": 0.5819,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור-חום עם הבזקי גבישים כחולים, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Brown-black with flashes of blue crystal, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 23,
+   "label": "A-23"
+  },
+  "hero": false,
+  "mean": "#242223",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-4161-01",
+  "tex": "calacatta-crema",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה קרמה",
+   "en": "Calacatta Crema"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3020,
+  "heightMm": 1970,
+  "thicknessMm": 20,
+  "areaM2": 5.95,
+  "block": "4161",
+  "seq": 1,
+  "blockSize": 4,
+  "priceM2": 3130,
+  "crop": {
+   "u": 0.0131,
+   "v": 0.2838,
+   "w": 0.94,
+   "h": 0.6122,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שמנת חמה עם עננים וורידים בצבע קפה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Warm cream with coffee-toned clouds and veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 24,
+   "label": "A-24"
+  },
+  "hero": false,
+  "mean": "#d1c4b1",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-4411-01",
+  "tex": "onice-perla",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס פרלה",
+   "en": "Onice Perla"
+  },
+  "origin": {
+   "he": "בלוצ׳יסטן · פקיסטן",
+   "en": "Balochistan · Pakistan"
+  },
+  "finish": "polished",
+  "lengthMm": 2820,
+  "heightMm": 1590,
+  "thicknessMm": 20,
+  "areaM2": 4.48,
+  "block": "4411",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 2390,
+  "crop": {
+   "u": 0.0016,
+   "v": 0.1309,
+   "w": 0.94,
+   "h": 0.5267,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שמנת עם פסים ירקרקים-חיוורים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Cream with pale green striations, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 25,
+   "label": "A-25"
+  },
+  "hero": false,
+  "mean": "#cac3b1",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-VAL-3585-01",
+  "tex": "verde-alpi",
+  "family": "verde-alpi",
+  "kind": "marble",
+  "name": {
+   "he": "ורדה אלפי",
+   "en": "Verde Alpi"
+  },
+  "origin": {
+   "he": "עמק אאוסטה · איטליה",
+   "en": "Aosta Valley · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2810,
+  "heightMm": 1620,
+  "thicknessMm": 20,
+  "areaM2": 4.55,
+  "block": "3585",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 1520,
+  "crop": {
+   "u": 0.004,
+   "v": 0.2115,
+   "w": 0.96,
+   "h": 0.5529,
+   "rot": 180
+  },
+  "desc": {
+   "he": "ירוק-יער כהה עם ורידים ירקרקים-לבנים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Dark forest green with pale green-white veining, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 26,
+   "label": "A-26"
+  },
+  "hero": true,
+  "mean": "#161c1a",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-GRB-3156-01",
+  "tex": "ouro-brasil",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "אורו ברזיל",
+   "en": "Ouro Brasil"
+  },
+  "origin": {
+   "he": "מינאס ז׳ראיס · ברזיל",
+   "en": "Minas Gerais · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3040,
+  "heightMm": 1870,
+  "thicknessMm": 30,
+  "areaM2": 5.68,
+  "block": "3156",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 650,
+  "crop": {
+   "u": 0.0008,
+   "v": 0.16,
+   "w": 0.94,
+   "h": 0.5801,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זית-חום עם גבישים זהובים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Olive brown with golden crystals, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 27,
+   "label": "A-27"
+  },
+  "hero": false,
+  "mean": "#8f7d66",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-STA-4692-01",
+  "tex": "statuario-venato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו ונאטו",
+   "en": "Statuario Venato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3080,
+  "heightMm": 1670,
+  "thicknessMm": 20,
+  "areaM2": 5.14,
+  "block": "4692",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 3770,
+  "crop": {
+   "u": 0.008,
+   "v": 0.1138,
+   "w": 0.96,
+   "h": 0.5205,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן קר ובוהק עם ורידים אפורים חדים ושבורים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Bright cool white with sharp, broken grey veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 28,
+   "label": "A-28"
+  },
+  "hero": true,
+  "mean": "#eaebea",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-CAL-1269-01",
+  "tex": "calacatta-tortora",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה טורטורה",
+   "en": "Calacatta Tortora"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3200,
+  "heightMm": 1850,
+  "thicknessMm": 20,
+  "areaM2": 5.92,
+  "block": "1269",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 3130,
+  "crop": {
+   "u": 0.0235,
+   "v": 0.2534,
+   "w": 0.94,
+   "h": 0.5405,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-יונה חמים עם ורידים דקים בגוון ענבר, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Warm dove-grey with fine amber veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 29,
+   "label": "A-29"
+  },
+  "hero": false,
+  "mean": "#bbb6b0",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-4074-01",
+  "tex": "onice-nero",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס נרו",
+   "en": "Onice Nero"
+  },
+  "origin": {
+   "he": "פואבלה · מקסיקו",
+   "en": "Puebla · Mexico"
+  },
+  "finish": "polished",
+  "lengthMm": 2480,
+  "heightMm": 1710,
+  "thicknessMm": 20,
+  "areaM2": 4.24,
+  "block": "4074",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 3000,
+  "crop": {
+   "u": 0.0134,
+   "v": 0.2286,
+   "w": 0.94,
+   "h": 0.6481,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור-קפה עם גלים לבנים צפופים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Coffee black with tight white waves, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 30,
+   "label": "A-30"
+  },
+  "hero": false,
+  "mean": "#34302a",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-2510-01",
+  "tex": "carrara-venato",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ונאטו",
+   "en": "Carrara Venato"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2990,
+  "heightMm": 1790,
+  "thicknessMm": 20,
+  "areaM2": 5.35,
+  "block": "2510",
+  "seq": 1,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0246,
+   "v": 0.1601,
+   "w": 0.94,
+   "h": 0.5646,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור בהיר עם ורידים אפורים כהים ומובחנים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Light grey with distinct charcoal veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 31,
+   "label": "A-31"
+  },
+  "hero": false,
+  "mean": "#adafb2",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-4493-01",
+  "tex": "travertino-scuro",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו סקורו",
+   "en": "Travertino Scuro"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2850,
+  "heightMm": 1700,
+  "thicknessMm": 30,
+  "areaM2": 4.85,
+  "block": "4493",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.0081,
+   "v": 0.0905,
+   "w": 0.94,
+   "h": 0.5587,
+   "rot": 0
+  },
+  "desc": {
+   "he": "חום-שוקולד כהה עם שכבות עדינות, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Dark chocolate brown with fine strata, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 32,
+   "label": "A-32"
+  },
+  "hero": false,
+  "mean": "#5f5146",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-BAS-4673-01",
+  "tex": "basalto-grigio",
+  "family": "basalt",
+  "kind": "basalt",
+  "name": {
+   "he": "בזלת גריג׳ו",
+   "en": "Basalto Grigio"
+  },
+  "origin": {
+   "he": "אטנה, סיציליה · איטליה",
+   "en": "Etna, Sicily · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2870,
+  "heightMm": 1520,
+  "thicknessMm": 30,
+  "areaM2": 4.36,
+  "block": "4673",
+  "seq": 1,
+  "blockSize": 2,
+  "priceM2": 420,
+  "crop": {
+   "u": 0.0112,
+   "v": 0.4714,
+   "w": 0.94,
+   "h": 0.498,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-עשן חלק כמעט ללא תנועה, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Smooth smoke grey with almost no movement, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 33,
+   "label": "A-33"
+  },
+  "hero": false,
+  "mean": "#454447",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-3903-01",
+  "tex": "onice-miele",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס דבש",
+   "en": "Onice Miele"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2420,
+  "heightMm": 1620,
+  "thicknessMm": 20,
+  "areaM2": 3.92,
+  "block": "3903",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 3450,
+  "crop": {
+   "u": 0.005,
+   "v": 0.2724,
+   "w": 0.96,
+   "h": 0.64,
+   "rot": 180
+  },
+  "desc": {
+   "he": "דבש וענבר בשכבות גליות שקופות-למחצה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Honey and amber in translucent, wavy layers, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 34,
+   "label": "A-34"
+  },
+  "hero": true,
+  "mean": "#c69767",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-NMQ-3479-01",
+  "tex": "nero-marquina-extra",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה אקסטרה",
+   "en": "Nero Marquina Extra"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2860,
+  "heightMm": 1620,
+  "thicknessMm": 20,
+  "areaM2": 4.63,
+  "block": "3479",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 1290,
+  "crop": {
+   "u": 0.0027,
+   "v": 0.2568,
+   "w": 0.96,
+   "h": 0.5476,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור עמוק עם ורידים לבנים חדים כברק, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Deep black with sharp, lightning-white veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 35,
+   "label": "A-35"
+  },
+  "hero": true,
+  "mean": "#3e3f3f",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-GRB-3835-01",
+  "tex": "santa-cecilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "סנטה ססיליה",
+   "en": "Santa Cecilia"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 3230,
+  "heightMm": 1940,
+  "thicknessMm": 20,
+  "areaM2": 6.27,
+  "block": "3835",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.0028,
+   "v": 0.2988,
+   "w": 0.96,
+   "h": 0.5766,
+   "rot": 180
+  },
+  "desc": {
+   "he": "זהב, חום וגרגירים כהים בנימור גס, גימור עור (לדר), עובי 20 מ״מ",
+   "en": "Gold, brown and dark grains in a coarse mottle, leathered finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 36,
+   "label": "A-36"
+  },
+  "hero": true,
+  "mean": "#867459",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-CAR-3375-01",
+  "tex": "carrara-classico",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה קלאסיקו",
+   "en": "Carrara Classico"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3090,
+  "heightMm": 1660,
+  "thicknessMm": 20,
+  "areaM2": 5.13,
+  "block": "3375",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 940,
+  "crop": {
+   "u": 0.0073,
+   "v": 0.2711,
+   "w": 0.96,
+   "h": 0.5172,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן-אפור קריר עם ורידים אפורים נוצתיים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Cool grey-white with feathery grey veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 37,
+   "label": "A-37"
+  },
+  "hero": true,
+  "mean": "#e5e9eb",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-TRV-3961-01",
+  "tex": "travertino-classico",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו קלאסיקו",
+   "en": "Travertino Romano Classico"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "leathered",
+  "lengthMm": 2870,
+  "heightMm": 1550,
+  "thicknessMm": 30,
+  "areaM2": 4.45,
+  "block": "3961",
+  "seq": 1,
+  "blockSize": 3,
+  "priceM2": 770,
+  "crop": {
+   "u": 0.0079,
+   "v": 0.1692,
+   "w": 0.96,
+   "h": 0.5151,
+   "rot": 180
+  },
+  "desc": {
+   "he": "בז׳ בהיר עם שכבות אופקיות בחיתוך ורידי, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Light beige with horizontal vein-cut banding, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 38,
+   "label": "A-38"
+  },
+  "hero": true,
+  "mean": "#decbab",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-CAL-3562-02",
+  "tex": "calacatta-gold",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה גולד",
+   "en": "Calacatta Gold"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "leathered",
+  "lengthMm": 3190,
+  "heightMm": 1930,
+  "thicknessMm": 30,
+  "areaM2": 6.16,
+  "block": "3562",
+  "seq": 2,
+  "blockSize": 4,
+  "priceM2": 2830,
+  "crop": {
+   "u": 0.0113,
+   "v": 0.2359,
+   "w": 0.94,
+   "h": 0.5723,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן בהיר עם ורידים דקים בגוון דבש, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Bright white with fine honey-coloured veins, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 39,
+   "label": "A-39"
+  },
+  "hero": false,
+  "mean": "#f3f2ef",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-STA-2614-02",
+  "tex": "statuario-venato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו ונאטו",
+   "en": "Statuario Venato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3120,
+  "heightMm": 1840,
+  "thicknessMm": 20,
+  "areaM2": 5.74,
+  "block": "2614",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 4090,
+  "crop": {
+   "u": 0.004,
+   "v": 0.3801,
+   "w": 0.96,
+   "h": 0.5662,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן קר ובוהק עם ורידים אפורים חדים ושבורים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Bright cool white with sharp, broken grey veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "A",
+   "slot": 40,
+   "label": "A-40"
+  },
+  "hero": true,
+  "mean": "#eaeaea",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-ONX-4411-03",
+  "tex": "onice-perla",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס פרלה",
+   "en": "Onice Perla"
+  },
+  "origin": {
+   "he": "בלוצ׳יסטן · פקיסטן",
+   "en": "Balochistan · Pakistan"
+  },
+  "finish": "polished",
+  "lengthMm": 2830,
+  "heightMm": 1580,
+  "thicknessMm": 20,
+  "areaM2": 4.47,
+  "block": "4411",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 2390,
+  "crop": {
+   "u": 0.0096,
+   "v": 0.1309,
+   "w": 0.94,
+   "h": 0.5267,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שמנת עם פסים ירקרקים-חיוורים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Cream with pale green striations, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 1,
+   "label": "B-01"
+  },
+  "hero": false,
+  "mean": "#cac3b1",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-3808-02",
+  "tex": "travertino-oro",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו אורו",
+   "en": "Travertino Oro"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2950,
+  "heightMm": 1690,
+  "thicknessMm": 20,
+  "areaM2": 4.99,
+  "block": "3808",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 550,
+  "crop": {
+   "u": 0.0186,
+   "v": 0.2362,
+   "w": 0.94,
+   "h": 0.5367,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זהוב-חרדל עם פסים אופקיים צפופים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Mustard gold with dense horizontal bands, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 2,
+   "label": "B-02"
+  },
+  "hero": false,
+  "mean": "#ae9253",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-1525-02",
+  "tex": "onice-miele",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס דבש",
+   "en": "Onice Miele"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2550,
+  "heightMm": 1590,
+  "thicknessMm": 20,
+  "areaM2": 4.05,
+  "block": "1525",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 2920,
+  "crop": {
+   "u": 0.0063,
+   "v": 0.0555,
+   "w": 0.96,
+   "h": 0.6024,
+   "rot": 0
+  },
+  "desc": {
+   "he": "דבש וענבר בשכבות גליות שקופות-למחצה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Honey and amber in translucent, wavy layers, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 3,
+   "label": "B-03"
+  },
+  "hero": true,
+  "mean": "#c89a6a",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-GRB-2140-02",
+  "tex": "santa-cecilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "סנטה ססיליה",
+   "en": "Santa Cecilia"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 2990,
+  "heightMm": 1840,
+  "thicknessMm": 30,
+  "areaM2": 5.5,
+  "block": "2140",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 710,
+  "crop": {
+   "u": 0.0101,
+   "v": 0.0286,
+   "w": 0.96,
+   "h": 0.592,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זהב, חום וגרגירים כהים בנימור גס, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Gold, brown and dark grains in a coarse mottle, leathered finish, 30 mm thick"
+  },
+  "status": "sold",
+  "rack": {
+   "rack": "B",
+   "slot": 4,
+   "label": "B-04"
+  },
+  "hero": true,
+  "mean": "#89775b",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-TRV-4493-03",
+  "tex": "travertino-scuro",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו סקורו",
+   "en": "Travertino Scuro"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2870,
+  "heightMm": 1710,
+  "thicknessMm": 30,
+  "areaM2": 4.91,
+  "block": "4493",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.0161,
+   "v": 0.0905,
+   "w": 0.94,
+   "h": 0.5587,
+   "rot": 0
+  },
+  "desc": {
+   "he": "חום-שוקולד כהה עם שכבות עדינות, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Dark chocolate brown with fine strata, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 5,
+   "label": "B-05"
+  },
+  "hero": false,
+  "mean": "#5f5146",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-2510-04",
+  "tex": "carrara-venato",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ונאטו",
+   "en": "Carrara Venato"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2970,
+  "heightMm": 1800,
+  "thicknessMm": 20,
+  "areaM2": 5.35,
+  "block": "2510",
+  "seq": 4,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0366,
+   "v": 0.1601,
+   "w": 0.94,
+   "h": 0.5646,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור בהיר עם ורידים אפורים כהים ומובחנים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Light grey with distinct charcoal veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 6,
+   "label": "B-06"
+  },
+  "hero": false,
+  "mean": "#adafb2",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-3450-02",
+  "tex": "carrara-classico",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה קלאסיקו",
+   "en": "Carrara Classico"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2960,
+  "heightMm": 1870,
+  "thicknessMm": 20,
+  "areaM2": 5.54,
+  "block": "3450",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 930,
+  "crop": {
+   "u": 0.0066,
+   "v": 0.1009,
+   "w": 0.96,
+   "h": 0.6056,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן-אפור קריר עם ורידים אפורים נוצתיים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Cool grey-white with feathery grey veining, polished finish, 20 mm thick"
+  },
+  "status": "sold",
+  "rack": {
+   "rack": "B",
+   "slot": 7,
+   "label": "B-07"
+  },
+  "hero": true,
+  "mean": "#e5e9eb",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-GRB-4681-02",
+  "tex": "vermelho-brasilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "ורמלו ברזיליה",
+   "en": "Vermelho Brasília"
+  },
+  "origin": {
+   "he": "באהיה · ברזיל",
+   "en": "Bahia · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3140,
+  "heightMm": 1900,
+  "thicknessMm": 30,
+  "areaM2": 5.97,
+  "block": "4681",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 640,
+  "crop": {
+   "u": 0.0156,
+   "v": 0.2163,
+   "w": 0.94,
+   "h": 0.5658,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אדום-חלודה עם גרגירים כהים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Rust red with dark grains, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 8,
+   "label": "B-08"
+  },
+  "hero": false,
+  "mean": "#8b5d41",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-3697-02",
+  "tex": "onice-azzurro",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס אצורו",
+   "en": "Onice Azzurro"
+  },
+  "origin": {
+   "he": "בלוצ׳יסטן · פקיסטן",
+   "en": "Balochistan · Pakistan"
+  },
+  "finish": "polished",
+  "lengthMm": 2630,
+  "heightMm": 1630,
+  "thicknessMm": 20,
+  "areaM2": 4.29,
+  "block": "3697",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 2570,
+  "crop": {
+   "u": 0.0285,
+   "v": 0.2255,
+   "w": 0.94,
+   "h": 0.5884,
+   "rot": 0
+  },
+  "desc": {
+   "he": "כחול-פטרול וחלודה בזרימה סוערת, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Petrol blue and rust in a stormy flow, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 9,
+   "label": "B-09"
+  },
+  "hero": false,
+  "mean": "#60665f",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-3835-03",
+  "tex": "santa-cecilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "סנטה ססיליה",
+   "en": "Santa Cecilia"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 3220,
+  "heightMm": 1950,
+  "thicknessMm": 20,
+  "areaM2": 6.28,
+  "block": "3835",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.0108,
+   "v": 0.2988,
+   "w": 0.96,
+   "h": 0.5766,
+   "rot": 180
+  },
+  "desc": {
+   "he": "זהב, חום וגרגירים כהים בנימור גס, גימור עור (לדר), עובי 20 מ״מ",
+   "en": "Gold, brown and dark grains in a coarse mottle, leathered finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 10,
+   "label": "B-10"
+  },
+  "hero": true,
+  "mean": "#867459",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-BAS-4673-02",
+  "tex": "basalto-grigio",
+  "family": "basalt",
+  "kind": "basalt",
+  "name": {
+   "he": "בזלת גריג׳ו",
+   "en": "Basalto Grigio"
+  },
+  "origin": {
+   "he": "אטנה, סיציליה · איטליה",
+   "en": "Etna, Sicily · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2850,
+  "heightMm": 1520,
+  "thicknessMm": 30,
+  "areaM2": 4.33,
+  "block": "4673",
+  "seq": 2,
+  "blockSize": 2,
+  "priceM2": 420,
+  "crop": {
+   "u": 0.0152,
+   "v": 0.4714,
+   "w": 0.94,
+   "h": 0.498,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-עשן חלק כמעט ללא תנועה, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Smooth smoke grey with almost no movement, honed finish, 30 mm thick"
+  },
+  "status": "sold",
+  "rack": {
+   "rack": "B",
+   "slot": 11,
+   "label": "B-11"
+  },
+  "hero": false,
+  "mean": "#454447",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-2510-03",
+  "tex": "carrara-venato",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ונאטו",
+   "en": "Carrara Venato"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2980,
+  "heightMm": 1790,
+  "thicknessMm": 20,
+  "areaM2": 5.33,
+  "block": "2510",
+  "seq": 3,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0326,
+   "v": 0.1601,
+   "w": 0.94,
+   "h": 0.5646,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור בהיר עם ורידים אפורים כהים ומובחנים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Light grey with distinct charcoal veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 12,
+   "label": "B-12"
+  },
+  "hero": false,
+  "mean": "#adafb2",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-2370-03",
+  "tex": "branco-siena",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "בראנקו סיינה",
+   "en": "Branco Siena"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3100,
+  "heightMm": 1970,
+  "thicknessMm": 30,
+  "areaM2": 6.11,
+  "block": "2370",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 480,
+  "crop": {
+   "u": 0.0084,
+   "v": 0.1159,
+   "w": 0.94,
+   "h": 0.5974,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-אפור עם נקודות פלפל שחורות, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Grey-white with black pepper speckle, polished finish, 30 mm thick"
+  },
+  "status": "held",
+  "rack": {
+   "rack": "B",
+   "slot": 13,
+   "label": "B-13"
+  },
+  "hero": false,
+  "mean": "#b7b4af",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-4074-03",
+  "tex": "onice-nero",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס נרו",
+   "en": "Onice Nero"
+  },
+  "origin": {
+   "he": "פואבלה · מקסיקו",
+   "en": "Puebla · Mexico"
+  },
+  "finish": "polished",
+  "lengthMm": 2490,
+  "heightMm": 1710,
+  "thicknessMm": 20,
+  "areaM2": 4.26,
+  "block": "4074",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 3000,
+  "crop": {
+   "u": 0.0214,
+   "v": 0.2286,
+   "w": 0.94,
+   "h": 0.6481,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור-קפה עם גלים לבנים צפופים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Coffee black with tight white waves, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 14,
+   "label": "B-14"
+  },
+  "hero": false,
+  "mean": "#34302a",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3237-03",
+  "tex": "nero-marquina-classico",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה קלאסיקו",
+   "en": "Nero Marquina Classico"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2960,
+  "heightMm": 1660,
+  "thicknessMm": 30,
+  "areaM2": 4.91,
+  "block": "3237",
+  "seq": 3,
+  "blockSize": 4,
+  "priceM2": 1120,
+  "crop": {
+   "u": 0.0148,
+   "v": 0.2694,
+   "w": 0.94,
+   "h": 0.5272,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור-פחם עם רשת צפופה של ורידים לבנים דקים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Charcoal black with a dense web of fine white veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 15,
+   "label": "B-15"
+  },
+  "hero": false,
+  "mean": "#494949",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-STA-4692-03",
+  "tex": "statuario-venato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו ונאטו",
+   "en": "Statuario Venato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3070,
+  "heightMm": 1680,
+  "thicknessMm": 20,
+  "areaM2": 5.16,
+  "block": "4692",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 3770,
+  "crop": {
+   "u": 0.016,
+   "v": 0.1138,
+   "w": 0.96,
+   "h": 0.5205,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן קר ובוהק עם ורידים אפורים חדים ושבורים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Bright cool white with sharp, broken grey veins, honed finish, 20 mm thick"
+  },
+  "status": "held",
+  "rack": {
+   "rack": "B",
+   "slot": 16,
+   "label": "B-16"
+  },
+  "hero": true,
+  "mean": "#eaebea",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-CAR-3450-03",
+  "tex": "carrara-classico",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה קלאסיקו",
+   "en": "Carrara Classico"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2990,
+  "heightMm": 1890,
+  "thicknessMm": 20,
+  "areaM2": 5.65,
+  "block": "3450",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 930,
+  "crop": {
+   "u": 0.0106,
+   "v": 0.1009,
+   "w": 0.96,
+   "h": 0.6056,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן-אפור קריר עם ורידים אפורים נוצתיים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Cool grey-white with feathery grey veining, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 17,
+   "label": "B-17"
+  },
+  "hero": true,
+  "mean": "#e5e9eb",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-CAL-2236-03",
+  "tex": "calacatta-oro",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה אורו",
+   "en": "Calacatta Oro"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3080,
+  "heightMm": 1980,
+  "thicknessMm": 20,
+  "areaM2": 6.1,
+  "block": "2236",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 3390,
+  "crop": {
+   "u": 0.0129,
+   "v": 0.315,
+   "w": 0.96,
+   "h": 0.614,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן חם עם ורידים רחבים אפורים-זהובים באלכסון, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Warm white with broad grey-gold diagonal veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 18,
+   "label": "B-18"
+  },
+  "hero": true,
+  "mean": "#e0ddd6",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-ONX-4074-02",
+  "tex": "onice-nero",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס נרו",
+   "en": "Onice Nero"
+  },
+  "origin": {
+   "he": "פואבלה · מקסיקו",
+   "en": "Puebla · Mexico"
+  },
+  "finish": "polished",
+  "lengthMm": 2500,
+  "heightMm": 1720,
+  "thicknessMm": 20,
+  "areaM2": 4.3,
+  "block": "4074",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 3000,
+  "crop": {
+   "u": 0.0174,
+   "v": 0.2286,
+   "w": 0.94,
+   "h": 0.6481,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור-קפה עם גלים לבנים צפופים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Coffee black with tight white waves, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 19,
+   "label": "B-19"
+  },
+  "hero": false,
+  "mean": "#34302a",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-3375-02",
+  "tex": "carrara-classico",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה קלאסיקו",
+   "en": "Carrara Classico"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3120,
+  "heightMm": 1680,
+  "thicknessMm": 20,
+  "areaM2": 5.24,
+  "block": "3375",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 940,
+  "crop": {
+   "u": 0.0113,
+   "v": 0.2711,
+   "w": 0.96,
+   "h": 0.5172,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן-אפור קריר עם ורידים אפורים נוצתיים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Cool grey-white with feathery grey veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 20,
+   "label": "B-20"
+  },
+  "hero": true,
+  "mean": "#e5e9eb",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-BAS-2398-04",
+  "tex": "basalto-etna",
+  "family": "basalt",
+  "kind": "basalt",
+  "name": {
+   "he": "בזלת אטנה",
+   "en": "Basalto Etna"
+  },
+  "origin": {
+   "he": "אטנה, סיציליה · איטליה",
+   "en": "Etna, Sicily · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2890,
+  "heightMm": 1530,
+  "thicknessMm": 20,
+  "areaM2": 4.42,
+  "block": "2398",
+  "seq": 4,
+  "blockSize": 4,
+  "priceM2": 480,
+  "crop": {
+   "u": 0.0354,
+   "v": 0.1845,
+   "w": 0.94,
+   "h": 0.4927,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-פחם אחיד עם גרגיר וולקני עדין, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Even charcoal grey with a fine volcanic grain, honed finish, 20 mm thick"
+  },
+  "status": "held",
+  "rack": {
+   "rack": "B",
+   "slot": 21,
+   "label": "B-21"
+  },
+  "hero": false,
+  "mean": "#313132",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-4755-02",
+  "tex": "travertino-classico",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו קלאסיקו",
+   "en": "Travertino Romano Classico"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3020,
+  "heightMm": 1710,
+  "thicknessMm": 30,
+  "areaM2": 5.16,
+  "block": "4755",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 790,
+  "crop": {
+   "u": 0.013,
+   "v": 0.1322,
+   "w": 0.96,
+   "h": 0.5472,
+   "rot": 0
+  },
+  "desc": {
+   "he": "בז׳ בהיר עם שכבות אופקיות בחיתוך ורידי, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Light beige with horizontal vein-cut banding, polished finish, 30 mm thick"
+  },
+  "status": "sold",
+  "rack": {
+   "rack": "B",
+   "slot": 22,
+   "label": "B-22"
+  },
+  "hero": true,
+  "mean": "#dfcbab",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-GRB-3835-02",
+  "tex": "santa-cecilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "סנטה ססיליה",
+   "en": "Santa Cecilia"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 3230,
+  "heightMm": 1940,
+  "thicknessMm": 20,
+  "areaM2": 6.27,
+  "block": "3835",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.0068,
+   "v": 0.2988,
+   "w": 0.96,
+   "h": 0.5766,
+   "rot": 180
+  },
+  "desc": {
+   "he": "זהב, חום וגרגירים כהים בנימור גס, גימור עור (לדר), עובי 20 מ״מ",
+   "en": "Gold, brown and dark grains in a coarse mottle, leathered finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 23,
+   "label": "B-23"
+  },
+  "hero": true,
+  "mean": "#867459",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-ONX-3806-03",
+  "tex": "onice-bianco",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס ביאנקו",
+   "en": "Onice Bianco"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2730,
+  "heightMm": 1410,
+  "thicknessMm": 20,
+  "areaM2": 3.85,
+  "block": "3806",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 2810,
+  "crop": {
+   "u": 0.0083,
+   "v": 0.0458,
+   "w": 0.94,
+   "h": 0.4821,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-פנינה עם גלים אפורים רכים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Pearl white with soft grey waves, polished finish, 20 mm thick"
+  },
+  "status": "held",
+  "rack": {
+   "rack": "B",
+   "slot": 24,
+   "label": "B-24"
+  },
+  "hero": false,
+  "mean": "#cdcbc7",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-3808-03",
+  "tex": "travertino-oro",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו אורו",
+   "en": "Travertino Oro"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2960,
+  "heightMm": 1690,
+  "thicknessMm": 20,
+  "areaM2": 5,
+  "block": "3808",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 550,
+  "crop": {
+   "u": 0.0226,
+   "v": 0.2362,
+   "w": 0.94,
+   "h": 0.5367,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זהוב-חרדל עם פסים אופקיים צפופים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Mustard gold with dense horizontal bands, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 25,
+   "label": "B-25"
+  },
+  "hero": false,
+  "mean": "#ae9253",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-2140-03",
+  "tex": "santa-cecilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "סנטה ססיליה",
+   "en": "Santa Cecilia"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 2990,
+  "heightMm": 1850,
+  "thicknessMm": 30,
+  "areaM2": 5.53,
+  "block": "2140",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 710,
+  "crop": {
+   "u": 0.0141,
+   "v": 0.0286,
+   "w": 0.96,
+   "h": 0.592,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זהב, חום וגרגירים כהים בנימור גס, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Gold, brown and dark grains in a coarse mottle, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 26,
+   "label": "B-26"
+  },
+  "hero": true,
+  "mean": "#89775b",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-TRV-3961-03",
+  "tex": "travertino-classico",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו קלאסיקו",
+   "en": "Travertino Romano Classico"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "leathered",
+  "lengthMm": 2870,
+  "heightMm": 1540,
+  "thicknessMm": 30,
+  "areaM2": 4.42,
+  "block": "3961",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 770,
+  "crop": {
+   "u": 0.0159,
+   "v": 0.1692,
+   "w": 0.96,
+   "h": 0.5151,
+   "rot": 180
+  },
+  "desc": {
+   "he": "בז׳ בהיר עם שכבות אופקיות בחיתוך ורידי, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Light beige with horizontal vein-cut banding, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 27,
+   "label": "B-27"
+  },
+  "hero": true,
+  "mean": "#decbab",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-CAL-2170-02",
+  "tex": "calacatta-oro",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה אורו",
+   "en": "Calacatta Oro"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2950,
+  "heightMm": 1710,
+  "thicknessMm": 20,
+  "areaM2": 5.04,
+  "block": "2170",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 3730,
+  "crop": {
+   "u": 0.0072,
+   "v": 0.3487,
+   "w": 0.96,
+   "h": 0.5616,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן חם עם ורידים רחבים אפורים-זהובים באלכסון, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Warm white with broad grey-gold diagonal veining, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 28,
+   "label": "B-28"
+  },
+  "hero": true,
+  "mean": "#e0ddd6",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-GRB-2655-03",
+  "tex": "azul-noturno",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "אזול נוטורנו",
+   "en": "Azul Noturno"
+  },
+  "origin": {
+   "he": "מינאס ז׳ראיס · ברזיל",
+   "en": "Minas Gerais · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 3160,
+  "heightMm": 1950,
+  "thicknessMm": 30,
+  "areaM2": 6.16,
+  "block": "2655",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.037,
+   "v": 0.3728,
+   "w": 0.94,
+   "h": 0.5819,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור-חום עם הבזקי גבישים כחולים, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Brown-black with flashes of blue crystal, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 29,
+   "label": "B-29"
+  },
+  "hero": false,
+  "mean": "#242223",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-1766-04",
+  "tex": "travertino-noce",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו נוצ׳ה",
+   "en": "Travertino Romano Noce"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2990,
+  "heightMm": 1590,
+  "thicknessMm": 30,
+  "areaM2": 4.75,
+  "block": "1766",
+  "seq": 4,
+  "blockSize": 4,
+  "priceM2": 620,
+  "crop": {
+   "u": 0.0397,
+   "v": 0.2335,
+   "w": 0.94,
+   "h": 0.503,
+   "rot": 0
+  },
+  "desc": {
+   "he": "חום-אגוז עם שכבות גליות בגווני חול, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Walnut brown with wavy sand-toned strata, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 30,
+   "label": "B-30"
+  },
+  "hero": false,
+  "mean": "#a08d75",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-VAL-3585-02",
+  "tex": "verde-alpi",
+  "family": "verde-alpi",
+  "kind": "marble",
+  "name": {
+   "he": "ורדה אלפי",
+   "en": "Verde Alpi"
+  },
+  "origin": {
+   "he": "עמק אאוסטה · איטליה",
+   "en": "Aosta Valley · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2840,
+  "heightMm": 1620,
+  "thicknessMm": 20,
+  "areaM2": 4.6,
+  "block": "3585",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 1520,
+  "crop": {
+   "u": 0.008,
+   "v": 0.2115,
+   "w": 0.96,
+   "h": 0.5529,
+   "rot": 180
+  },
+  "desc": {
+   "he": "ירוק-יער כהה עם ורידים ירקרקים-לבנים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Dark forest green with pale green-white veining, polished finish, 20 mm thick"
+  },
+  "status": "sold",
+  "rack": {
+   "rack": "B",
+   "slot": 31,
+   "label": "B-31"
+  },
+  "hero": true,
+  "mean": "#161c1a",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-TRV-1766-02",
+  "tex": "travertino-noce",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו נוצ׳ה",
+   "en": "Travertino Romano Noce"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3000,
+  "heightMm": 1590,
+  "thicknessMm": 30,
+  "areaM2": 4.77,
+  "block": "1766",
+  "seq": 2,
+  "blockSize": 4,
+  "priceM2": 620,
+  "crop": {
+   "u": 0.0317,
+   "v": 0.2335,
+   "w": 0.94,
+   "h": 0.503,
+   "rot": 0
+  },
+  "desc": {
+   "he": "חום-אגוז עם שכבות גליות בגווני חול, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Walnut brown with wavy sand-toned strata, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 32,
+   "label": "B-32"
+  },
+  "hero": false,
+  "mean": "#a08d75",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-1703-02",
+  "tex": "onice-rosso",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס רוסו",
+   "en": "Onice Rosso"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2830,
+  "heightMm": 1690,
+  "thicknessMm": 20,
+  "areaM2": 4.78,
+  "block": "1703",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 2820,
+  "crop": {
+   "u": 0.0136,
+   "v": 0.1887,
+   "w": 0.94,
+   "h": 0.5594,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שכבות יין, ורוד ושמנת, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Layers of wine, rose and cream, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 33,
+   "label": "B-33"
+  },
+  "hero": false,
+  "mean": "#8f7165",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-3562-03",
+  "tex": "calacatta-gold",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה גולד",
+   "en": "Calacatta Gold"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "leathered",
+  "lengthMm": 3170,
+  "heightMm": 1930,
+  "thicknessMm": 30,
+  "areaM2": 6.12,
+  "block": "3562",
+  "seq": 3,
+  "blockSize": 4,
+  "priceM2": 2830,
+  "crop": {
+   "u": 0.0153,
+   "v": 0.2359,
+   "w": 0.94,
+   "h": 0.5723,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן בהיר עם ורידים דקים בגוון דבש, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Bright white with fine honey-coloured veins, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 34,
+   "label": "B-34"
+  },
+  "hero": false,
+  "mean": "#f3f2f0",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-VAL-4643-02",
+  "tex": "verde-alpi",
+  "family": "verde-alpi",
+  "kind": "marble",
+  "name": {
+   "he": "ורדה אלפי",
+   "en": "Verde Alpi"
+  },
+  "origin": {
+   "he": "עמק אאוסטה · איטליה",
+   "en": "Aosta Valley · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2710,
+  "heightMm": 1750,
+  "thicknessMm": 20,
+  "areaM2": 4.74,
+  "block": "4643",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 1420,
+  "crop": {
+   "u": 0.0073,
+   "v": 0.2568,
+   "w": 0.96,
+   "h": 0.6212,
+   "rot": 180
+  },
+  "desc": {
+   "he": "ירוק-יער כהה עם ורידים ירקרקים-לבנים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Dark forest green with pale green-white veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 35,
+   "label": "B-35"
+  },
+  "hero": true,
+  "mean": "#161d1a",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-GRB-2370-02",
+  "tex": "branco-siena",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "בראנקו סיינה",
+   "en": "Branco Siena"
+  },
+  "origin": {
+   "he": "אספיריטו סנטו · ברזיל",
+   "en": "Espírito Santo · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3080,
+  "heightMm": 1970,
+  "thicknessMm": 30,
+  "areaM2": 6.07,
+  "block": "2370",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 480,
+  "crop": {
+   "u": 0.0044,
+   "v": 0.1159,
+   "w": 0.94,
+   "h": 0.5974,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-אפור עם נקודות פלפל שחורות, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Grey-white with black pepper speckle, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 36,
+   "label": "B-36"
+  },
+  "hero": false,
+  "mean": "#b7b4af",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3237-02",
+  "tex": "nero-marquina-classico",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה קלאסיקו",
+   "en": "Nero Marquina Classico"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2960,
+  "heightMm": 1660,
+  "thicknessMm": 30,
+  "areaM2": 4.91,
+  "block": "3237",
+  "seq": 2,
+  "blockSize": 4,
+  "priceM2": 1120,
+  "crop": {
+   "u": 0.0108,
+   "v": 0.2694,
+   "w": 0.94,
+   "h": 0.5272,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור-פחם עם רשת צפופה של ורידים לבנים דקים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Charcoal black with a dense web of fine white veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 37,
+   "label": "B-37"
+  },
+  "hero": false,
+  "mean": "#494949",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-2510-02",
+  "tex": "carrara-venato",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ונאטו",
+   "en": "Carrara Venato"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2970,
+  "heightMm": 1790,
+  "thicknessMm": 20,
+  "areaM2": 5.32,
+  "block": "2510",
+  "seq": 2,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0286,
+   "v": 0.1601,
+   "w": 0.94,
+   "h": 0.5646,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור בהיר עם ורידים אפורים כהים ומובחנים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Light grey with distinct charcoal veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 38,
+   "label": "B-38"
+  },
+  "hero": false,
+  "mean": "#adafb2",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-2170-03",
+  "tex": "calacatta-oro",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה אורו",
+   "en": "Calacatta Oro"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2960,
+  "heightMm": 1730,
+  "thicknessMm": 20,
+  "areaM2": 5.12,
+  "block": "2170",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 3730,
+  "crop": {
+   "u": 0.0112,
+   "v": 0.3487,
+   "w": 0.96,
+   "h": 0.5616,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן חם עם ורידים רחבים אפורים-זהובים באלכסון, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Warm white with broad grey-gold diagonal veining, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 39,
+   "label": "B-39"
+  },
+  "hero": true,
+  "mean": "#e0ddd6",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-STA-2614-03",
+  "tex": "statuario-venato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו ונאטו",
+   "en": "Statuario Venato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3120,
+  "heightMm": 1830,
+  "thicknessMm": 20,
+  "areaM2": 5.71,
+  "block": "2614",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 4090,
+  "crop": {
+   "u": 0.008,
+   "v": 0.3801,
+   "w": 0.96,
+   "h": 0.5662,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן קר ובוהק עם ורידים אפורים חדים ושבורים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Bright cool white with sharp, broken grey veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "B",
+   "slot": 40,
+   "label": "B-40"
+  },
+  "hero": true,
+  "mean": "#eaeaea",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-NMQ-3237-04",
+  "tex": "nero-marquina-classico",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה קלאסיקו",
+   "en": "Nero Marquina Classico"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2980,
+  "heightMm": 1670,
+  "thicknessMm": 30,
+  "areaM2": 4.98,
+  "block": "3237",
+  "seq": 4,
+  "blockSize": 4,
+  "priceM2": 1120,
+  "crop": {
+   "u": 0.0188,
+   "v": 0.2694,
+   "w": 0.94,
+   "h": 0.5272,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור-פחם עם רשת צפופה של ורידים לבנים דקים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Charcoal black with a dense web of fine white veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 1,
+   "label": "C-01"
+  },
+  "hero": false,
+  "mean": "#494949",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-4161-03",
+  "tex": "calacatta-crema",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה קרמה",
+   "en": "Calacatta Crema"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3060,
+  "heightMm": 1970,
+  "thicknessMm": 20,
+  "areaM2": 6.03,
+  "block": "4161",
+  "seq": 3,
+  "blockSize": 4,
+  "priceM2": 3130,
+  "crop": {
+   "u": 0.0211,
+   "v": 0.2838,
+   "w": 0.94,
+   "h": 0.6122,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שמנת חמה עם עננים וורידים בצבע קפה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Warm cream with coffee-toned clouds and veins, polished finish, 20 mm thick"
+  },
+  "status": "held",
+  "rack": {
+   "rack": "C",
+   "slot": 2,
+   "label": "C-02"
+  },
+  "hero": false,
+  "mean": "#d1c4b1",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-3156-02",
+  "tex": "ouro-brasil",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "אורו ברזיל",
+   "en": "Ouro Brasil"
+  },
+  "origin": {
+   "he": "מינאס ז׳ראיס · ברזיל",
+   "en": "Minas Gerais · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3020,
+  "heightMm": 1870,
+  "thicknessMm": 30,
+  "areaM2": 5.65,
+  "block": "3156",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 650,
+  "crop": {
+   "u": 0.0048,
+   "v": 0.16,
+   "w": 0.94,
+   "h": 0.5801,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זית-חום עם גבישים זהובים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Olive brown with golden crystals, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 3,
+   "label": "C-03"
+  },
+  "hero": false,
+  "mean": "#8f7e66",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-STA-4778-03",
+  "tex": "statuario-nuvolato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו נובולאטו",
+   "en": "Statuario Nuvolato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2890,
+  "heightMm": 1870,
+  "thicknessMm": 30,
+  "areaM2": 5.4,
+  "block": "4778",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 3330,
+  "crop": {
+   "u": 0.0314,
+   "v": 0.2404,
+   "w": 0.94,
+   "h": 0.6041,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-אפרפר עם עננות רכה וורידים חיוורים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Soft grey-white with cloudy movement and pale veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 4,
+   "label": "C-04"
+  },
+  "hero": false,
+  "mean": "#d7d7d7",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-3903-03",
+  "tex": "onice-miele",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס דבש",
+   "en": "Onice Miele"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2450,
+  "heightMm": 1620,
+  "thicknessMm": 20,
+  "areaM2": 3.97,
+  "block": "3903",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 3450,
+  "crop": {
+   "u": 0.013,
+   "v": 0.2724,
+   "w": 0.96,
+   "h": 0.64,
+   "rot": 180
+  },
+  "desc": {
+   "he": "דבש וענבר בשכבות גליות שקופות-למחצה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Honey and amber in translucent, wavy layers, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 5,
+   "label": "C-05"
+  },
+  "hero": true,
+  "mean": "#c69767",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-CAR-2082-04",
+  "tex": "carrara-gioia",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ג׳ויה",
+   "en": "Carrara Gioia"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3200,
+  "heightMm": 1940,
+  "thicknessMm": 20,
+  "areaM2": 6.21,
+  "block": "2082",
+  "seq": 4,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0418,
+   "v": 0.011,
+   "w": 0.94,
+   "h": 0.5735,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן עם נטייה כחלחלה וורידים אפורים רכים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "White with a blue-grey cast and soft grey veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 6,
+   "label": "C-06"
+  },
+  "hero": false,
+  "mean": "#b6b8bd",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-1525-03",
+  "tex": "onice-miele",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס דבש",
+   "en": "Onice Miele"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2530,
+  "heightMm": 1600,
+  "thicknessMm": 20,
+  "areaM2": 4.05,
+  "block": "1525",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 2920,
+  "crop": {
+   "u": 0.0103,
+   "v": 0.0555,
+   "w": 0.96,
+   "h": 0.6024,
+   "rot": 0
+  },
+  "desc": {
+   "he": "דבש וענבר בשכבות גליות שקופות-למחצה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Honey and amber in translucent, wavy layers, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 7,
+   "label": "C-07"
+  },
+  "hero": true,
+  "mean": "#c89a6a",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-NMQ-3984-02",
+  "tex": "nero-marquina-extra",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה אקסטרה",
+   "en": "Nero Marquina Extra"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2850,
+  "heightMm": 1620,
+  "thicknessMm": 30,
+  "areaM2": 4.62,
+  "block": "3984",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 1230,
+  "crop": {
+   "u": 0.0076,
+   "v": 0.3766,
+   "w": 0.96,
+   "h": 0.5491,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור עמוק עם ורידים לבנים חדים כברק, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Deep black with sharp, lightning-white veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 8,
+   "label": "C-08"
+  },
+  "hero": true,
+  "mean": "#3e3f3f",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-CAL-1269-02",
+  "tex": "calacatta-tortora",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה טורטורה",
+   "en": "Calacatta Tortora"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3210,
+  "heightMm": 1840,
+  "thicknessMm": 20,
+  "areaM2": 5.91,
+  "block": "1269",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 3130,
+  "crop": {
+   "u": 0.0275,
+   "v": 0.2534,
+   "w": 0.94,
+   "h": 0.5405,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-יונה חמים עם ורידים דקים בגוון ענבר, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Warm dove-grey with fine amber veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 9,
+   "label": "C-09"
+  },
+  "hero": false,
+  "mean": "#bbb6b0",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-2082-02",
+  "tex": "carrara-gioia",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ג׳ויה",
+   "en": "Carrara Gioia"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3180,
+  "heightMm": 1940,
+  "thicknessMm": 20,
+  "areaM2": 6.17,
+  "block": "2082",
+  "seq": 2,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0338,
+   "v": 0.011,
+   "w": 0.94,
+   "h": 0.5735,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן עם נטייה כחלחלה וורידים אפורים רכים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "White with a blue-grey cast and soft grey veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 10,
+   "label": "C-10"
+  },
+  "hero": false,
+  "mean": "#b6b8bd",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-2082-03",
+  "tex": "carrara-gioia",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה ג׳ויה",
+   "en": "Carrara Gioia"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3180,
+  "heightMm": 1950,
+  "thicknessMm": 20,
+  "areaM2": 6.2,
+  "block": "2082",
+  "seq": 3,
+  "blockSize": 4,
+  "priceM2": 820,
+  "crop": {
+   "u": 0.0378,
+   "v": 0.011,
+   "w": 0.94,
+   "h": 0.5735,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן עם נטייה כחלחלה וורידים אפורים רכים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "White with a blue-grey cast and soft grey veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 11,
+   "label": "C-11"
+  },
+  "hero": false,
+  "mean": "#b6b8bd",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-4161-04",
+  "tex": "calacatta-crema",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה קרמה",
+   "en": "Calacatta Crema"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3050,
+  "heightMm": 1980,
+  "thicknessMm": 20,
+  "areaM2": 6.04,
+  "block": "4161",
+  "seq": 4,
+  "blockSize": 4,
+  "priceM2": 3130,
+  "crop": {
+   "u": 0.0251,
+   "v": 0.2838,
+   "w": 0.94,
+   "h": 0.6122,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שמנת חמה עם עננים וורידים בצבע קפה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Warm cream with coffee-toned clouds and veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 12,
+   "label": "C-12"
+  },
+  "hero": false,
+  "mean": "#d1c4b1",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3526-03",
+  "tex": "nero-marquina-dorato",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה דוראטו",
+   "en": "Nero Marquina Dorato"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2820,
+  "heightMm": 1710,
+  "thicknessMm": 20,
+  "areaM2": 4.82,
+  "block": "3526",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 1080,
+  "crop": {
+   "u": 0.0105,
+   "v": 0.0564,
+   "w": 0.94,
+   "h": 0.57,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור עם ורידים אפורים-זהובים מעוננים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Black with clouded grey-gold veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 13,
+   "label": "C-13"
+  },
+  "hero": false,
+  "mean": "#1a1a1a",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-3903-02",
+  "tex": "onice-miele",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס דבש",
+   "en": "Onice Miele"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2410,
+  "heightMm": 1620,
+  "thicknessMm": 20,
+  "areaM2": 3.9,
+  "block": "3903",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 3450,
+  "crop": {
+   "u": 0.009,
+   "v": 0.2724,
+   "w": 0.96,
+   "h": 0.64,
+   "rot": 180
+  },
+  "desc": {
+   "he": "דבש וענבר בשכבות גליות שקופות-למחצה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Honey and amber in translucent, wavy layers, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 14,
+   "label": "C-14"
+  },
+  "hero": true,
+  "mean": "#c69767",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-STA-4692-02",
+  "tex": "statuario-venato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו ונאטו",
+   "en": "Statuario Venato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3080,
+  "heightMm": 1660,
+  "thicknessMm": 20,
+  "areaM2": 5.11,
+  "block": "4692",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 3770,
+  "crop": {
+   "u": 0.012,
+   "v": 0.1138,
+   "w": 0.96,
+   "h": 0.5205,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן קר ובוהק עם ורידים אפורים חדים ושבורים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Bright cool white with sharp, broken grey veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 15,
+   "label": "C-15"
+  },
+  "hero": true,
+  "mean": "#eaebea",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-GRB-4681-03",
+  "tex": "vermelho-brasilia",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "ורמלו ברזיליה",
+   "en": "Vermelho Brasília"
+  },
+  "origin": {
+   "he": "באהיה · ברזיל",
+   "en": "Bahia · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3120,
+  "heightMm": 1890,
+  "thicknessMm": 30,
+  "areaM2": 5.9,
+  "block": "4681",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 640,
+  "crop": {
+   "u": 0.0196,
+   "v": 0.2163,
+   "w": 0.94,
+   "h": 0.5658,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אדום-חלודה עם גרגירים כהים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Rust red with dark grains, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 16,
+   "label": "C-16"
+  },
+  "hero": false,
+  "mean": "#8b5d41",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-4493-02",
+  "tex": "travertino-scuro",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו סקורו",
+   "en": "Travertino Scuro"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2880,
+  "heightMm": 1700,
+  "thicknessMm": 30,
+  "areaM2": 4.9,
+  "block": "4493",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.0121,
+   "v": 0.0905,
+   "w": 0.94,
+   "h": 0.5587,
+   "rot": 0
+  },
+  "desc": {
+   "he": "חום-שוקולד כהה עם שכבות עדינות, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Dark chocolate brown with fine strata, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 17,
+   "label": "C-17"
+  },
+  "hero": false,
+  "mean": "#5f5146",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-1766-03",
+  "tex": "travertino-noce",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו נוצ׳ה",
+   "en": "Travertino Romano Noce"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3000,
+  "heightMm": 1590,
+  "thicknessMm": 30,
+  "areaM2": 4.77,
+  "block": "1766",
+  "seq": 3,
+  "blockSize": 4,
+  "priceM2": 620,
+  "crop": {
+   "u": 0.0357,
+   "v": 0.2335,
+   "w": 0.94,
+   "h": 0.503,
+   "rot": 0
+  },
+  "desc": {
+   "he": "חום-אגוז עם שכבות גליות בגווני חול, גימור מט (הונד), עובי 30 מ״מ",
+   "en": "Walnut brown with wavy sand-toned strata, honed finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 18,
+   "label": "C-18"
+  },
+  "hero": false,
+  "mean": "#a08d75",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-2236-02",
+  "tex": "calacatta-oro",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה אורו",
+   "en": "Calacatta Oro"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3070,
+  "heightMm": 1970,
+  "thicknessMm": 20,
+  "areaM2": 6.05,
+  "block": "2236",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 3390,
+  "crop": {
+   "u": 0.0089,
+   "v": 0.315,
+   "w": 0.96,
+   "h": 0.614,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן חם עם ורידים רחבים אפורים-זהובים באלכסון, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Warm white with broad grey-gold diagonal veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 19,
+   "label": "C-19"
+  },
+  "hero": true,
+  "mean": "#e0ddd6",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-BAS-2398-02",
+  "tex": "basalto-etna",
+  "family": "basalt",
+  "kind": "basalt",
+  "name": {
+   "he": "בזלת אטנה",
+   "en": "Basalto Etna"
+  },
+  "origin": {
+   "he": "אטנה, סיציליה · איטליה",
+   "en": "Etna, Sicily · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2880,
+  "heightMm": 1510,
+  "thicknessMm": 20,
+  "areaM2": 4.35,
+  "block": "2398",
+  "seq": 2,
+  "blockSize": 4,
+  "priceM2": 480,
+  "crop": {
+   "u": 0.0274,
+   "v": 0.1845,
+   "w": 0.94,
+   "h": 0.4927,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-פחם אחיד עם גרגיר וולקני עדין, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Even charcoal grey with a fine volcanic grain, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 20,
+   "label": "C-20"
+  },
+  "hero": false,
+  "mean": "#313132",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-STA-4778-02",
+  "tex": "statuario-nuvolato",
+  "family": "statuario",
+  "kind": "marble",
+  "name": {
+   "he": "סטטואריו נובולאטו",
+   "en": "Statuario Nuvolato"
+  },
+  "origin": {
+   "he": "אגן פנטיסקריטי, קרארה · איטליה",
+   "en": "Fantiscritti basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2900,
+  "heightMm": 1870,
+  "thicknessMm": 30,
+  "areaM2": 5.42,
+  "block": "4778",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 3330,
+  "crop": {
+   "u": 0.0274,
+   "v": 0.2404,
+   "w": 0.94,
+   "h": 0.6041,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-אפרפר עם עננות רכה וורידים חיוורים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Soft grey-white with cloudy movement and pale veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 21,
+   "label": "C-21"
+  },
+  "hero": false,
+  "mean": "#d7d7d7",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAR-3375-03",
+  "tex": "carrara-classico",
+  "family": "carrara",
+  "kind": "marble",
+  "name": {
+   "he": "קרארה קלאסיקו",
+   "en": "Carrara Classico"
+  },
+  "origin": {
+   "he": "קרארה, טוסקנה · איטליה",
+   "en": "Carrara, Tuscany · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3110,
+  "heightMm": 1680,
+  "thicknessMm": 20,
+  "areaM2": 5.22,
+  "block": "3375",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 940,
+  "crop": {
+   "u": 0.0153,
+   "v": 0.2711,
+   "w": 0.96,
+   "h": 0.5172,
+   "rot": 180
+  },
+  "desc": {
+   "he": "לבן-אפור קריר עם ורידים אפורים נוצתיים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Cool grey-white with feathery grey veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 22,
+   "label": "C-22"
+  },
+  "hero": true,
+  "mean": "#e5e9eb",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-ONX-3697-03",
+  "tex": "onice-azzurro",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס אצורו",
+   "en": "Onice Azzurro"
+  },
+  "origin": {
+   "he": "בלוצ׳יסטן · פקיסטן",
+   "en": "Balochistan · Pakistan"
+  },
+  "finish": "polished",
+  "lengthMm": 2600,
+  "heightMm": 1640,
+  "thicknessMm": 20,
+  "areaM2": 4.26,
+  "block": "3697",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 2570,
+  "crop": {
+   "u": 0.0325,
+   "v": 0.2255,
+   "w": 0.94,
+   "h": 0.5884,
+   "rot": 0
+  },
+  "desc": {
+   "he": "כחול-פטרול וחלודה בזרימה סוערת, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Petrol blue and rust in a stormy flow, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 23,
+   "label": "C-23"
+  },
+  "hero": false,
+  "mean": "#60665f",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-VAL-4643-03",
+  "tex": "verde-alpi",
+  "family": "verde-alpi",
+  "kind": "marble",
+  "name": {
+   "he": "ורדה אלפי",
+   "en": "Verde Alpi"
+  },
+  "origin": {
+   "he": "עמק אאוסטה · איטליה",
+   "en": "Aosta Valley · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2700,
+  "heightMm": 1760,
+  "thicknessMm": 20,
+  "areaM2": 4.75,
+  "block": "4643",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 1420,
+  "crop": {
+   "u": 0.0113,
+   "v": 0.2568,
+   "w": 0.96,
+   "h": 0.6212,
+   "rot": 180
+  },
+  "desc": {
+   "he": "ירוק-יער כהה עם ורידים ירקרקים-לבנים, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Dark forest green with pale green-white veining, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 24,
+   "label": "C-24"
+  },
+  "hero": true,
+  "mean": "#161c1a",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-TRV-4755-03",
+  "tex": "travertino-classico",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו קלאסיקו",
+   "en": "Travertino Romano Classico"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2990,
+  "heightMm": 1710,
+  "thicknessMm": 30,
+  "areaM2": 5.11,
+  "block": "4755",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 790,
+  "crop": {
+   "u": 0.017,
+   "v": 0.1322,
+   "w": 0.96,
+   "h": 0.5472,
+   "rot": 0
+  },
+  "desc": {
+   "he": "בז׳ בהיר עם שכבות אופקיות בחיתוך ורידי, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Light beige with horizontal vein-cut banding, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 25,
+   "label": "C-25"
+  },
+  "hero": true,
+  "mean": "#dfcbab",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-ONX-1703-03",
+  "tex": "onice-rosso",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס רוסו",
+   "en": "Onice Rosso"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2840,
+  "heightMm": 1700,
+  "thicknessMm": 20,
+  "areaM2": 4.83,
+  "block": "1703",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 2820,
+  "crop": {
+   "u": 0.0176,
+   "v": 0.1887,
+   "w": 0.94,
+   "h": 0.5594,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שכבות יין, ורוד ושמנת, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Layers of wine, rose and cream, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 26,
+   "label": "C-26"
+  },
+  "hero": false,
+  "mean": "#8f7165",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-3806-02",
+  "tex": "onice-bianco",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס ביאנקו",
+   "en": "Onice Bianco"
+  },
+  "origin": {
+   "he": "יזד · איראן",
+   "en": "Yazd · Iran"
+  },
+  "finish": "polished",
+  "lengthMm": 2730,
+  "heightMm": 1390,
+  "thicknessMm": 20,
+  "areaM2": 3.79,
+  "block": "3806",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 2810,
+  "crop": {
+   "u": 0.0043,
+   "v": 0.0458,
+   "w": 0.94,
+   "h": 0.4821,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן-פנינה עם גלים אפורים רכים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Pearl white with soft grey waves, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 27,
+   "label": "C-27"
+  },
+  "hero": false,
+  "mean": "#cdcbc7",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-BAS-2398-03",
+  "tex": "basalto-etna",
+  "family": "basalt",
+  "kind": "basalt",
+  "name": {
+   "he": "בזלת אטנה",
+   "en": "Basalto Etna"
+  },
+  "origin": {
+   "he": "אטנה, סיציליה · איטליה",
+   "en": "Etna, Sicily · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 2900,
+  "heightMm": 1510,
+  "thicknessMm": 20,
+  "areaM2": 4.38,
+  "block": "2398",
+  "seq": 3,
+  "blockSize": 4,
+  "priceM2": 480,
+  "crop": {
+   "u": 0.0314,
+   "v": 0.1845,
+   "w": 0.94,
+   "h": 0.4927,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-פחם אחיד עם גרגיר וולקני עדין, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Even charcoal grey with a fine volcanic grain, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 28,
+   "label": "C-28"
+  },
+  "hero": false,
+  "mean": "#313132",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-ONX-4411-02",
+  "tex": "onice-perla",
+  "family": "onyx",
+  "kind": "onyx",
+  "name": {
+   "he": "אוניקס פרלה",
+   "en": "Onice Perla"
+  },
+  "origin": {
+   "he": "בלוצ׳יסטן · פקיסטן",
+   "en": "Balochistan · Pakistan"
+  },
+  "finish": "polished",
+  "lengthMm": 2840,
+  "heightMm": 1580,
+  "thicknessMm": 20,
+  "areaM2": 4.49,
+  "block": "4411",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 2390,
+  "crop": {
+   "u": 0.0056,
+   "v": 0.1309,
+   "w": 0.94,
+   "h": 0.5267,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שמנת עם פסים ירקרקים-חיוורים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Cream with pale green striations, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 29,
+   "label": "C-29"
+  },
+  "hero": false,
+  "mean": "#cac3b1",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3479-02",
+  "tex": "nero-marquina-extra",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה אקסטרה",
+   "en": "Nero Marquina Extra"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2850,
+  "heightMm": 1610,
+  "thicknessMm": 20,
+  "areaM2": 4.59,
+  "block": "3479",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 1290,
+  "crop": {
+   "u": 0.0067,
+   "v": 0.2568,
+   "w": 0.96,
+   "h": 0.5476,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור עמוק עם ורידים לבנים חדים כברק, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Deep black with sharp, lightning-white veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 30,
+   "label": "C-30"
+  },
+  "hero": true,
+  "mean": "#3e3f3f",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-CAL-1269-03",
+  "tex": "calacatta-tortora",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה טורטורה",
+   "en": "Calacatta Tortora"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "honed",
+  "lengthMm": 3210,
+  "heightMm": 1840,
+  "thicknessMm": 20,
+  "areaM2": 5.91,
+  "block": "1269",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 3130,
+  "crop": {
+   "u": 0.0315,
+   "v": 0.2534,
+   "w": 0.94,
+   "h": 0.5405,
+   "rot": 0
+  },
+  "desc": {
+   "he": "אפור-יונה חמים עם ורידים דקים בגוון ענבר, גימור מט (הונד), עובי 20 מ״מ",
+   "en": "Warm dove-grey with fine amber veins, honed finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 31,
+   "label": "C-31"
+  },
+  "hero": false,
+  "mean": "#bbb6b0",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-CAL-4161-02",
+  "tex": "calacatta-crema",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה קרמה",
+   "en": "Calacatta Crema"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 3050,
+  "heightMm": 1990,
+  "thicknessMm": 20,
+  "areaM2": 6.07,
+  "block": "4161",
+  "seq": 2,
+  "blockSize": 4,
+  "priceM2": 3130,
+  "crop": {
+   "u": 0.0171,
+   "v": 0.2838,
+   "w": 0.94,
+   "h": 0.6122,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שמנת חמה עם עננים וורידים בצבע קפה, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Warm cream with coffee-toned clouds and veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 32,
+   "label": "C-32"
+  },
+  "hero": false,
+  "mean": "#d1c4b1",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3984-03",
+  "tex": "nero-marquina-extra",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה אקסטרה",
+   "en": "Nero Marquina Extra"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2840,
+  "heightMm": 1640,
+  "thicknessMm": 30,
+  "areaM2": 4.66,
+  "block": "3984",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 1230,
+  "crop": {
+   "u": 0.0116,
+   "v": 0.3766,
+   "w": 0.96,
+   "h": 0.5491,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור עמוק עם ורידים לבנים חדים כברק, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Deep black with sharp, lightning-white veins, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 33,
+   "label": "C-33"
+  },
+  "hero": true,
+  "mean": "#3e3f3f",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-GRB-3156-03",
+  "tex": "ouro-brasil",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "אורו ברזיל",
+   "en": "Ouro Brasil"
+  },
+  "origin": {
+   "he": "מינאס ז׳ראיס · ברזיל",
+   "en": "Minas Gerais · Brazil"
+  },
+  "finish": "polished",
+  "lengthMm": 3030,
+  "heightMm": 1880,
+  "thicknessMm": 30,
+  "areaM2": 5.7,
+  "block": "3156",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 650,
+  "crop": {
+   "u": 0.0088,
+   "v": 0.16,
+   "w": 0.94,
+   "h": 0.5801,
+   "rot": 0
+  },
+  "desc": {
+   "he": "זית-חום עם גבישים זהובים, גימור מלוטש (פוליש), עובי 30 מ״מ",
+   "en": "Olive brown with golden crystals, polished finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 34,
+   "label": "C-34"
+  },
+  "hero": false,
+  "mean": "#8f7e66",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-GRB-2655-02",
+  "tex": "azul-noturno",
+  "family": "granite",
+  "kind": "granite",
+  "name": {
+   "he": "אזול נוטורנו",
+   "en": "Azul Noturno"
+  },
+  "origin": {
+   "he": "מינאס ז׳ראיס · ברזיל",
+   "en": "Minas Gerais · Brazil"
+  },
+  "finish": "leathered",
+  "lengthMm": 3170,
+  "heightMm": 1950,
+  "thicknessMm": 30,
+  "areaM2": 6.18,
+  "block": "2655",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 720,
+  "crop": {
+   "u": 0.033,
+   "v": 0.3728,
+   "w": 0.94,
+   "h": 0.5819,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור-חום עם הבזקי גבישים כחולים, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Brown-black with flashes of blue crystal, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 35,
+   "label": "C-35"
+  },
+  "hero": false,
+  "mean": "#242223",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-VAL-3585-03",
+  "tex": "verde-alpi",
+  "family": "verde-alpi",
+  "kind": "marble",
+  "name": {
+   "he": "ורדה אלפי",
+   "en": "Verde Alpi"
+  },
+  "origin": {
+   "he": "עמק אאוסטה · איטליה",
+   "en": "Aosta Valley · Italy"
+  },
+  "finish": "polished",
+  "lengthMm": 2820,
+  "heightMm": 1640,
+  "thicknessMm": 20,
+  "areaM2": 4.62,
+  "block": "3585",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 1520,
+  "crop": {
+   "u": 0.012,
+   "v": 0.2115,
+   "w": 0.96,
+   "h": 0.5529,
+   "rot": 180
+  },
+  "desc": {
+   "he": "ירוק-יער כהה עם ורידים ירקרקים-לבנים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Dark forest green with pale green-white veining, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 36,
+   "label": "C-36"
+  },
+  "hero": true,
+  "mean": "#161c1a",
+  "zoomMax": 3
+ },
+ {
+  "id": "FV-NMQ-3479-03",
+  "tex": "nero-marquina-extra",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה אקסטרה",
+   "en": "Nero Marquina Extra"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2830,
+  "heightMm": 1630,
+  "thicknessMm": 20,
+  "areaM2": 4.61,
+  "block": "3479",
+  "seq": 3,
+  "blockSize": 3,
+  "priceM2": 1290,
+  "crop": {
+   "u": 0.0107,
+   "v": 0.2568,
+   "w": 0.96,
+   "h": 0.5476,
+   "rot": 180
+  },
+  "desc": {
+   "he": "שחור עמוק עם ורידים לבנים חדים כברק, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Deep black with sharp, lightning-white veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 37,
+   "label": "C-37"
+  },
+  "hero": true,
+  "mean": "#3e3f3f",
+  "zoomMax": 4
+ },
+ {
+  "id": "FV-CAL-3562-04",
+  "tex": "calacatta-gold",
+  "family": "calacatta",
+  "kind": "marble",
+  "name": {
+   "he": "קלקטה גולד",
+   "en": "Calacatta Gold"
+  },
+  "origin": {
+   "he": "אגן קלקטה, קרארה · איטליה",
+   "en": "Calacatta basin, Carrara · Italy"
+  },
+  "finish": "leathered",
+  "lengthMm": 3160,
+  "heightMm": 1930,
+  "thicknessMm": 30,
+  "areaM2": 6.1,
+  "block": "3562",
+  "seq": 4,
+  "blockSize": 4,
+  "priceM2": 2830,
+  "crop": {
+   "u": 0.0193,
+   "v": 0.2359,
+   "w": 0.94,
+   "h": 0.5723,
+   "rot": 0
+  },
+  "desc": {
+   "he": "לבן בהיר עם ורידים דקים בגוון דבש, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Bright white with fine honey-coloured veins, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 38,
+   "label": "C-38"
+  },
+  "hero": false,
+  "mean": "#f3f2ef",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-NMQ-3526-02",
+  "tex": "nero-marquina-dorato",
+  "family": "nero-marquina",
+  "kind": "marble",
+  "name": {
+   "he": "נרו מרקינה דוראטו",
+   "en": "Nero Marquina Dorato"
+  },
+  "origin": {
+   "he": "מרקינה, חבל הבסקים · ספרד",
+   "en": "Markina-Xemein, Basque Country · Spain"
+  },
+  "finish": "polished",
+  "lengthMm": 2820,
+  "heightMm": 1710,
+  "thicknessMm": 20,
+  "areaM2": 4.82,
+  "block": "3526",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 1080,
+  "crop": {
+   "u": 0.0065,
+   "v": 0.0564,
+   "w": 0.94,
+   "h": 0.57,
+   "rot": 0
+  },
+  "desc": {
+   "he": "שחור עם ורידים אפורים-זהובים מעוננים, גימור מלוטש (פוליש), עובי 20 מ״מ",
+   "en": "Black with clouded grey-gold veins, polished finish, 20 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 39,
+   "label": "C-39"
+  },
+  "hero": false,
+  "mean": "#1a1a1a",
+  "zoomMax": 2
+ },
+ {
+  "id": "FV-TRV-3961-02",
+  "tex": "travertino-classico",
+  "family": "travertino",
+  "kind": "travertine",
+  "name": {
+   "he": "טרוורטינו רומנו קלאסיקו",
+   "en": "Travertino Romano Classico"
+  },
+  "origin": {
+   "he": "טיבולי, לאציו · איטליה",
+   "en": "Tivoli, Lazio · Italy"
+  },
+  "finish": "leathered",
+  "lengthMm": 2880,
+  "heightMm": 1540,
+  "thicknessMm": 30,
+  "areaM2": 4.44,
+  "block": "3961",
+  "seq": 2,
+  "blockSize": 3,
+  "priceM2": 770,
+  "crop": {
+   "u": 0.0119,
+   "v": 0.1692,
+   "w": 0.96,
+   "h": 0.5151,
+   "rot": 180
+  },
+  "desc": {
+   "he": "בז׳ בהיר עם שכבות אופקיות בחיתוך ורידי, גימור עור (לדר), עובי 30 מ״מ",
+   "en": "Light beige with horizontal vein-cut banding, leathered finish, 30 mm thick"
+  },
+  "status": "available",
+  "rack": {
+   "rack": "C",
+   "slot": 40,
+   "label": "C-40"
+  },
+  "hero": true,
+  "mean": "#decbab",
+  "zoomMax": 3
+ }
+]

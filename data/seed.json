@@ -1,0 +1,114 @@
+{
+ "holds": [
+  {
+   "slabId": "FV-NMQ-3526-01",
+   "customerId": "c-alon",
+   "projectId": "p-alon-villa",
+   "roomId": "r-lobby",
+   "hoursAgo": 6,
+   "status": "confirmed",
+   "extended": 0
+  },
+  {
+   "slabId": "FV-STA-4692-03",
+   "customerId": "c-alon",
+   "projectId": "p-alon-villa",
+   "roomId": "r-kitchen",
+   "hoursAgo": 30,
+   "status": "pending",
+   "extended": 0
+  },
+  {
+   "slabId": "FV-CAL-4161-03",
+   "customerId": "c-levy",
+   "projectId": "p-levy-kitchen",
+   "roomId": "r-kitchen",
+   "hoursAgo": 46.5,
+   "status": "confirmed",
+   "extended": 0
+  },
+  {
+   "slabId": "FV-BAS-2398-04",
+   "customerId": "c-shahar",
+   "projectId": "p-shahar-lobby",
+   "roomId": "r-floor",
+   "hoursAgo": 12,
+   "status": "pending",
+   "extended": 0
+  },
+  {
+   "slabId": "FV-GRB-2370-03",
+   "customerId": "c-shahar",
+   "projectId": "p-shahar-netanya",
+   "roomId": "r-kitchen",
+   "hoursAgo": 2,
+   "status": "confirmed",
+   "extended": 1
+  },
+  {
+   "slabId": "FV-ONX-3806-03",
+   "customerId": "c-alon",
+   "projectId": "p-alon-penthouse",
+   "roomId": "r-bath",
+   "hoursAgo": 20,
+   "status": "pending",
+   "extended": 0
+  }
+ ],
+ "sales": [
+  {
+   "slabId": "FV-CAL-2236-01",
+   "customerId": "c-alon",
+   "projectId": "p-alon-villa",
+   "roomId": "r-kitchen",
+   "stage": "polishing",
+   "deliveryInDays": 3,
+   "window": "08:00–11:00"
+  },
+  {
+   "slabId": "FV-TRV-4755-02",
+   "customerId": "c-shahar",
+   "projectId": "p-shahar-lobby",
+   "roomId": "r-cladding",
+   "stage": "cutting",
+   "deliveryInDays": 9,
+   "window": "07:00–10:00"
+  },
+  {
+   "slabId": "FV-GRB-2140-02",
+   "customerId": "c-shahar",
+   "projectId": "p-shahar-netanya",
+   "roomId": "r-kitchen",
+   "stage": "ready",
+   "deliveryInDays": 1,
+   "window": "07:00–10:00"
+  },
+  {
+   "slabId": "FV-CAR-3450-02",
+   "customerId": "c-levy",
+   "projectId": "p-levy-parents",
+   "roomId": "r-bath",
+   "stage": "delivered",
+   "deliveryInDays": -5,
+   "window": "12:00–15:00"
+  },
+  {
+   "slabId": "FV-VAL-3585-02",
+   "customerId": "c-alon",
+   "projectId": "p-alon-penthouse",
+   "roomId": "r-fire",
+   "stage": "cutting",
+   "deliveryInDays": 12,
+   "window": "09:00–12:00"
+  },
+  {
+   "slabId": "FV-BAS-4673-02",
+   "customerId": "c-shahar",
+   "projectId": "p-shahar-lobby",
+   "roomId": "r-floor",
+   "stage": "delivered",
+   "deliveryInDays": -2,
+   "window": "07:00–10:00"
+  }
+ ]
+}

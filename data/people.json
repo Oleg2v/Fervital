@@ -1,0 +1,201 @@
+{
+ "customers": [
+  {
+   "id": "c-levy",
+   "kind": "private",
+   "name": {
+    "he": "נועה ויואב לוי",
+    "en": "Noa & Yoav Levy"
+   },
+   "role": {
+    "he": "לקוחה פרטית",
+    "en": "Private client"
+   },
+   "city": {
+    "he": "רמת השרון",
+    "en": "Ramat HaSharon"
+   },
+   "initials": "נל"
+  },
+  {
+   "id": "c-alon",
+   "kind": "architect",
+   "name": {
+    "he": "אדר׳ תמר אלון",
+    "en": "Tamar Alon, Architect"
+   },
+   "role": {
+    "he": "אדריכלית · אלון סטודיו",
+    "en": "Architect · Alon Studio"
+   },
+   "city": {
+    "he": "תל אביב",
+    "en": "Tel Aviv"
+   },
+   "initials": "תא"
+  },
+  {
+   "id": "c-shahar",
+   "kind": "contractor",
+   "name": {
+    "he": "רוני שחר",
+    "en": "Roni Shahar"
+   },
+   "role": {
+    "he": "קבלן · שחר בנייה ויזמות",
+    "en": "Contractor · Shahar Build"
+   },
+   "city": {
+    "he": "נתניה",
+    "en": "Netanya"
+   },
+   "initials": "רש"
+  }
+ ],
+ "projects": [
+  {
+   "id": "p-levy-kitchen",
+   "customerId": "c-levy",
+   "name": {
+    "he": "דירת גן, רמת השרון — מטבח ואי",
+    "en": "Garden flat, Ramat HaSharon — kitchen & island"
+   },
+   "rooms": [
+    {
+     "id": "r-kitchen",
+     "name": {
+      "he": "מטבח ואי",
+      "en": "Kitchen & island"
+     }
+    },
+    {
+     "id": "r-bath",
+     "name": {
+      "he": "חדר רחצה הורים",
+      "en": "Main bathroom"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p-levy-parents",
+   "customerId": "c-levy",
+   "name": {
+    "he": "בית ההורים, כפר יונה — חדר רחצה",
+    "en": "Parents' house, Kfar Yona — bathroom"
+   },
+   "rooms": [
+    {
+     "id": "r-bath",
+     "name": {
+      "he": "חדר רחצה",
+      "en": "Bathroom"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p-alon-villa",
+   "customerId": "c-alon",
+   "name": {
+    "he": "וילה בכפר שמריהו — מטבח, לובי ומדרגות",
+    "en": "Villa, Kfar Shmaryahu — kitchen, lobby, stair"
+   },
+   "rooms": [
+    {
+     "id": "r-kitchen",
+     "name": {
+      "he": "מטבח",
+      "en": "Kitchen"
+     }
+    },
+    {
+     "id": "r-lobby",
+     "name": {
+      "he": "לובי כניסה",
+      "en": "Entrance lobby"
+     }
+    },
+    {
+     "id": "r-stair",
+     "name": {
+      "he": "מדרגות",
+      "en": "Staircase"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p-alon-penthouse",
+   "customerId": "c-alon",
+   "name": {
+    "he": "פנטהאוז בנמל תל אביב — רחצה ואח",
+    "en": "Penthouse, Tel Aviv Port — baths & fireplace"
+   },
+   "rooms": [
+    {
+     "id": "r-bath",
+     "name": {
+      "he": "חדר רחצה ראשי",
+      "en": "Main bathroom"
+     }
+    },
+    {
+     "id": "r-fire",
+     "name": {
+      "he": "קיר אח",
+      "en": "Fireplace wall"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p-shahar-netanya",
+   "customerId": "c-shahar",
+   "name": {
+    "he": "מגדלי הים, נתניה — 48 יח׳ דיור",
+    "en": "Sea Towers, Netanya — 48 units"
+   },
+   "rooms": [
+    {
+     "id": "r-kitchen",
+     "name": {
+      "he": "משטחי מטבח (טיפוסי)",
+      "en": "Kitchen tops (typical)"
+     }
+    },
+    {
+     "id": "r-lobby",
+     "name": {
+      "he": "לובי כניסה",
+      "en": "Entrance lobby"
+     }
+    }
+   ]
+  },
+  {
+   "id": "p-shahar-lobby",
+   "customerId": "c-shahar",
+   "name": {
+    "he": "לובי משרדים, הרצליה פיתוח",
+    "en": "Office lobby, Herzliya Pituach"
+   },
+   "rooms": [
+    {
+     "id": "r-cladding",
+     "name": {
+      "he": "חיפוי קירות",
+      "en": "Wall cladding"
+     }
+    },
+    {
+     "id": "r-floor",
+     "name": {
+      "he": "ריצוף",
+      "en": "Flooring"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,820 @@
+[
+ {
+  "key": "calacatta-oro",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble001",
+   "url": "https://ambientcg.com/a/Marble001",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "calacatta",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 4,
+   "size": 8192,
+   "levels": 5
+  },
+  "mean": "#dfddd7"
+ },
+ {
+  "key": "calacatta-gold",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble021",
+   "url": "https://ambientcg.com/a/Marble021",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "calacatta",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#f3f2f0"
+ },
+ {
+  "key": "calacatta-crema",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble014",
+   "url": "https://ambientcg.com/a/Marble014",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "calacatta",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#d1c4b1"
+ },
+ {
+  "key": "calacatta-tortora",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble018",
+   "url": "https://ambientcg.com/a/Marble018",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "calacatta",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#bcb6b1"
+ },
+ {
+  "key": "statuario-venato",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble019",
+   "url": "https://ambientcg.com/a/Marble019",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "statuario",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 4,
+   "size": 8192,
+   "levels": 5
+  },
+  "mean": "#e9e9e9"
+ },
+ {
+  "key": "statuario-nuvolato",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble025",
+   "url": "https://ambientcg.com/a/Marble025",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "statuario",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#d7d7d7"
+ },
+ {
+  "key": "carrara-classico",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble005",
+   "url": "https://ambientcg.com/a/Marble005",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "carrara",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 3,
+   "size": 4096,
+   "levels": 4
+  },
+  "mean": "#e4e8ea"
+ },
+ {
+  "key": "carrara-gioia",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble003",
+   "url": "https://ambientcg.com/a/Marble003",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "carrara",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#b6b8bd"
+ },
+ {
+  "key": "carrara-venato",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble012",
+   "url": "https://ambientcg.com/a/Marble012",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "carrara",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#adadb2"
+ },
+ {
+  "key": "nero-marquina-extra",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble016",
+   "url": "https://ambientcg.com/a/Marble016",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "nero-marquina",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 4,
+   "size": 8192,
+   "levels": 5
+  },
+  "mean": "#3d3f3e"
+ },
+ {
+  "key": "nero-marquina-classico",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble017",
+   "url": "https://ambientcg.com/a/Marble017",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "nero-marquina",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#494949"
+ },
+ {
+  "key": "nero-marquina-dorato",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble006",
+   "url": "https://ambientcg.com/a/Marble006",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "nero-marquina",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#19191a"
+ },
+ {
+  "key": "verde-alpi",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble009",
+   "url": "https://ambientcg.com/a/Marble009",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "verde-alpi",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 3,
+   "size": 4096,
+   "levels": 4
+  },
+  "mean": "#161c1a"
+ },
+ {
+  "key": "travertino-classico",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Travertine009",
+   "url": "https://ambientcg.com/a/Travertine009",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "travertino",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 3,
+   "size": 4096,
+   "levels": 4
+  },
+  "mean": "#dfcbac"
+ },
+ {
+  "key": "travertino-noce",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Travertine003",
+   "url": "https://ambientcg.com/a/Travertine003",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "travertino",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#a18d77"
+ },
+ {
+  "key": "travertino-oro",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Travertine012",
+   "url": "https://ambientcg.com/a/Travertine012",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "travertino",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#af9356"
+ },
+ {
+  "key": "travertino-scuro",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Travertine005",
+   "url": "https://ambientcg.com/a/Travertine005",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "travertino",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#605147"
+ },
+ {
+  "key": "onice-miele",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Onyx007",
+   "url": "https://ambientcg.com/a/Onyx007",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "onyx",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 4,
+   "size": 8192,
+   "levels": 5
+  },
+  "mean": "#c79867"
+ },
+ {
+  "key": "onice-bianco",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Onyx015",
+   "url": "https://ambientcg.com/a/Onyx015",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "onyx",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#cdcbc8"
+ },
+ {
+  "key": "onice-perla",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Onyx004",
+   "url": "https://ambientcg.com/a/Onyx004",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "onyx",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#cac3b2"
+ },
+ {
+  "key": "onice-rosso",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Onyx010",
+   "url": "https://ambientcg.com/a/Onyx010",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "onyx",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#917469"
+ },
+ {
+  "key": "onice-azzurro",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Onyx011",
+   "url": "https://ambientcg.com/a/Onyx011",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "onyx",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#61665f"
+ },
+ {
+  "key": "onice-nero",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Onyx013",
+   "url": "https://ambientcg.com/a/Onyx013",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "onyx",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#35302b"
+ },
+ {
+  "key": "santa-cecilia",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Granite007A",
+   "url": "https://ambientcg.com/a/Granite007A",
+   "license": "CC0 1.0",
+   "resolution": "8192×8192"
+  },
+  "family": "granite",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k",
+   "c4k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 3,
+   "size": 4096,
+   "levels": 4
+  },
+  "mean": "#87745a"
+ },
+ {
+  "key": "ouro-brasil",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Granite004A",
+   "url": "https://ambientcg.com/a/Granite004A",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "granite",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#907e67"
+ },
+ {
+  "key": "branco-siena",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Granite002A",
+   "url": "https://ambientcg.com/a/Granite002A",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "granite",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#b5b1ad"
+ },
+ {
+  "key": "vermelho-brasilia",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Granite006A",
+   "url": "https://ambientcg.com/a/Granite006A",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "granite",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#8b5d41"
+ },
+ {
+  "key": "azul-noturno",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble013",
+   "url": "https://ambientcg.com/a/Marble013",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "granite",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#252324"
+ },
+ {
+  "key": "basalto-etna",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Granite005A",
+   "url": "https://ambientcg.com/a/Granite005A",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "basalt",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#313132"
+ },
+ {
+  "key": "basalto-grigio",
+  "source": {
+   "library": "ambientCG",
+   "asset": "Marble024",
+   "url": "https://ambientcg.com/a/Marble024",
+   "license": "CC0 1.0",
+   "resolution": "2048×2048"
+  },
+  "family": "basalt",
+  "tiers": [
+   "c512",
+   "c1k",
+   "c2k"
+  ],
+  "normal": [
+   "n1k",
+   "n2k"
+  ],
+  "zoom": {
+   "tile": 512,
+   "maxLevel": 2,
+   "size": 2048,
+   "levels": 3
+  },
+  "mean": "#444446"
+ }
+]
