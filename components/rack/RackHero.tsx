@@ -25,6 +25,7 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
   const index = useRack((s) => s.index);
   const override = useRack((s) => s.override);
   const pulledOutGl = useRack((s) => s.pulledOut);
+  const bookmatch = useRack((s) => s.bookmatch);
   const pullTargetOut = useRack((s) => s.pullTarget > 0.5);
   const pulledOut = tier === "webgl" ? pulledOutGl : pullTargetOut;
   const slab = frontSlab({ ...useRack.getState(), index, override });
@@ -95,6 +96,16 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
   }, []);
+
+  // ── custom drag cursor over the rack ──
+  const cursor = useRef<HTMLDivElement>(null);
+  const onHover = (e: React.PointerEvent) => {
+    const c = cursor.current;
+    if (!c || e.pointerType !== "mouse") return;
+    const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    c.style.transform = `translate3d(${e.clientX - r.left}px, ${e.clientY - r.top}px, 0)`;
+    c.style.opacity = anim.pull < 0.15 && !useRack.getState().dragging ? "1" : "0";
+  };
 
   // ── drag along the rail ──
   const drag = useRef<{ x: number; y: number; start: number; moved: boolean; id: number } | null>(null);
@@ -204,24 +215,50 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
             <RackFallbackVideo />
             <AnimatePresence>
               {pulledOut && (
-                <motion.img
+                <motion.div
                   key={slab.id}
-                  src={cropUrl(slab.id, 960)}
-                  alt={`${slab.name[lang]} — ${slab.desc[lang]}`}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 flex"
+                  style={{ perspective: 1800 }}
                   initial={{ opacity: 0, scale: 1.06 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                />
+                >
+                  <motion.img
+                    src={cropUrl(slab.id, 960)}
+                    alt={`${slab.name[lang]} — ${slab.desc[lang]}`}
+                    className="h-full object-cover"
+                    animate={{ width: bookmatch ? "50%" : "100%" }}
+                    transition={{ duration: 0.9, ease: [0.76, 0, 0.18, 1] }}
+                  />
+                  {/* bookmatch twin: mirrored, swinging open on its hinge */}
+                  <AnimatePresence>
+                    {bookmatch && (
+                      <motion.img
+                        src={cropUrl(slab.id, 960)}
+                        alt=""
+                        className="h-full w-1/2 object-cover"
+                        style={{ transformOrigin: lang === "he" ? "100% 50%" : "0% 50%", scaleX: -1 }}
+                        initial={{ rotateY: lang === "he" ? -175 : 175, opacity: 0.4 }}
+                        animate={{ rotateY: 0, opacity: 1 }}
+                        exit={{ rotateY: lang === "he" ? -175 : 175, opacity: 0 }}
+                        transition={{ duration: 1.1, ease: [0.76, 0, 0.18, 1] }}
+                      />
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               )}
             </AnimatePresence>
           </div>
         ) : (
           <div
-            className="absolute inset-0 cursor-grab touch-pan-y active:cursor-grabbing"
+            className="absolute inset-0 cursor-grab touch-pan-y md:cursor-none"
             onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
+            onPointerMove={(e) => {
+              onHover(e);
+              onPointerMove(e);
+            }}
+            onPointerLeave={() => cursor.current && (cursor.current.style.opacity = "0")}
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
             onKeyDown={onKeyDown}
@@ -234,6 +271,22 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
             {tier === "webgl" && (
               <RackScene active={!hidden} quality={quality} capture={capture} onFirstFrame={() => setCanvasOn(true)} />
             )}
+            <div
+              ref={cursor}
+              className="pointer-events-none absolute left-0 top-0 z-10 hidden md:block"
+              style={{ opacity: 0, transition: "opacity .3s" }}
+              aria-hidden="true"
+            >
+              <div className="-translate-x-1/2 -translate-y-1/2">
+                <div className="grid h-[86px] w-[86px] place-items-center rounded-full border border-[#f3f1ec99] backdrop-blur-[2px]">
+                  <span className="font-mono text-center text-[10px] uppercase leading-tight tracking-[0.16em] text-carrara">
+                    {lang === "he" ? "גררו" : "drag"}
+                    <br />
+                    <span className="text-amber">←→</span>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -257,14 +310,18 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
           ref={intro}
           className={`pointer-events-none absolute top-0 right-0 ${compact ? "w-full px-5 pt-6" : "w-full px-6 pt-[calc(var(--header-h)+5vh)] md:w-[58%] md:px-10"}`}
         >
-          <p className="eyebrow muted">{t.hero.eyebrow}</p>
+          <p className="eyebrow muted fade-late">{t.hero.eyebrow}</p>
           <h1
             className={`font-display mt-4 leading-[0.9] ${compact ? "text-[2.6rem]" : "text-[clamp(3.2rem,8.1vw,8.8rem)]"}`}
           >
-            <span className="block">{t.hero.l1}</span>
-            <span className="block text-vein">{t.hero.l2}</span>
+            <span className="rise-mask">
+              <span>{t.hero.l1}</span>
+            </span>
+            <span className="rise-mask">
+              <span className="text-vein">{t.hero.l2}</span>
+            </span>
           </h1>
-          <p className={`mt-6 max-w-[34ch] leading-relaxed ${compact ? "hidden" : "text-[1.05rem] md:text-[1.15rem]"}`} style={{ color: "#d5d2cc" }}>
+          <p className={`fade-late mt-6 max-w-[34ch] leading-relaxed ${compact ? "hidden" : "text-[1.05rem] md:text-[1.15rem]"}`} style={{ color: "#d5d2cc" }}>
             {t.hero.sub}
           </p>
         </div>

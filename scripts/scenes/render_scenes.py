@@ -78,9 +78,15 @@ def bm_box(bm, x0, x1, y0, y1, z0, z1):
     return bm_hexa(bm, box_pts(x0, x1, y0, y1, z0, z1))
 
 
-def make_obj(name, bm, mat, bevel=0.0, segments=2, smooth=False, harden=True):
+def make_obj(name, bm, mat, bevel=0.0, segments=2, smooth=False, harden=True, sharp_deg=50.0):
     me = bpy.data.meshes.new(name)
     bm.normal_update()
+    if smooth or bevel > 0:
+        # keep flat caps / hard creases flat under smooth shading
+        lim = math.radians(sharp_deg)
+        for e in bm.edges:
+            if len(e.link_faces) == 2 and e.calc_face_angle(0.0) > lim:
+                e.smooth = False
     bm.to_mesh(me)
     bm.free()
     if smooth or bevel > 0:
@@ -443,8 +449,8 @@ def mat_exterior(name, strength=6.0, hedge=None):
         nt.links.new(sep.outputs["Z"], diff.inputs[0])
         nt.links.new(add.outputs[0], diff.inputs[1])
         fac = _map_range(nt, diff.outputs[0], 0.0, 1.0, -0.12, 0.12)
-        lo = tuple(c * hbright * 0.55 for c in hcol)
-        hi = tuple(c * hbright * 1.25 for c in hcol)
+        lo = tuple(c * hbright * 0.72 for c in hcol)
+        hi = tuple(c * hbright * 1.15 for c in hcol)
         hedge_col = _mix_rgb(nt, _map_range(nt, leaf.outputs["Fac"], 0, 1, 0.3, 0.7), lo, hi)
         mx = nt.nodes.new("ShaderNodeMix")
         mx.data_type = "RGBA"
@@ -563,7 +569,7 @@ def build_kitchen():
                                  color_var=0.12, color_scale=14.0, bump=0.15, bump_scale=300)
     m_shade_in = mat_principled("M_shade_inside", (0.80, 0.78, 0.74), rough=0.6)
     m_bulb = mat_emission("M_bulb", kelvin(2600), 60.0)
-    m_ext = mat_exterior("M_exterior", 5.0, hedge=(0.55, (0.80, 0.90, 0.74), 1.05))
+    m_ext = mat_exterior("M_exterior", 5.0, hedge=(0.45, (0.86, 0.93, 0.80), 1.45))
 
     # ---- shell -------------------------------------------------------------------
     OX = 0.45                         # kitchen furniture offset from the window wall
@@ -688,10 +694,11 @@ def build_kitchen():
     # ---- pendants over the island ------------------------------------------------
     for i, px in enumerate((1.75 + OX, 2.95 + OX)):
         py, pz = 2.70, 1.72
-        lathe("pendant_shade_%d" % i, [(0.17, 0.0), (0.168, 0.012), (0.155, 0.06), (0.12, 0.11), (0.06, 0.145),
-                                       (0.015, 0.155)], m_black, loc=(px, py, pz), segs=64)
-        lathe("pendant_inner_%d" % i, [(0.0145, 0.152), (0.059, 0.142), (0.118, 0.107), (0.152, 0.059),
-                                       (0.165, 0.012), (0.166, 0.002)], m_shade_in, loc=(px, py, pz), segs=64)
+        dome = [(0.012 + 0.158 * math.cos(t * math.pi / 2), 0.155 * math.sin(t * math.pi / 2))
+                for t in [k / 24.0 for k in range(25)]]
+        lathe("pendant_shade_%d" % i, dome, m_black, loc=(px, py, pz), segs=128)
+        inner = [(r - 0.004, z - 0.003) for r, z in reversed(dome)]
+        lathe("pendant_inner_%d" % i, inner, m_shade_in, loc=(px, py, pz), segs=128)
         lathe("pendant_bulb_%d" % i, [(0.0, 0.035), (0.03, 0.045), (0.042, 0.075), (0.03, 0.105), (0.0, 0.112)],
               m_bulb, loc=(px, py, pz), segs=32)
         cylinder("pendant_cord_%d" % i, px, py, pz + 0.15, H, 0.003, m_black, segs=12)
@@ -704,8 +711,8 @@ def build_kitchen():
     light("window_light", "AREA", (x_left - 0.18, (wy0 + wy1) / 2, wz1 / 2), rot=(0, math.radians(-90), 0),
           energy=78.0, color=day, size=wz1, size_y=(wy1 - wy0))
     # warm grazing wash on the backsplash from a recessed ceiling slot
-    light("slot_light", "AREA", (1.8 + OX, y_back - 0.32, H - 0.01), rot=(math.radians(22), 0, 0),
-          energy=11.0, color=kelvin(3200), size=3.5, size_y=0.04, spread=math.radians(70))
+    light("slot_light", "AREA", (1.8 + OX, y_back - 0.40, H - 0.01), rot=(math.radians(20), 0, 0),
+          energy=5.5, color=kelvin(3200), size=3.5, size_y=0.04, spread=math.radians(70))
     # soft fill from the (unseen) living space behind the camera
     light("fill_light", "AREA", (4.0 + OX, y_front + 0.05, 1.6), rot=(math.radians(-90), 0, 0),
           energy=21.0, color=(1.0, 0.96, 0.9), size=3.0, size_y=1.8)
@@ -752,6 +759,7 @@ def cyl_y(name, x, y0, y1, z, r, mat, segs=32):
 
 def build_bathroom():
     """Room: x 0..3.4 (left wall with frosted window), y -0.6..3.0 (clad back wall), z 0..2.7."""
+    G = 1.3            # global light gain (view exposure stays 0)
     H = 2.7
     WALL_T = 0.25
     m_ph = mat_placeholder()
@@ -768,21 +776,27 @@ def build_bathroom():
     m_glaze = mat_principled("M_glaze_green", (0.045, 0.085, 0.062), rough=0.22, rough_var=0.06,
                              color_var=0.10, color_scale=9.0, coat=0.3)
     m_frost = mat_exterior("M_frosted", 3.0)
-    m_door = mat_wood("M_door_oak", (0.040, 0.030, 0.023), (0.085, 0.066, 0.050), rough=0.5)
 
     y_front, y_back, x_left, x_right = -0.6, 3.0, 0.0, 3.4
     CL = 0.02                                       # cladding thickness
     box("floor", -0.3, x_right + 0.3, y_front - 0.3, y_back + 0.3, -0.05, 0.0, m_ph)
     box("ceiling", -0.3, x_right + 0.3, y_front - 0.3, y_back + 0.3, H, H + 0.2, m_ceiling)
     box("wall_back", -0.3, x_right + 0.3, y_back, y_back + WALL_T, 0.0, H, m_plaster)
-    box("wall_front", -0.3, x_right + 0.3, y_front - WALL_T, y_front, 0.0, H, m_plaster)
+    # front wall with an open doorway to a softly lit hall (it is what the mirror reflects)
+    dx0, dx1, dz1 = 0.30, 1.20, 2.15
+    box("wall_front_a", -0.3, dx0, y_front - WALL_T, y_front, 0.0, H, m_plaster)
+    box("wall_front_b", dx1, x_right + 0.3, y_front - WALL_T, y_front, 0.0, H, m_plaster)
+    box("wall_front_c", dx0, dx1, y_front - WALL_T, y_front, dz1, H, m_plaster)
+    hall = box("hall", dx0 - 0.5, dx1 + 0.5, y_front - 1.6, y_front - 1.55, -0.5, 3.0,
+               mat_emission("M_hall", (1.0, 0.93, 0.84), 0.55 * G))
+    for attr in ("visible_diffuse", "visible_transmission", "visible_shadow"):
+        setattr(hall, attr, False)
+    box("hall_floor", dx0 - 0.5, dx1 + 0.5, y_front - 1.6, y_front, -0.05, 0.0, m_plaster)
     box("wall_right", x_right, x_right + WALL_T, y_front - 0.3, y_back + 0.3, 0.0, H, m_plaster)
     # full-height clad wall behind the vanity (replaceable surface)
     box("wall", x_left, x_right, y_back - CL, y_back, 0.0, H, m_ph, bevel=0.0015)
-    # front wall door (seen in the mirror)
-    box("door", 0.55, 1.45, y_front, y_front + 0.03, 0.0, 2.2, m_door, bevel=0.002)
     # left wall with a tall frosted window close to the clad wall
-    wy0, wy1, wz0, wz1 = 1.45, 2.62, 0.95, 2.40
+    wy0, wy1, wz0, wz1 = 0.95, 2.15, 0.95, 2.40
     box("wall_left_a", x_left - WALL_T, x_left, y_front - 0.3, wy0, 0.0, H, m_plaster)
     box("wall_left_b", x_left - WALL_T, x_left, wy1, y_back + 0.3, 0.0, H, m_plaster)
     box("wall_left_c", x_left - WALL_T, x_left, wy0, wy1, 0.0, wz0, m_plaster)
@@ -845,9 +859,10 @@ def build_bathroom():
     rim = lathe("mirror_rim", [(mr - 0.004, -0.006), (mr + 0.004, -0.006), (mr + 0.004, 0.012),
                                (mr - 0.004, 0.012), (mr - 0.004, -0.006)], m_black, segs=128)
     rim.location, rim.rotation_euler = (bcx, my, mz), (math.radians(90), 0, 0)
-    back = cylinder("mirror_back", 0, 0, 0.004, 0.024, mr - 0.03, m_black, segs=64)
-    back.location, back.rotation_euler = (bcx, my, mz), (math.radians(90), 0, 0)
-    light("mirror_halo", "AREA", (bcx, y_back - CL - 0.012, mz), rot=(math.radians(90), 0, 0), energy=14.0,
+    # black back plate 4..10 mm behind the glass (towards the wall, +Y)
+    back = cylinder("mirror_back", 0, 0, -0.003, 0.003, mr - 0.03, m_black, segs=64)
+    back.location, back.rotation_euler = (bcx, my + 0.007, mz), (math.radians(90), 0, 0)
+    light("mirror_halo", "AREA", (bcx, y_back - CL - 0.016, mz), rot=(math.radians(90), 0, 0), energy=24.0 * G,
           color=kelvin(3000), size=0.70, shape="DISK")
     # sparse accessories: stoneware bottle + small green glazed dish
     lathe("bottle", [(0.0, 0.0), (0.032, 0.0), (0.036, 0.01), (0.037, 0.13), (0.03, 0.16), (0.012, 0.175),
@@ -858,20 +873,20 @@ def build_bathroom():
     # ---- lights ------------------------------------------------------------------
     day = (0.88, 0.94, 1.0)
     light("window_light", "AREA", (x_left - 0.13, (wy0 + wy1) / 2, (wz0 + wz1) / 2), rot=(0, math.radians(-90), 0),
-          energy=32.0, color=day, size=(wz1 - wz0), size_y=(wy1 - wy0))
-    light("under_vanity", "AREA", (bcx, vy0 + 0.22, 0.495), energy=6.0, color=kelvin(3000),
+          energy=30.0 * G, color=day, size=(wz1 - wz0), size_y=(wy1 - wy0))
+    light("under_vanity", "AREA", (bcx, vy0 + 0.22, 0.495), energy=2.6 * G, color=kelvin(3000),
           size=vx1 - vx0 - 0.1, size_y=0.025, spread=math.radians(150))
     light("slot_light", "AREA", (1.7, y_back - 0.28, H - 0.01), rot=(math.radians(14), 0, 0),
-          energy=10.0, color=kelvin(3200), size=3.2, size_y=0.04, spread=math.radians(70))
-    light("fill_light", "AREA", (2.2, y_front + 0.05, 1.6), rot=(math.radians(-90), 0, 0),
-          energy=8.0, color=(1.0, 0.96, 0.9), size=2.0, size_y=1.6)
+          energy=3.0 * G, color=kelvin(3200), size=3.2, size_y=0.04, spread=math.radians(70))
+    light("fill_light", "AREA", (2.3, y_front + 0.05, 1.6), rot=(math.radians(-90), 0, 0),
+          energy=12.0 * G, color=(0.96, 0.97, 1.0), size=1.8, size_y=1.6)
 
     world = bpy.data.worlds.new("World")
     world.use_nodes = True
     world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.0, 0.0, 0.0, 1.0)
     bpy.context.scene.world = world
 
-    cam = level_camera((2.70, 0.55, 1.50), yaw_deg=27.0, lens=28.0, shift_x=0.0, shift_y=-0.10)
+    cam = level_camera((2.62, 0.55, 1.50), yaw_deg=25.0, lens=28.0, shift_x=0.0, shift_y=-0.15)
 
     surfaces = {
         "vanity": dict(orientation="horizontal", sizeMm=[1600, 560],

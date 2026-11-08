@@ -409,3 +409,44 @@ input[type="range"] {
     display: none;
   }
 }
+
+/* grid items never blow out their track (nowrap chips, mono IDs) */
+.grid > * {
+  min-width: 0;
+}
+
+/* hero lines rise out of a mask as the preloader hands over */
+.rise-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.rise-mask > span {
+  display: block;
+  animation: rise-in 1.25s var(--ease-settle) both;
+}
+.rise-mask:nth-child(2) > span {
+  animation-delay: 1.02s;
+}
+.rise-mask:nth-child(1) > span {
+  animation-delay: 0.92s;
+}
+@keyframes rise-in {
+  from {
+    transform: translate3d(0, 105%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+.fade-late {
+  animation: fade-late 1.2s ease 1.2s both;
+}
+@keyframes fade-late {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

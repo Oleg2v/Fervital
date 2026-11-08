@@ -158,26 +158,27 @@ const STEPS: StepFn[] = [
     useRack.setState({ pullTarget: 1, dragging: false });
     const railx = anim.rail.x || 300;
     const raily = anim.rail.y || 40;
-    await glide("customer", sx + railx * 0.5, sy + raily * 0.5, 1100, my, step);
+    await glide("customer", sx + railx * 0.5, sy + raily * 0.5, 900, my, step);
     useCursors.getState().set("customer", { pressed: false });
     const t0 = performance.now();
-    while (anim.pull < 0.95 && performance.now() - t0 < 4000 && skipFrom < step) await wait(60, my, step);
+    const webgl = useUi.getState().tier === "webgl";
+    while (webgl && anim.pull < 0.95 && performance.now() - t0 < 4000 && skipFrom < step) await wait(60, my, step);
     if (skipFrom >= step) {
       anim.pull = 1;
       anim.pullVel = 0;
     }
-    await wait(900, my, step);
+    await wait(600, my, step);
   },
   // 2 · bookmatch
   async (my, step) => {
     await clickEl("customer", "bookmatch", my, step);
-    await wait(2300, my, step);
+    await wait(1900, my, step);
   },
   // 3 · my kitchen in stone
   async (my, step) => {
     await clickEl("customer", "kitchen", my, step);
     try {
-      await wait(500, my, step);
+      await wait(350, my, step);
       const run = kitchenApi.current?.runSample("kitchen");
       // the designed skeleton + pour run inside the studio
       const stage = await find("customer", "kitchen-stage", my, step);
@@ -194,24 +195,24 @@ const STEPS: StepFn[] = [
         kitchenApi.current?.setCompare(Math.min(1, Math.max(0, (c.x - st.left) / st.width)));
       }, 16);
       try {
-        await glide("customer", st.left + st.width * 0.12, st.top + st.height * 0.5, 900, my, step);
-        await glide("customer", st.left + st.width * 0.88, st.top + st.height * 0.5, 1300, my, step);
-        await glide("customer", st.left + st.width * 0.55, st.top + st.height * 0.5, 700, my, step);
+        await glide("customer", st.left + st.width * 0.12, st.top + st.height * 0.5, 750, my, step);
+        await glide("customer", st.left + st.width * 0.88, st.top + st.height * 0.5, 1050, my, step);
+        await glide("customer", st.left + st.width * 0.55, st.top + st.height * 0.5, 550, my, step);
       } finally {
         window.clearInterval(follow);
         useCursors.getState().set("customer", { pressed: false });
       }
-      await clickEl("customer", "kitchen-attach", my, step, 600);
-      await wait(700, my, step);
+      await clickEl("customer", "kitchen-attach", my, step, 550);
+      await wait(500, my, step);
     } finally {
       useUi.getState().setKitchenOpen(false);
     }
-    await wait(500, my, step);
+    await wait(450, my, step);
   },
   // 4 · hold for 48 hours
   async (my, step) => {
     await clickEl("customer", "hold", my, step);
-    await wait(1500, my, step);
+    await wait(1250, my, step);
   },
   // 5 · the hold lands on the yard desk
   async (my, step) => {
@@ -220,31 +221,31 @@ const STEPS: StepFn[] = [
       const yr = paneRoot("yard")?.getBoundingClientRect();
       if (yr) useCursors.getState().set("yard", { x: yr.left + yr.width * 0.7, y: yr.top + yr.height * 0.6, visible: true });
     }
-    await moveTo("yard", card, 900, my, step, [0.3, 0.25]);
-    await wait(1400, my, step);
+    await moveTo("yard", card, 800, my, step, [0.3, 0.25]);
+    await wait(1000, my, step);
   },
   // 6 · the yard confirms
   async (my, step) => {
-    await clickEl("yard", `confirm-${SLAB}`, my, step, 700);
-    await wait(1700, my, step);
+    await clickEl("yard", `confirm-${SLAB}`, my, step, 650);
+    await wait(1300, my, step);
   },
   // 7 · converted to sale — marked exclusively
   async (my, step) => {
-    await clickEl("yard", `convert-${SLAB}`, my, step, 700);
-    await wait(900, my, step);
+    await clickEl("yard", `convert-${SLAB}`, my, step, 650);
+    await wait(600, my, step);
     try {
       const tile = await find("yard", `wall-${SLAB}`, my, step, 1500);
-      await moveTo("yard", tile, 800, my, step);
+      await moveTo("yard", tile, 700, my, step);
     } catch {
       /* wall may be off-screen in tight panes */
     }
-    await wait(900, my, step);
+    await wait(600, my, step);
   },
   // 8 · your slab
   async (my, step) => {
     useUi.getState().setYourSlab(SLAB);
     useCursors.getState().set("yard", { visible: false });
-    await wait(4200, my, step);
+    await wait(3800, my, step);
   },
 ];
 

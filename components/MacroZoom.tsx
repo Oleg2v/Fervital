@@ -133,9 +133,18 @@ function MacroZoom({ slab }: { slab: Slab }) {
     };
   }, [slab, maxLevel]);
 
+  // never past ~1.5 screen px per scan texel: deeper than that is just pixels
+  const zMax = () => {
+    const c = canvas.current;
+    const W = c?.clientWidth ?? 1440;
+    const H = c?.clientHeight ?? 900;
+    const k0 = Math.max(W / slab.crop.w, H / slab.crop.h);
+    const texels = TILE * 2 ** maxLevel;
+    return Math.max(2, (1.5 * texels) / (k0 * Math.min(2, window.devicePixelRatio || 1)));
+  };
   const zoomBy = (f: number) => {
     const v = view.current;
-    v.zt = Math.min(48, Math.max(1, v.zt * f));
+    v.zt = Math.min(zMax(), Math.max(1, v.zt * f));
   };
 
   const onMove = (e: React.PointerEvent) => {
@@ -191,7 +200,7 @@ function MacroZoom({ slab }: { slab: Slab }) {
         onDoubleClick={() => zoomBy(2)}
         aria-hidden="true"
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-6 md:p-8" style={{ background: "linear-gradient(#0e0e0ecc, #0e0e0e00)" }}>
+      <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-6 md:p-8" style={{ background: "linear-gradient(#0e0e0e99, #0e0e0e00 70%)" }}>
         <div>
           <p className="eyebrow muted">{t.zoom.title}</p>
           <p className="font-display mt-2 text-[2rem] leading-none">{slab.name[lang]}</p>
@@ -209,7 +218,7 @@ function MacroZoom({ slab }: { slab: Slab }) {
       >
         ✕ <span className="hidden sm:inline">{t.zoom.close}</span>
       </button>
-      <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-4 p-6 md:p-8" style={{ background: "linear-gradient(#0e0e0e00, #0e0e0ecc)" }}>
+      <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-4 p-6 md:p-8" style={{ background: "linear-gradient(#0e0e0e00 20%, #0e0e0ea8)" }}>
         <div className="font-mono text-[0.75rem] leading-6">
           <div className="flex items-center gap-3">
             <span className="inline-block h-[2px] bg-carrara" style={{ width: Math.min(260, barPx) }} />

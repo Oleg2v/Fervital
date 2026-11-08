@@ -237,7 +237,7 @@ function Rack({ quality }: { quality: Quality }) {
   useEffect(() => {
     const m = new THREE.Matrix4();
     const q = new THREE.Quaternion();
-    const hidden = override ? -1 : index;
+    const hidden = index; // the front slot is drawn by <ActivePartition/> (rack slab or an override)
     RACK_A.forEach((s, i) => {
       const x = i * GAP;
       const { L, H, T } = slabDims(s);
@@ -268,7 +268,7 @@ function Rack({ quality }: { quality: Quality }) {
         <boxGeometry args={[RACK_SIZE * GAP + 1.2, 0.09, 0.12]} />
       </mesh>
       {RACK_A.map((s, i) => {
-        if (i === index && !override) return null;
+        if (i === index) return null;
         const { L, H } = slabDims(s);
         return (
           <mesh
@@ -346,7 +346,7 @@ function ActivePartition({ quality, steel, edge }: { quality: Quality; steel: TH
 
   useFrame((state) => {
     if (!group.current || !swing.current) return;
-    const x = (override ? anim.camIndex : index) * GAP;
+    const x = index * GAP;
     const zc = pulledZ(slab);
     const zf = smooth(0, 0.8, Math.max(0, anim.pull));
     const over = Math.max(0, anim.pull - 1) * 0.6; // spring overshoot carries a few cm further

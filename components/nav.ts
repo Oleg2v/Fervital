@@ -2,7 +2,7 @@
 
 import type Lenis from "lenis";
 import { useUi } from "@/lib/ui";
-import { presentSlab } from "@/lib/rack";
+import { presentSlab, useRack } from "@/lib/rack";
 
 let lenis: Lenis | null = null;
 export const setLenis = (l: Lenis | null) => {
@@ -49,6 +49,18 @@ export function goKitchen(slabId: string) {
 export function pullFromRack(slabId: string) {
   const ui = useUi.getState();
   if (ui.view === "yard") ui.setView("customer");
+  const scrollDriven = useRack.getState().scrollDriven && ui.view === "customer";
+  if (scrollDriven) {
+    // the hero maps scroll → pull, so park the slab at the front and scroll to the pulled-out position
+    useRack.getState().showSlab(slabId);
+    const el = document.getElementById("rack");
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    const target = top + (el.offsetHeight - window.innerHeight) * 0.72;
+    if (lenis) lenis.scrollTo(target, { duration: 1.6, easing: (t) => 1 - Math.pow(1 - t, 4) });
+    else window.scrollTo({ top: target, behavior: "smooth" });
+    return;
+  }
   scrollToId("rack", { offset: 0 });
   window.setTimeout(() => presentSlab(slabId), 450);
 }

@@ -103,7 +103,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
         await new Promise<void>((done) => {
           const tick = () => {
             if (runId.current !== my) return done();
-            const p = Math.min(1, (performance.now() - t0) / 1500);
+            const p = Math.min(1, (performance.now() - t0) / 1250);
             const e = 1 - Math.pow(1 - p, 3);
             c.render({ slab: s, slabImage: img, enabled: en, reveal: e });
             blit(main.current);
@@ -115,10 +115,12 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
       }
       c.render({ slab: s, slabImage: img, enabled: en, reveal: 1 });
       blit(main.current);
-      await renderTriptych(a, en, [s, ...alternatives(s)]);
-      c.render({ slab: s, slabImage: img, enabled: en, reveal: 1 });
+      if (!compact) {
+        await renderTriptych(a, en, [s, ...alternatives(s)]);
+        c.render({ slab: s, slabImage: img, enabled: en, reveal: 1 });
+      }
     },
-    [renderTriptych],
+    [renderTriptych, compact],
   );
 
   const analyse = useCallback(
@@ -196,7 +198,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
         }
         const a = await loadScene(scene);
         // let the designed skeleton finish its story on fast (sample) answers
-        const minMs = key === "upload" ? 0 : 2300;
+        const minMs = key === "upload" ? 0 : useUi.getState().autopilot.running ? 1700 : 2300;
         const wait = Math.max(0, minMs - (performance.now() - t0));
         await new Promise((r) => setTimeout(r, wait));
         if (runId.current !== my) return;

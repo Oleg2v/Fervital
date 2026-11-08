@@ -315,9 +315,11 @@ function PlanView({ input, result, slab }: { input: YieldInput; result: YieldRes
   const Lr = input.returnL;
   const gap = 1100;
   const hasIsland = input.islandL > 0 && input.islandW > 0;
-  const W = Math.max(Lw, hasIsland ? input.islandL + 400 : 0) + 200;
+  const W = Math.max(Lw, hasIsland ? input.islandL + 200 + (Lr > D ? D + 250 : 0) : 0) + 200;
   const H = Math.max(Lr, D + (hasIsland ? gap + input.islandW : 0)) + 200;
-  const islandX = Math.max(100, (Lw - input.islandL) / 2 + 100);
+  // centre the island in the free floor left of the L-return so they never overlap
+  const avail = Lr > D ? Lw - D - 250 : Lw;
+  const islandX = 100 + Math.max(0, (avail - input.islandL) / 2);
   const islandY = 100 + D + gap;
   const seam = (kind: string) => result.seams.filter((s) => s.kind === kind && s.atMm > 0);
   return (

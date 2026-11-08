@@ -61,3 +61,7 @@ Requests use structured outputs and opt into server-side refusal fallbacks (`fal
 ## Stack
 
 Next.js 15 · TypeScript · Tailwind v4 · React Three Fiber + drei · GSAP + Lenis · Framer Motion · Zustand · sharp · pdf-lib.
+
+## Held for follow-up (not built)
+
+- **Digitising kit**: photograph the real rack with a phone, auto-crop and colour-correct each slab, and assign IDs and rack positions. The data model (`Slab.crop`, `rack`, per-slab descriptor vectors) is already shaped to receive it: every new photo would run through the same descriptor as `scripts/build-data.mjs` and become searchable by vein immediately.
