@@ -20,7 +20,8 @@ const KIND: Record<SurfaceType, number> = { countertop: 0, island: 0, vanity: 0,
 
 let scenesCache: Record<string, unknown> | null = null;
 async function scenes() {
-  if (!scenesCache) scenesCache = JSON.parse(await fs.readFile(path.join(process.cwd(), "data", "scenes.json"), "utf8"));
+  if (scenesCache && process.env.NODE_ENV === "production") return scenesCache;
+  scenesCache = JSON.parse(await fs.readFile(path.join(process.cwd(), "data", "scenes.json"), "utf8"));
   return scenesCache!;
 }
 

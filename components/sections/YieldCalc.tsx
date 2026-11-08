@@ -95,6 +95,10 @@ export default function YieldCalc() {
         <div className="grid gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-3">
             <p className="eyebrow text-vein">{t.yield.eyebrow}</p>
+            <div className="mt-4 flex gap-2">
+              <span className="chip chip-amber">{t.search.beta}</span>
+              <span className="chip">{t.kitchen.sim}</span>
+            </div>
           </Reveal>
           <div className="lg:col-span-9">
             <Reveal>

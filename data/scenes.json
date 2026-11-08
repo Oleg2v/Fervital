@@ -1,0 +1,73 @@
+{
+  "kitchen": {
+    "image": "/scenes/kitchen.jpg",
+    "width": 1600,
+    "height": 1000,
+    "diffuse": "/scenes/kitchen_diffuse.png",
+    "diffuseScale": 1.05,
+    "gloss": "/scenes/kitchen_gloss.jpg",
+    "albedo": 0.78,
+    "surfaces": [
+      {
+        "id": "island",
+        "mask": "/scenes/kitchen_mask_island.png",
+        "quad": [[449.9, 453.7], [1062.9, 532.5], [797.8, 608.6], [175.6, 482.3]],
+        "sizeMm": [2800, 1100],
+        "orientation": "horizontal",
+        "label": {
+          "he": "אי",
+          "en": "Island"
+        },
+        "bbox": [175, 455, 1063, 622]
+      },
+      {
+        "id": "island_side",
+        "mask": "/scenes/kitchen_mask_island_side.png",
+        "quad": [[797.8, 608.6], [1062.9, 532.5], [1062.9, 869.1], [797.8, 1059.5]],
+        "sizeMm": [1100, 900],
+        "orientation": "vertical",
+        "label": {
+          "he": "מפל האי",
+          "en": "Island waterfall"
+        },
+        "bbox": [785, 532, 1064, 1000]
+      },
+      {
+        "id": "countertop",
+        "mask": "/scenes/kitchen_mask_countertop.png",
+        "quad": [[613.6, 413.7], [1245.5, 465.3], [1178.9, 482.7], [524.9, 421.3]],
+        "sizeMm": [3600, 620],
+        "orientation": "horizontal",
+        "label": {
+          "he": "משטח עבודה",
+          "en": "Worktop"
+        },
+        "bbox": [524, 413, 1183, 492]
+      },
+      {
+        "id": "backsplash",
+        "mask": "/scenes/kitchen_mask_backsplash.png",
+        "quad": [[613.6, 87.7], [1245.5, -19.6], [1245.5, 465.3], [613.6, 413.7]],
+        "sizeMm": [3600, 1850],
+        "orientation": "vertical",
+        "label": {
+          "he": "חיפוי קיר",
+          "en": "Backsplash"
+        },
+        "bbox": [612, 0, 1185, 461]
+      },
+      {
+        "id": "floor",
+        "mask": "/scenes/kitchen_mask_floor.png",
+        "quad": [[565.2, 561.4], [1717.0, 795.2], [1266.8, 2519.8], [-307.3, 734.2]],
+        "sizeMm": [5500, 3900],
+        "orientation": "horizontal",
+        "label": {
+          "he": "רצפה",
+          "en": "Floor"
+        },
+        "bbox": [0, 631, 1600, 1000]
+      }
+    ]
+  }
+}

@@ -119,6 +119,7 @@ export default function VeinSearch() {
             <p className="eyebrow text-vein">{t.search.eyebrow}</p>
             <div className="mt-4 flex gap-2">
               <span className="chip chip-amber">{t.search.beta}</span>
+              <span className="chip">{t.kitchen.sim}</span>
             </div>
           </Reveal>
           <div className="lg:col-span-9">

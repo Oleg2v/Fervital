@@ -641,6 +641,9 @@ def build_kitchen():
     bmesh.ops.delete(bm, geom=top_face, context="FACES_ONLY")
     bmesh.ops.reverse_faces(bm, faces=bm.faces)
     make_obj("sink_bowl", bm, m_sink, bevel=0.01, segments=3)
+    # hollow the cabinet carcass around the bowl so the bowl is what shows through the cut-out
+    boolean_cut(bpy.data.objects["run_carcass"],
+                box("sink_void", sx0 - 0.02, sx1 + 0.02, sy0 - 0.02, sy1 + 0.02, TOP_Z - SLAB - 0.26, TOP_Z, None))
     cylinder("sink_drain", sink_cx, sink_cy, TOP_Z - SLAB - 0.2105, TOP_Z - SLAB - 0.207, 0.045, m_black)
     # faucet: slim brass column with a high arc spout
     fx, fy = sink_cx, 4.90
@@ -846,7 +849,9 @@ def build_bathroom():
     md.width, md.segments, md.limit_method = 0.03, 4, "ANGLE"
     cylinder("basin_drain", bcx, bcy, TOP_Z - SLAB - 0.161, TOP_Z - SLAB - 0.157, 0.032, m_brass)
     # cabinet: two handle-less drawers under a 25 mm shadow gap
-    box("vanity_carcass", vx0 + 0.01, vx1 - 0.01, vy0 + 0.04, vy1, 0.50, TOP_Z - SLAB, m_oak)
+    carcass = box("vanity_carcass", vx0 + 0.01, vx1 - 0.01, vy0 + 0.04, vy1, 0.50, TOP_Z - SLAB, m_oak)
+    boolean_cut(carcass, box("basin_void", bcx - bw / 2 - 0.03, bcx + bw / 2 + 0.03, bcy - bd / 2 - 0.03,
+                             bcy + bd / 2 + 0.03, TOP_Z - SLAB - 0.20, TOP_Z, None))
     half = (vx1 - vx0) / 2
     for i in range(2):
         x0 = vx0 + 0.012 + i * half

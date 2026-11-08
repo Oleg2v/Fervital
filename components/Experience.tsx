@@ -143,9 +143,20 @@ export default function Experience() {
     (window as unknown as Record<string, unknown>).__stores = { useUi, useDemo };
     startSync();
     useUi.getState().setTier(detectTier());
+    // recording helpers: ?lang=en|he, ?autopilot=1 (starts the demo by itself — handy for the email video)
+    const sp = new URLSearchParams(window.location.search);
+    const qLang = sp.get("lang");
+    if (qLang === "en" || qLang === "he") useUi.getState().setLang(qLang);
+    let auto: number | undefined;
+    if (sp.get("autopilot") === "1") {
+      auto = window.setTimeout(() => import("@/components/autopilot/engine").then((m) => m.startAutopilot()), 1800);
+    }
     const tick = window.setInterval(() => useDemo.getState().expireDue(), 1000);
     // the CSS preloader hides itself (visibility) after ~1 s; React owns the node, so it stays
-    return () => window.clearInterval(tick);
+    return () => {
+      window.clearInterval(tick);
+      if (auto) window.clearTimeout(auto);
+    };
   }, []);
 
   useEffect(() => {

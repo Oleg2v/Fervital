@@ -18,7 +18,8 @@ const nextConfig: NextConfig = {
   },
   serverExternalPackages: ["sharp"],
   outputFileTracingIncludes: {
-    "/api/quote": ["./assets/fonts/**"],
+    // serverless functions can't read public/ from disk on Vercel: trace what the PDF embeds
+    "/api/quote": ["./assets/fonts/**", "./public/tex/_s/*-400.webp"],
     "/api/kitchen": ["./data/scenes.json"],
   },
 };

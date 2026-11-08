@@ -78,7 +78,7 @@ export default function Statement() {
       </a>
       <div className="flex items-center justify-between border-b border-[var(--hair)] px-6 py-4 md:px-10">
         <Link href="/" className="underline underline-offset-4">
-          ← {c.back}
+          {lang === "he" ? "→" : "←"} {c.back}
         </Link>
         <button type="button" className="btn !min-h-[36px]" onClick={() => useUi.getState().setLang(lang === "he" ? "en" : "he")}>
           {lang === "he" ? "English" : "עברית"}

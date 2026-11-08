@@ -29,7 +29,7 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
-Useful query flags: `?rack=webgl|video|static` forces a hero tier, and `?q=medium` uses a lighter 3D quality.
+Useful query flags: `?rack=webgl|video|static` forces a hero tier, `?q=medium` uses a lighter 3D quality, `?lang=en` opens in English, and `?autopilot=1` starts the ~30 s demo by itself (handy for recording the email video).
 
 ### Optional: Claude for the AI features
 
