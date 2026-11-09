@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { CUSTOMER_BY_ID, PROJECT_BY_ID, dimsLabel, twinOf } from "@/lib/data";
 import { useSimNow, useYardFlash } from "@/lib/hooks";
 import { cycle, useRack } from "@/lib/rack";
@@ -44,8 +45,11 @@ export function StatusChip({ slab }: { slab: Slab }) {
   );
 }
 
+// Next / Prev used from the keyboard: the panel is replaced (new slab), so the replacement takes the focus back
+let refocus: "next" | "prev" | null = null;
+
 export default function SlabPanel({ slab, compact = false, nav = true }: { slab: Slab; compact?: boolean; nav?: boolean }) {
-  const { t, lang } = useT();
+  const { t, lang, arrow } = useT();
   const bookmatch = useRack((s) => s.bookmatch);
   const persona = useUi((s) => s.personaId);
   const projectId = useUi((s) => s.projectId);
@@ -57,8 +61,35 @@ export default function SlabPanel({ slab, compact = false, nav = true }: { slab:
   const twin = twinOf(slab);
   const mineHold = hold && hold.customerId === persona;
   const mineSold = live?.status === "sold" && live.soldTo === persona;
+  const root = useRef<HTMLDivElement>(null);
+  const holdChip = useRef<HTMLSpanElement>(null);
+  const holdHadFocus = useRef(false);
 
-  const onHold = () => {
+  // only when the control showed a keyboard focus ring: mouse use and the autopilot's el.click() are unchanged
+  const keyboardFocused = (el: HTMLElement) => el === document.activeElement && el.matches(":focus-visible");
+
+  useEffect(() => {
+    const sel = refocus;
+    refocus = null;
+    const a = document.activeElement;
+    if (sel && (!a || a === document.body)) root.current?.querySelector<HTMLElement>(`[data-ap="${sel}"]`)?.focus({ preventScroll: true });
+  }, []);
+
+  // the countdown chip replaces the Hold button: keep the keyboard focus on it
+  useEffect(() => {
+    if (mineHold && holdHadFocus.current) {
+      holdHadFocus.current = false;
+      holdChip.current?.focus({ preventScroll: true });
+    }
+  }, [mineHold]);
+
+  const step = (e: React.MouseEvent<HTMLButtonElement>, dir: 1 | -1) => {
+    if (!useRack.getState().busy && keyboardFocused(e.currentTarget)) refocus = dir > 0 ? "next" : "prev";
+    cycle(dir);
+  };
+
+  const onHold = (e: React.MouseEvent<HTMLButtonElement>) => {
+    holdHadFocus.current = keyboardFocused(e.currentTarget);
     const project = PROJECT_BY_ID[projectId];
     const room = project?.rooms[0]?.id ?? null;
     createHold(slab.id, persona, project?.customerId === persona ? projectId : null, project?.customerId === persona ? room : null);
@@ -84,6 +115,7 @@ export default function SlabPanel({ slab, compact = false, nav = true }: { slab:
       }}
       role="region"
       aria-label={`${slab.name[lang]} — ${slab.id}`}
+      ref={root}
     >
       <div className={`grid gap-x-8 gap-y-5 ${compact ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-12"} items-end`}>
         {/* name */}
@@ -159,13 +191,14 @@ export default function SlabPanel({ slab, compact = false, nav = true }: { slab:
                 {t.slab.yours}
               </span>
             ) : mineHold ? (
-              <span
-                key={flash}
-                className={`btn justify-center border-amber text-amber ${flash ? "flash-amber" : ""}`}
-                role="status"
-                data-ap="hold-chip"
-              >
-                <span className="live-dot" />
+              // not a live region: the ticking countdown would be re-announced every second (the hold is announced once by say())
+              <span ref={holdChip} tabIndex={-1} className="btn relative isolate justify-center border-amber text-amber" data-ap="hold-chip">
+                {/* the yard flash restarts on its own layer, so it doesn't remount the chip and drop its focus */}
+                <span key={flash} aria-hidden="true" className={`pointer-events-none absolute inset-0 -z-10 ${flash ? "flash-amber" : ""}`} />
+                <span className="live-dot" aria-hidden="true" />
+                <span className="sr-only">
+                  {t.slab.heldYou} · {t.slab.left}{" "}
+                </span>
                 <span className="font-mono ltr-nums">{formatCountdown(hold!.expiresAt - now)}</span>
               </span>
             ) : (
@@ -189,11 +222,11 @@ export default function SlabPanel({ slab, compact = false, nav = true }: { slab:
           )}
           {nav && (
             <div className="flex items-center justify-between gap-2">
-              <button type="button" className="btn !min-h-[38px] !px-3 text-[0.82rem]" onClick={() => cycle(-1)} data-ap="prev">
-                <span aria-hidden>→</span> {t.slab.prev}
+              <button type="button" className="btn !min-h-[38px] !px-3 text-[0.82rem]" onClick={(e) => step(e, -1)} data-ap="prev">
+                <span aria-hidden>{arrow.back}</span> {t.slab.prev}
               </button>
-              <button type="button" className="btn !min-h-[38px] !px-3 text-[0.82rem]" onClick={() => cycle(1)} data-ap="next">
-                {t.slab.next} <span aria-hidden>←</span>
+              <button type="button" className="btn !min-h-[38px] !px-3 text-[0.82rem]" onClick={(e) => step(e, 1)} data-ap="next">
+                {t.slab.next} <span aria-hidden>{arrow.fwd}</span>
               </button>
             </div>
           )}

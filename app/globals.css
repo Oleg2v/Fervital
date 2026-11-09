@@ -83,10 +83,20 @@ html[lang="en"] .font-display {
   font-feature-settings: "zero" 1, "ss02" 1;
   letter-spacing: 0.01em;
 }
-.ltr-nums {
-  direction: ltr;
-  unicode-bidi: isolate;
-  display: inline-block;
+/* LTR island for a run of numbers, IDs or dimensions inside RTL text (keep Hebrew words outside it).
+   Inline-block by default so the run follows the parent's alignment. It sits in the components layer,
+   so display utilities win: a `block` one shrink-wraps to keep its place at the parent's start edge.
+   Table cells are left alone: put it on a span inside the cell. */
+@layer components {
+  .ltr-nums:not(td, th) {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: inline-block;
+  }
+  .ltr-nums.block {
+    width: fit-content;
+    max-width: 100%;
+  }
 }
 .eyebrow {
   font-family: var(--font-mono);

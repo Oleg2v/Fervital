@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cropUrl, SLAB_BY_ID, SLABS } from "@/lib/data";
 import { useDemo } from "@/lib/store";
-import { useT } from "@/lib/ui";
+import { dict } from "@/lib/i18n";
+import { useT, useUi } from "@/lib/ui";
 import type { L10n } from "@/lib/types";
 import Reveal from "@/components/chrome/Reveal";
 import { goKitchen, pullFromRack } from "@/components/nav";
@@ -40,7 +41,8 @@ export default function VeinSearch() {
   const [busy, setBusy] = useState(false);
   const [res, setRes] = useState<Response | null>(null);
   const [img, setImg] = useState<string | null>(null);
-  const [err, setErr] = useState<string | null>(null);
+  // which error, not its text: it is rendered in the current language
+  const [err, setErr] = useState<"search" | "image" | null>(null);
   const [drag, setDrag] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -63,12 +65,12 @@ export default function VeinSearch() {
         await new Promise((ok) => setTimeout(ok, wait));
         setRes(data);
       } catch {
-        setErr(t.search.error);
+        setErr("search");
       } finally {
         setBusy(false);
       }
     },
-    [t],
+    [],
   );
 
   // run the first example when the section first comes into view, so it never sits empty
@@ -82,7 +84,8 @@ export default function VeinSearch() {
         if (entries.some((e) => e.isIntersecting) && !autoRan.current) {
           autoRan.current = true;
           io.disconnect();
-          const first = t.search.examples[0];
+          // the language now, not at mount: ?lang=en and the header toggle both land after this effect
+          const first = dict[useUi.getState().lang].search.examples[0];
           setQ(first);
           run({ q: first });
         }
@@ -94,6 +97,14 @@ export default function VeinSearch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // an example in the box follows a language switch (each pair is the same search)
+  useEffect(() => {
+    setQ((cur) => {
+      const k = dict[lang === "he" ? "en" : "he"].search.examples.indexOf(cur);
+      return k >= 0 ? dict[lang].search.examples[k] : cur;
+    });
+  }, [lang]);
+
   const submit = (text = q) => {
     if (!text.trim()) return;
     setImg(null);
@@ -102,8 +113,13 @@ export default function VeinSearch() {
   };
 
   const onFile = async (f?: File | null) => {
-    if (!f || !f.type.startsWith("image/")) return;
-    const url = await fileToDataUrl(f);
+    if (!f) return;
+    // a file the browser cannot decode (e.g. an iPhone HEIC in Chrome) says so instead of doing nothing
+    const url = f.type.startsWith("image/") ? await fileToDataUrl(f).catch(() => null) : null;
+    if (!url) {
+      setErr("image");
+      return;
+    }
     setImg(url);
     run({ image: url });
   };
@@ -198,8 +214,22 @@ export default function VeinSearch() {
                 <p className="text-[0.95rem]">{t.search.upload}</p>
                 <p className="text-[0.8rem] text-vein">{t.search.drop}</p>
               </div>
-              <input ref={fileRef} type="file" accept="image/*" className="sr-only" id="vein-file" onChange={(e) => onFile(e.target.files?.[0])} />
-              <label htmlFor="vein-file" className="btn cursor-pointer">
+              <input
+                ref={fileRef}
+                type="file"
+                accept="image/*"
+                className="peer sr-only"
+                id="vein-file"
+                onChange={(e) => {
+                  onFile(e.target.files?.[0]);
+                  e.target.value = ""; // the same photo can be chosen again
+                }}
+              />
+              {/* the input is visually hidden, so its keyboard focus ring is drawn on the label */}
+              <label
+                htmlFor="vein-file"
+                className="btn cursor-pointer peer-focus-visible:outline-2 peer-focus-visible:outline-offset-[3px] peer-focus-visible:outline-amber"
+              >
                 {t.search.upload}
               </label>
             </div>
@@ -209,7 +239,11 @@ export default function VeinSearch() {
         {/* scan + results */}
         <div className="mt-16" aria-live="polite" aria-busy={busy}>
           <ScanStrip busy={busy} hits={res?.results.map((r) => r.id) ?? []} />
-          {err && <p className="mt-6 text-amber">{err}</p>}
+          {err && (
+            <p className="mt-6 text-amber">
+              {err === "image" ? (lang === "he" ? "לא הצלחנו לקרוא את התמונה. נסו JPEG או PNG." : "We couldn't read that image. Try a JPEG or PNG.") : t.search.error}
+            </p>
+          )}
           {res && !busy && (
             <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">
               <span className="eyebrow text-vein">{t.search.understood}:</span>

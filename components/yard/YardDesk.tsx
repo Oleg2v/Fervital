@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { CUSTOMER_BY_ID, cropUrl, PROJECT_BY_ID, SLAB_BY_ID, SLABS, STAGES } from "@/lib/data";
 import { useCustomerArrival, useSimNow } from "@/lib/hooks";
-import { money } from "@/lib/i18n";
+import { days, money } from "@/lib/i18n";
 import { formatCountdown, HOUR, useDemo } from "@/lib/store";
 import { useT } from "@/lib/ui";
 import type { Hold, Job } from "@/lib/types";
@@ -254,7 +254,7 @@ function InboxCard({ h, now, compact }: { h: Hold; now: number; compact: boolean
 const WINDOWS = ["07:00–10:00", "10:00–13:00", "13:00–16:00"];
 
 function JobCard({ j }: { j: Job }) {
-  const { t, lang } = useT();
+  const { t, lang, arrow } = useT();
   const s = SLAB_BY_ID[j.slabId];
   const c = CUSTOMER_BY_ID[j.customerId];
   const [slotOpen, setSlotOpen] = useState(false);
@@ -274,13 +274,19 @@ function JobCard({ j }: { j: Job }) {
         <p className="mt-1.5 truncate text-[0.65rem] text-vein">
           {t.yard.exclusive.replace("{name}", c?.name[lang] ?? "")}
         </p>
-        <p className="font-mono mt-1 text-[0.65rem] ltr-nums">
-          {j.deliverySlot ? `${j.deliverySlot.day >= 0 ? "+" : ""}${j.deliverySlot.day}d · ${j.deliverySlot.window}` : <span className="text-vein">{t.portal.noSlot}</span>}
+        <p className="font-mono mt-1 text-[0.65rem]">
+          {j.deliverySlot ? (
+            <>
+              {days(lang, j.deliverySlot.day)} · <span className="ltr-nums">{j.deliverySlot.window}</span>
+            </>
+          ) : (
+            <span className="text-vein">{t.portal.noSlot}</span>
+          )}
         </p>
         <div className="mt-2 flex flex-wrap gap-1">
           {next && (
             <button type="button" className="btn !min-h-[28px] !px-2 text-[0.68rem]" onClick={() => useDemo.getState().advanceJob(j.id)} data-ap={`advance-${j.slabId}`}>
-              → {t.portal.stages[next]}
+              {arrow.fwd} {t.portal.stages[next]}
             </button>
           )}
           {j.stage !== "delivered" && (
@@ -296,13 +302,13 @@ function JobCard({ j }: { j: Job }) {
                 <button
                   key={`${d}${w}`}
                   type="button"
-                  className="font-mono border border-[var(--hair)] px-2 py-1 text-start text-[0.65rem] hover:border-amber ltr-nums"
+                  className="font-mono border border-[var(--hair)] px-2 py-1 text-start text-[0.65rem] hover:border-amber"
                   onClick={() => {
                     useDemo.getState().setSlot(j.id, d, w);
                     setSlotOpen(false);
                   }}
                 >
-                  +{d}d · {w}
+                  {days(lang, d)} · <span className="ltr-nums">{w}</span>
                 </button>
               )),
             )}
@@ -314,7 +320,7 @@ function JobCard({ j }: { j: Job }) {
 }
 
 function RackWall({ compact }: { compact: boolean }) {
-  const { lang } = useT();
+  const { t, lang } = useT();
   const slabs = useDemo((s) => s.slabs);
   const racks = ["A", "B", "C"] as const;
   return (
@@ -334,7 +340,7 @@ function RackWall({ compact }: { compact: boolean }) {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   />
                   <span className="sr-only">
-                    {s.rack.label} {s.name[lang]} — {st}
+                    {s.rack.label} {s.name[lang]} — {t.yard.legend[st]}
                   </span>
                 </li>
               );

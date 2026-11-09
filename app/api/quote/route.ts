@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { PDFDocument, rgb, type PDFFont, type PDFPage } from "pdf-lib";
+import { PDFDocument, rgb, type PDFFont, type PDFImage, type PDFPage } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import bidiFactory from "bidi-js";
 import sharp from "sharp";
@@ -170,30 +170,46 @@ export async function POST(req: Request) {
   text(page, ils(subtotal), S(W - M - 12), y - 20, 18, uiMed, BASALT, "end");
   y -= 60;
 
-  // renders
-  const renders = (body.renders ?? []).filter((r) => r.startsWith("data:image/jpeg")).slice(0, 2);
-  if (renders.length) {
-    text(page, L("הדמיות מצורפות", "Attached renders"), S(M), y, 8, uiMed, VEIN);
-    y -= 10;
-    const rw = (W - 2 * M - 12) / 2;
-    for (let i = 0; i < renders.length; i++) {
-      try {
-        const im = await doc.embedJpg(Buffer.from(renders[i].split(",")[1], "base64"));
-        const h = (rw / im.width) * im.height;
-        const x = he ? W - M - rw - i * (rw + 12) : M + i * (rw + 12);
-        page.drawImage(im, { x, y: y - h, width: rw, height: h });
-        if (i === renders.length - 1) y -= h + 14;
-      } catch {
-        /* ignore */
-      }
+  // renders: kept above the footer; if they would shrink below 60% here, they continue on a second page
+  const FOOT = 84; // clear of the footer rule at y=70
+  const renders: PDFImage[] = [];
+  for (const r of (body.renders ?? []).filter((r) => r.startsWith("data:image/jpeg")).slice(0, 2)) {
+    try {
+      renders.push(await doc.embedJpg(Buffer.from(r.split(",")[1], "base64")));
+    } catch {
+      /* ignore */
     }
   }
+  if (renders.length) {
+    const rw = (W - 2 * M - 12) / 2;
+    const tallest = Math.max(...renders.map((im) => (rw / im.width) * im.height));
+    let rp = page;
+    if (y - 10 - FOOT < 0.6 * tallest) {
+      rp = doc.addPage([595.28, 841.89]);
+      y = 841.89 - 60;
+      text(rp, qn, S(W - M), y, 8, mono, VEIN, "end");
+    }
+    text(rp, L("הדמיות מצורפות", "Attached renders"), S(M), y, 8, uiMed, VEIN);
+    y -= 10;
+    let used = 0;
+    renders.forEach((im, i) => {
+      const h0 = (rw / im.width) * im.height;
+      const h = Math.min(h0, y - FOOT);
+      const w = rw * (h / h0);
+      const x = he ? W - M - w - i * (rw + 12) : M + i * (rw + 12); // a narrowed render keeps to its column's inline start
+      rp.drawImage(im, { x, y: y - h, width: w, height: h });
+      used = Math.max(used, h);
+    });
+    y -= used + 14;
+  }
 
-  // footer
-  page.drawLine({ start: { x: M, y: 70 }, end: { x: W - M, y: 70 }, thickness: 0.4, color: VEIN });
-  text(page, L("אולם תצוגה: משכית 14, הרצליה פיתוח · גלריית אבן ומפעל: אזור התעשייה עמק חפר", "Showroom: 14 Maskit St, Herzliya Pituach · Stone gallery & plant: Emek Hefer industrial estate"), S(M), 54, 7.5, ui, VEIN);
-  text(page, L("כל לוח שנרכש מסומן בלעדית עבור הלקוח. מסמך זה הוא הדגמה בלבד ואינו הצעה מחייבת.", "Every slab a customer buys is marked exclusively for them. This document is a demo, not a binding offer."), S(M), 42, 7.5, ui, VEIN);
-  page.drawCircle({ x: he ? M + 4 : W - M - 4, y: 46, size: 3, color: VERDE });
+  // footer, on every page
+  for (const p of doc.getPages()) {
+    p.drawLine({ start: { x: M, y: 70 }, end: { x: W - M, y: 70 }, thickness: 0.4, color: VEIN });
+    text(p, L("אולם תצוגה: משכית 14, הרצליה פיתוח · גלריית אבן ומפעל: אזור התעשייה עמק חפר", "Showroom: 14 Maskit St, Herzliya Pituach · Stone gallery & plant: Emek Hefer industrial estate"), S(M), 54, 7.5, ui, VEIN);
+    text(p, L("כל לוח שנרכש מסומן בלעדית עבור הלקוח. מסמך זה הוא הדגמה בלבד ואינו הצעה מחייבת.", "Every slab a customer buys is marked exclusively for them. This document is a demo, not a binding offer."), S(M), 42, 7.5, ui, VEIN);
+    p.drawCircle({ x: he ? M + 4 : W - M - 4, y: 46, size: 3, color: VERDE });
+  }
 
   const bytes = await doc.save();
   return new Response(Buffer.from(bytes), {

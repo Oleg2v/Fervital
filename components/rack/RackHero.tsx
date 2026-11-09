@@ -19,7 +19,7 @@ const smooth = (a: number, b: number, x: number) => {
 };
 
 export default function RackHero({ compact = false }: { compact?: boolean }) {
-  const { t, lang, fmt } = useT();
+  const { t, lang, fmt, arrow } = useT();
   const tier = useUi((s) => s.tier);
   const view = useUi((s) => s.view);
   const index = useRack((s) => s.index);
@@ -60,6 +60,7 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
   useEffect(() => {
     if (!scrollDriven) return;
     let last = -1;
+    let lastWant = -1; // scroll-derived target at the previous scroll position
     const onScroll = () => {
       const el = section.current;
       if (!el) return;
@@ -70,7 +71,13 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
       last = p;
       const st = useRack.getState();
       if (st.busy || st.dragging) return;
-      st.setPullTarget(smooth(0.04, 0.58, p));
+      const want = smooth(0.04, 0.58, p);
+      // pullTarget no longer matches the scroll position → a click, Enter, Escape, drag or cycle set it:
+      // keep it until scrolling brings the scroll-derived target to the same value, then scroll takes over again
+      const manual = lastWant >= 0 && Math.abs(st.pullTarget - lastWant) > 0.02;
+      lastWant = want;
+      if (manual && Math.abs(want - st.pullTarget) > 0.02) return;
+      st.setPullTarget(want);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -89,7 +96,20 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
         intro.current.style.transform = `translate3d(0, ${-p * 60}px, 0)`;
         intro.current.style.visibility = o < 0.01 ? "hidden" : "visible";
       }
-      if (hud.current) hud.current.style.opacity = String(1 - smooth(0.1, 0.5, p));
+      if (hud.current) {
+        const ho = 1 - smooth(0.1, 0.5, p);
+        hud.current.style.opacity = String(ho);
+        const off = ho < 0.01;
+        // a faded-out HUD leaves the tab order: keyboard focus on it moves to the rack (video tier: the slab's panel)
+        const a = document.activeElement as HTMLElement | null;
+        if (off && a && hud.current.contains(a) && a.matches(":focus-visible")) {
+          const to =
+            stage.current?.querySelector<HTMLElement>('[data-ap="rack"][tabindex]') ??
+            stage.current?.querySelector<HTMLElement>('[data-ap="bookmatch"]');
+          to?.focus({ preventScroll: true });
+        }
+        hud.current.style.visibility = off ? "hidden" : "visible";
+      }
       if (label.current) label.current.style.opacity = String((1 - smooth(0.02, 0.25, p)) * (anim.ready && webgl ? 1 : 0));
       raf = requestAnimationFrame(loop);
     };
@@ -252,7 +272,7 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
           </div>
         ) : (
           <div
-            className="absolute inset-0 cursor-grab touch-pan-y md:cursor-none"
+            className="peer absolute inset-0 cursor-grab touch-pan-y md:cursor-none"
             onPointerDown={onPointerDown}
             onPointerMove={(e) => {
               onHover(e);
@@ -289,6 +309,13 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
             </div>
           </div>
         )}
+        {/* keyboard focus ring of the rack group, on its own layer: the group's outline would be clipped by the
+            stage and painted under the canvas and overlays */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-30 hidden peer-focus-visible:block"
+          style={{ boxShadow: "inset 0 0 0 3px var(--color-amber)" }}
+        />
 
         {/* vignette + grain */}
         <div
@@ -346,7 +373,7 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
         >
           <div className="flex items-center gap-3">
             <button type="button" className="btn !min-h-[40px] !px-3" aria-label={t.slab.prev} onClick={() => cycle(-1, false)}>
-              →
+              {arrow.back}
             </button>
             <div className="font-mono text-[0.78rem] tracking-[0.12em]">
               <span className="ltr-nums">
@@ -356,7 +383,7 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
               <span className="text-vein"> · {lang === "he" ? "מדף A" : "Rack A"}</span>
             </div>
             <button type="button" className="btn !min-h-[40px] !px-3" aria-label={t.slab.next} onClick={() => cycle(1, false)}>
-              ←
+              {arrow.fwd}
             </button>
           </div>
           <div className="hidden items-center gap-3 sm:flex">
@@ -370,7 +397,8 @@ export default function RackHero({ compact = false }: { compact?: boolean }) {
 
         {/* the pulled slab: details + actions */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0">
-          <AnimatePresence>{pulledOut && <SlabPanel key={slab.id} slab={slab} compact={compact} />}</AnimatePresence>
+          {/* wait: a new slab's panel enters once the old one has left (they would stack in this bottom-anchored box) */}
+          <AnimatePresence mode="wait">{pulledOut && <SlabPanel key={slab.id} slab={slab} compact={compact} />}</AnimatePresence>
         </div>
 
         {!canvasOn && tier === "webgl" && (

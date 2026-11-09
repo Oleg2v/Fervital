@@ -34,7 +34,7 @@ export default function Visit() {
               <Reveal key={title as string}>
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img src={cropUrl(s.id, 960)} alt={`${s.name[lang]} — ${s.desc[lang]}`} className="h-full w-full object-cover" loading="lazy" />
-                  <span className="font-mono absolute bottom-2 end-2 bg-basalt/85 px-2 py-1 text-[0.62rem] text-vein ltr-nums">
+                  <span className="font-mono absolute bottom-2 end-2 bg-basalt px-2 py-1 text-[0.62rem] text-vein ltr-nums">
                     {s.name.en} · {s.id}
                   </span>
                 </div>

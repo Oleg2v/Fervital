@@ -83,6 +83,8 @@ export const TAB_ID =
 
 const uid = (p: string) => `${p}-${Math.random().toString(36).slice(2, 8)}${Date.now().toString(36).slice(-3)}`;
 const DATA_VERSION = 3;
+/** A saved snapshot older than this is from an earlier sitting: start over from the seed (see merge). */
+const STALE_MS = 2 * HOUR;
 
 function seedState(): DemoData {
   const now = Date.now();
@@ -437,12 +439,22 @@ export const useDemo = create<DemoStore>()(
       name: "fervital-demo",
       version: DATA_VERSION,
       storage: createJSONStorage(() => localStorage),
-      partialize: (s) => pickData(s),
+      partialize: (s) => ({ ...pickData(s), savedAt: Date.now() }),
       migrate: () => seedState() as unknown as DemoStore,
       merge: (persisted, current) => {
-        const p = persisted as Partial<DemoData> | undefined;
+        const p = persisted as (Partial<DemoData> & { savedAt?: number }) | undefined;
         if (!p || p.version !== DATA_VERSION) return current;
-        return { ...current, ...p };
+        const { savedAt = 0, ...data } = p;
+        const now = Date.now();
+        // holds and the clock are wall-clock stamps: a snapshot from an earlier sitting would replay the
+        // closed time on the first expireDue tick and expire the seed holds at once (snapshots saved
+        // before savedAt existed count as stale too, so they re-seed once)
+        if (now - savedAt > STALE_MS) return current;
+        // a fast demo clock must not multiply the time the page was closed
+        if (data.clock && data.clock.speed !== 1) {
+          data.clock = { speed: 1, anchorReal: now, anchorSim: simNow(data.clock, savedAt) + (now - savedAt) };
+        }
+        return { ...current, ...data };
       },
     },
   ),

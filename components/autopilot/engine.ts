@@ -122,9 +122,23 @@ async function glide(side: Side, x: number, y: number, ms: number, my: number, s
   });
 }
 
+/** Let a smooth scroll (or a layout animation) finish before aiming at el. */
+async function settle(el: HTMLElement, my: number, step: number, max = 1000) {
+  const t0 = performance.now();
+  let prev = el.getBoundingClientRect();
+  let still = 0;
+  while (still < 2 && skipFrom < step && performance.now() - t0 < max) {
+    await wait(0, my, step); // one frame; still aborts on stop
+    const r = el.getBoundingClientRect();
+    still = Math.abs(r.top - prev.top) < 0.5 && Math.abs(r.left - prev.left) < 0.5 ? still + 1 : 0;
+    prev = r;
+  }
+}
+
 async function moveTo(side: Side, el: HTMLElement, ms: number, my: number, step: number, at: [number, number] = [0.5, 0.5]) {
   ensureVisible(el);
-  await wait(skipFrom >= step ? 0 : 320, my, step);
+  await wait(skipFrom >= step ? 0 : 320, my, step); // lets the smooth scroll get going
+  await settle(el, my, step); // a long scroll is still moving at 320 ms: aim at where el comes to rest
   const r = el.getBoundingClientRect();
   await glide(side, r.left + r.width * at[0], r.top + r.height * at[1], ms, my, step);
 }
@@ -150,10 +164,9 @@ const STEPS: StepFn[] = [
   // 1 · pull a slab off the rack
   async (my, step) => {
     const rack = await find("customer", "rack", my, step);
-    const r = rack.getBoundingClientRect();
-    const sx = r.left + r.width * 0.32;
-    const sy = r.top + r.height * 0.5;
-    await glide("customer", sx, sy, 900, my, step);
+    // through moveTo, so a rack below the fold (static tier) is scrolled into view before the cursor aims
+    await moveTo("customer", rack, 900, my, step, [0.32, 0.5]);
+    const { x: sx, y: sy } = useCursors.getState().customer;
     useCursors.getState().set("customer", { pressed: true });
     useRack.setState({ pullTarget: 1, dragging: false });
     const railx = anim.rail.x || 300;
@@ -245,6 +258,12 @@ const STEPS: StepFn[] = [
   },
   // 8 · your slab
   async (my, step) => {
+    // claim the sale only if it happened: a missed convert leaves the slab held or available.
+    // Aborted (not a return) so the run ends without the "done" line instead of claiming one
+    const live = useDemo.getState().slabs[SLAB];
+    if (live?.status !== "sold" || live.soldTo !== useUi.getState().personaId) throw new Aborted();
+    // the contained reveal is pinned to the pane's scroll origin, which earlier steps may have scrolled away
+    paneRoot("customer")?.scrollTo({ top: 0 });
     useUi.getState().setYourSlab(SLAB);
     useCursors.getState().set("yard", { visible: false });
     await wait(3400, my, step);
@@ -266,6 +285,16 @@ export async function startAutopilot() {
   useDemo.getState().restoreSlab(SLAB);
   if (useDemo.getState().clock.speed !== 1) useDemo.getState().setSpeed(1);
   useRack.setState({ pullTarget: 0, bookmatch: false, index: 0, override: null, busy: false, dragging: false });
+  // The presenter takes over by leaving live view or by resetting the demo (in this tab or another).
+  // Stop then: the next steps would wait out their timeouts on targets that are gone, then claim a sale.
+  // The switch into live above has prev.view !== "live", so it does not count. Events are compared by
+  // id: every commit structuredClones the log, so object identity changes even when no event was added.
+  const unsubView = useUi.subscribe((s, prev) => {
+    if (my === token && prev.view === "live" && s.view !== "live") stopAutopilot();
+  });
+  const unsubReset = useDemo.subscribe((s, prev) => {
+    if (my === token && s.events[0]?.id !== prev.events[0]?.id && s.events[0]?.type === "demo.reset") stopAutopilot();
+  });
   try {
     if (ui.view !== "live") {
       ui.triggerWipe(ui.lang === "he" ? "מצב חי" : "Live");
@@ -295,6 +324,8 @@ export async function startAutopilot() {
   } catch (e) {
     if (!(e instanceof Aborted)) console.warn(e);
   } finally {
+    unsubView();
+    unsubReset();
     if (my === token) {
       useCursors.getState().set("customer", { visible: false, pressed: false });
       useCursors.getState().set("yard", { visible: false, pressed: false });

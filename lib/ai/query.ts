@@ -124,9 +124,22 @@ rule(/^(אדו?מ(ה|ים|ות)?|אדום|בורדו|יין|red|wine|burgundy|ro
 rule(/^(זהב|זהוב(ה|ים|ות)?|דבש|ענבר|gold|golden|honey|amber|oro)$/, setHue("gold", "gold"));
 rule(/^(חומ(ה|ים|ות)?|חום|שוקולד|אגוז|קפה|brown|chocolate|walnut|coffee)$/, setHue("brown", "brown"));
 rule(/^(כחול(ה|ים|ות)?|תכלת|פטרול|blue|azure|azul)$/, setHue("blue"));
-// lightness / temperature
-rule(/^(בהיר(ה|ים|ות)?|light|pale)$/, (q, c) => (q.lightness = c.very ? "very_light" : "light"));
-rule(/^(כהה|כהים|כהות|dark|deep|עמוק(ה|ים)?)$/, (q, c) => (q.lightness = c.very || q.lightness === "dark" ? "very_dark" : "dark"));
+// lightness / temperature ("dark veins" / "ורידים בהירים" describe the veins, not the ground;
+// next to a vein colour that is already named, e.g. "ורידים אפורים בהירים", they only shade it)
+rule(/^(בהיר(ה|ים|ות)?|light|pale)$/, (q, c) => {
+  if (c.vein) {
+    if (q.vein_color === "any") q.vein_color = "white";
+    return;
+  }
+  q.lightness = c.very ? "very_light" : "light";
+});
+rule(/^(כהה|כהים|כהות|dark|deep|עמוק(ה|ים)?)$/, (q, c) => {
+  if (c.vein) {
+    if (q.vein_color === "any") q.vein_color = "dark";
+    return;
+  }
+  q.lightness = c.very || q.lightness === "dark" ? "very_dark" : "dark";
+});
 rule(/^(בינוני(ת)?|medium|mid)$/, (q) => (q.lightness = "medium"));
 rule(/^(חמ(ה|ים|ות)?|חם|חמימ(ה|ים)?|חמים|warm)$/, (q) => (q.temperature = "warm"));
 rule(/^(קר(ה|ים|ות)?|קריר(ה|ים)?|cool|cold|icy)$/, (q) => (q.temperature = "cool"));
@@ -174,17 +187,21 @@ rule(/^(אוניקס|onyx|onice)$/, fam("onyx"));
 rule(/^(גרניט|granite)$/, fam("granite"));
 rule(/^(בזלת|basalt|basalto)$/, fam("basalt"));
 
-const NEG = /^(לא|בלי|ללא|אין|not|no|without|non)$/;
+// a Hebrew negator may carry the ו / ש prefix ("ולא", "וללא", "ובלי", "שלא")
+const NEG = /^(?:ו?ש?(?:לא|בלי|ללא|אין)|not|no|without|non)$/;
 const VERY = /^(מאוד|ממש|very|really|super|extra)$/;
 const VEIN_WORD = /^(ורידים|וריד|ורידי|עורקים|veins?|veining)$/;
+const EN_LINK = /^(with|and|or|on|of|in|for|but|no|not|without)$/;
+const SHADE = /^(light|pale|dark|deep)$/;
 const HE_PREFIX = /^[והבלמשכ]{1,2}(?=[א-ת]{2,})/;
 
 function variants(tok: string): string[] {
   const out = [tok];
   if (/[א-ת]/.test(tok)) {
+    // one letter first: "הכחול" is ה + "כחול" (blue), not הכ + "חול" (sand)
+    if (tok.length > 3 && /^[והבלמשכ]/.test(tok)) out.push(tok.slice(1));
     const stripped = tok.replace(HE_PREFIX, "");
     if (stripped !== tok) out.push(stripped);
-    if (tok.length > 3 && /^[והבלמשכ]/.test(tok)) out.push(tok.slice(1));
   }
   return out;
 }
@@ -197,28 +214,50 @@ export function parseLocal(text: string): ParsedQuery {
     .split(/[^a-zא-ת'׳0-9₪]+/)
     .filter(Boolean);
   let veinCtx = 0;
+  // after a negated Hebrew vein noun ("שחור בלי ורידים לבנים"), a colour still belongs to the veins
+  // as long as the ground is already named; otherwise it is the ground ("בלי ורידים, לבן")
+  let negVeinCtx = 0;
+  let prevVein = false;
   for (let i = 0; i < tokens.length; i++) {
     const tok = tokens[i];
     const prev = tokens[i - 1] ?? "";
     const prev2 = tokens[i - 2] ?? "";
+    const next = tokens[i + 1] ?? "";
     const vars = variants(tok);
-    const neg = NEG.test(prev) || NEG.test(prev2);
+    // two-token reach ("not very glossy", "no grey veins"), but never past the vein noun it negated ("no veins, polished")
+    const neg = NEG.test(prev) || (NEG.test(prev2) && !prevVein);
     const very = VERY.test(tokens[i + 1] ?? "") || VERY.test(prev);
     // numbers: "עד 1200" → max price
     const num = Number(tok.replace(/[^0-9]/g, ""));
     if (num >= 200 && num <= 20000 && /^(עד|upto|under|below|max)$/.test(prev)) q.max_price_m2 = num;
     const isVein = vars.some((v) => VEIN_WORD.test(v));
-    const veinNext = /^[a-z]/.test(tok) && (VEIN_WORD.test(tokens[i + 1] ?? "") || VEIN_WORD.test(tokens[i + 2] ?? ""));
+    // English names the vein colour before the noun ("dark veins", "light grey veins"), never across "with" ("dark with veins")
+    // two shades in a row are ground then vein ("light, dark veins"), not one vein colour
+    const veinNext =
+      /^[a-z]/.test(tok) &&
+      (VEIN_WORD.test(next) || (VEIN_WORD.test(tokens[i + 2] ?? "") && !EN_LINK.test(next) && !(SHADE.test(tok) && SHADE.test(next))));
+    const groundNamed = q.base_hue !== "any" || q.lightness !== "any";
     for (const v of vars) {
       const r = LEX.find(([re]) => re.test(v));
       if (r) {
-        r[1](q, { vein: (veinCtx > 0 || veinNext) && !isVein, neg, very });
+        r[1](q, { vein: (veinCtx > 0 || veinNext || (negVeinCtx > 0 && groundNamed)) && !isVein, neg, very });
         break;
       }
     }
-    if (isVein) veinCtx = 2;
-    else if (veinCtx > 0) veinCtx--;
+    prevVein = isVein;
+    // a colour after the noun describes the veins in Hebrew ("ורידים אפורים") and in "veins of / in grey",
+    // but not in "grey veins on white", and not after "no veins" / "בלי ורידים"
+    if (isVein) {
+      veinCtx = !neg && (/[א-ת]/.test(tok) || /^(of|in)$/.test(next)) ? 2 : 0;
+      negVeinCtx = neg && /[א-ת]/.test(tok) ? 2 : 0;
+    } else {
+      // an English shade word leaves room for its colour: "veins in light grey"
+      if (veinCtx > 0 && !SHADE.test(tok)) veinCtx--;
+      if (negVeinCtx > 0) negVeinCtx--;
+    }
   }
+  // "no (white) veins": a colour of veins that are not wanted is not a constraint
+  if (q.veins === "none") q.vein_color = "any";
   return q;
 }
 
@@ -258,7 +297,8 @@ function constraintsFor(q: ParsedQuery): Constraint[] {
     case "beige": add("beige", 0, 2, 0.55, 0.88, 0.12); add("beige", 1, 2, 0.4, 0.9, 0.12); break;
     case "grey": add("grey", 3, 2, undefined, 0.14, 0.08); add("grey", 0, 1, 0.35, 0.85, 0.15); break;
     case "black": add("black", 0, 3, undefined, 0.3, 0.1); break;
-    case "green": add("green", 2, 2.2, undefined, 0.33, 0.04); break;
+    // a* well below zero: near-neutral cool whites (Carrara at a* -1.2) are not green
+    case "green": add("green", 2, 2.2, undefined, 0.3, 0.02); break;
     case "red": add("red", 2, 2.6, 0.55, undefined, 0.1); break;
     case "gold": add("gold", 1, 2.4, 0.62, undefined, 0.12); add("gold", 3, 1.6, 0.45, undefined, 0.15); break;
     case "brown": add("brown", 0, 1.6, 0.18, 0.62, 0.12); add("brown", 1, 1.6, 0.3, 0.75, 0.12); break;
@@ -394,6 +434,8 @@ function describe(key: string, s: Slab, f: SlabVec): L10n | null {
   return null;
 }
 
+const groundL = (r: L10n) => r.en.match(/\(L (\d+)[,)]/)?.[1];
+
 export function rankText(
   q: ParsedQuery,
   slabs: Slab[],
@@ -428,7 +470,8 @@ export function rankText(
       .sort((a, b) => b[1] - a[1])
       .slice(0, 6)
       .map(([k]) => describe(k, s, f))
-      .filter((r, i, arr): r is L10n => !!r && arr.findIndex((x) => x?.he === r.he) === i)
+      // one reason per fact: the ground's lightness is said once ("deep black (L 25)", not also "dark ground (L 25)")
+      .filter((r, i, arr): r is L10n => !!r && arr.findIndex((x) => !!x && (x.he === r.he || (groundL(r) !== undefined && groundL(x) === groundL(r)))) === i)
       .slice(0, 3);
     if (!reasons.some((r) => r === FINISH_TXT[s.finish]) && reasons.length < 3) reasons.push(FINISH_TXT[s.finish]);
     out.push({

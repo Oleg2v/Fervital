@@ -30,6 +30,31 @@ function alternatives(slab: Slab): Slab[] {
   return res;
 }
 
+/** The slab picked right now. Read when painting, so a pick made while a run is in flight is not lost. */
+const currentSlab = () => SLAB_BY_ID[useUi.getState().kitchenSlabId] ?? RACK_A[0];
+
+/** Decode and downscale a photo without stalling the page: a CPU-backed canvas and an async toBlob (a GPU canvas read back with toDataURL can block for seconds on software GL). */
+async function photoToDataUrl(f: File, max: number): Promise<{ url: string; w: number; h: number }> {
+  if (!f.type.startsWith("image/")) throw new Error("not an image");
+  const bmp = await createImageBitmap(f);
+  const s = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const c = document.createElement("canvas");
+  c.width = Math.round(bmp.width * s);
+  c.height = Math.round(bmp.height * s);
+  // a CPU-backed canvas: encoding it needs no GPU readback
+  c.getContext("2d", { willReadFrequently: true })!.drawImage(bmp, 0, 0, c.width, c.height);
+  bmp.close();
+  const blob = await new Promise<Blob | null>((ok) => c.toBlob(ok, "image/jpeg", 0.88));
+  if (!blob) throw new Error("encode failed");
+  const url = await new Promise<string>((ok, no) => {
+    const r = new FileReader();
+    r.onload = () => ok(r.result as string);
+    r.onerror = () => no(r.error);
+    r.readAsDataURL(blob);
+  });
+  return { url, w: c.width, h: c.height };
+}
+
 export default function KitchenStudio({ compact = false }: { compact?: boolean }) {
   const { t, lang, fmt } = useT();
   const slabId = useUi((s) => s.kitchenSlabId);
@@ -40,6 +65,10 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
   const [elapsed, setElapsed] = useState(0);
   const [assets, setAssets] = useState<SceneAssets | null>(null);
   const [enabled, setEnabled] = useState<Record<string, boolean>>({});
+  // what every render paints with, so a toggle made mid-pour is not undone by the pour in flight
+  const enabledRef = useRef<Record<string, boolean>>({});
+  // the photo being analysed, shown until its result is in
+  const [pending, setPending] = useState<{ url: string; w: number; h: number } | null>(null);
   const [compare, setCompare] = useState(0.5);
   const [attached, setAttached] = useState(false);
   const [source, setSource] = useState<"sample" | "model" | "manual" | null>(null);
@@ -50,6 +79,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
   const tri = useRef<(HTMLCanvasElement | null)[]>([]);
   const stage = useRef<HTMLDivElement>(null);
   const runId = useRef(0);
+  const inflight = useRef<{ key: SceneKey; id: number; done: Promise<void> } | null>(null);
   const alts = useMemo(() => alternatives(slab), [slab]);
 
   const ensureComp = () => {
@@ -81,21 +111,23 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
     [],
   );
 
-  const renderTriptych = useCallback(async (a: SceneAssets, en: Record<string, boolean>, list: Slab[]) => {
+  const renderTriptych = useCallback(async (a: SceneAssets, list: Slab[], my: number) => {
     const c = ensureComp();
     c.setScene(a);
     for (let i = 0; i < list.length; i++) {
       const img = await slabImageCache(texUrl(list[i].tex, "c2k"));
-      c.render({ slab: list[i], slabImage: img, enabled: en, reveal: 1 });
+      if (runId.current !== my) return;
+      c.render({ slab: list[i], slabImage: img, enabled: enabledRef.current, reveal: 1 });
       blit(tri.current[i], 520);
     }
   }, []);
 
   /** Pour the stone in, then lay out the triptych. */
   const reveal = useCallback(
-    async (a: SceneAssets, s: Slab, en: Record<string, boolean>, my: number) => {
+    async (a: SceneAssets, s: Slab, my: number) => {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const img = await slabImageCache(texUrl(s.tex, "c2k"));
+      if (runId.current !== my) return;
       const c = ensureComp();
       c.setScene(a);
       if (!reduced) {
@@ -105,7 +137,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
             if (runId.current !== my) return done();
             const p = Math.min(1, (performance.now() - t0) / 1250);
             const e = 1 - Math.pow(1 - p, 3);
-            c.render({ slab: s, slabImage: img, enabled: en, reveal: e });
+            c.render({ slab: s, slabImage: img, enabled: enabledRef.current, reveal: e });
             blit(main.current);
             if (p < 1) requestAnimationFrame(tick);
             else done();
@@ -113,11 +145,14 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
           requestAnimationFrame(tick);
         });
       }
-      c.render({ slab: s, slabImage: img, enabled: en, reveal: 1 });
+      // a newer run (another slab, another scene) owns the canvases now
+      if (runId.current !== my) return;
+      c.render({ slab: s, slabImage: img, enabled: enabledRef.current, reveal: 1 });
       blit(main.current);
       if (!compact) {
-        await renderTriptych(a, en, [s, ...alternatives(s)]);
-        c.render({ slab: s, slabImage: img, enabled: en, reveal: 1 });
+        await renderTriptych(a, [s, ...alternatives(s)], my);
+        if (runId.current !== my) return;
+        c.render({ slab: s, slabImage: img, enabled: enabledRef.current, reveal: 1 });
       }
     },
     [renderTriptych, compact],
@@ -126,13 +161,25 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
   const analyse = useCallback(
     async (key: SceneKey, upload?: { url: string; w: number; h: number }) => {
       const my = ++runId.current;
+      let settle = () => {};
+      inflight.current = { key, id: my, done: new Promise<void>((r) => (settle = r)) };
+      setPending(upload ?? { url: `/scenes/${key}.jpg`, w: 1600, h: 1000 }); // both sample scenes are 1600 × 1000
       setPhase("analysing");
       setStep(0);
+      setElapsed(0);
       setAttached(false);
       setManualQuad(null);
       const t0 = performance.now();
-      const timer = window.setInterval(() => setElapsed((performance.now() - t0) / 1000), 100);
-      const stepTimer = window.setInterval(() => setStep((s) => Math.min(3, s + 1)), key === "upload" ? 2600 : 520);
+      // a superseded run ticks on until its own await returns: only the current run drives the skeleton
+      const timer = window.setInterval(() => {
+        if (runId.current === my) setElapsed((performance.now() - t0) / 1000);
+      }, 100);
+      const stepTimer = window.setInterval(
+        () => {
+          if (runId.current === my) setStep((s) => Math.min(3, s + 1));
+        },
+        key === "upload" ? 2600 : 520,
+      );
       try {
         const res = await fetch("/api/kitchen", {
           method: "POST",
@@ -190,10 +237,15 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
           setManualQuad(q);
           setSource("manual");
           const a = await loadScene(manualScene(upload!, q));
+          if (runId.current !== my) return;
           setAssets(a);
+          enabledRef.current = { manual: true };
           setEnabled({ manual: true });
+          // show most of the composite while the corners are placed, with the handle still on stage
+          // ("after" is the left side in Hebrew; a language switch mirrors it, see below)
+          setCompare(useUi.getState().lang === "he" ? 0.85 : 0.15);
           setPhase("manual");
-          await draw(a, slab, 1, { manual: true });
+          await draw(a, currentSlab(), 1, { manual: true });
           return;
         }
         const a = await loadScene(scene);
@@ -204,24 +256,35 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
         if (runId.current !== my) return;
         const en = Object.fromEntries(a.scene.surfaces.map((s) => [s.id, s.kind !== 2 || key === "bathroom"]));
         setAssets(a);
+        enabledRef.current = en;
         setEnabled(en);
         setSource(data.source);
         window.clearInterval(timer);
         setElapsed((performance.now() - t0) / 1000); // analysis time — rendering is not counted
         setPhase("ready");
         setCompare(0.5);
-        await reveal(a, slab, en, my);
+        await reveal(a, currentSlab(), my);
       } catch {
         if (runId.current === my) setPhase("error");
+        if (inflight.current?.id === my) inflight.current = null; // a failed run is not reused
       } finally {
         window.clearInterval(timer);
         window.clearInterval(stepTimer);
-        setStep(4);
+        if (runId.current === my) setStep(4);
+        settle();
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [slab, reveal, draw],
+    [reveal, draw],
   );
+
+  // the split line sits `compare` from the left and "after" changes sides with the language:
+  // mirror it on a switch so the same share of the render stays on screen
+  const shownLang = useRef(lang);
+  useEffect(() => {
+    if (shownLang.current === lang) return;
+    shownLang.current = lang;
+    setCompare((c) => 1 - c);
+  }, [lang]);
 
   // first run when the section mounts / scene changes
   useEffect(() => {
@@ -234,29 +297,38 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
     if (!assets || phase === "analysing") return;
     const my = ++runId.current;
     if (phase === "manual") draw(assets, slab, 1, enabled);
-    else reveal(assets, slab, enabled, my);
+    else reveal(assets, slab, my);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slabId]);
 
   const toggleSurface = (id: string) => {
     const en = { ...enabled, [id]: !(enabled[id] ?? true) };
+    enabledRef.current = en; // a pour in flight picks this up on its next frame
     setEnabled(en);
     if (assets) {
-      draw(assets, slab, 1, en).then(() => renderTriptych(assets, en, [slab, ...alts]).then(() => draw(assets, slab, 1, en)));
+      const my = runId.current;
+      draw(assets, slab, 1, en).then(() => renderTriptych(assets, [slab, ...alts], my).then(() => (runId.current === my ? draw(assets, slab, 1, en) : undefined)));
     }
   };
 
   const onUpload = async (f?: File | null) => {
-    if (!f || !f.type.startsWith("image/")) return;
-    const bmp = await createImageBitmap(f);
-    const s = Math.min(1, 1280 / Math.max(bmp.width, bmp.height));
-    const c = document.createElement("canvas");
-    c.width = Math.round(bmp.width * s);
-    c.height = Math.round(bmp.height * s);
-    c.getContext("2d")!.drawImage(bmp, 0, 0, c.width, c.height);
-    const url = c.toDataURL("image/jpeg", 0.88);
+    if (!f) return;
+    // the skeleton shows at once while the photo decodes; a run still in flight must not paint over it
+    const my = ++runId.current;
+    setPhase("analysing");
+    setStep(0);
+    setElapsed(0);
+    let photo: { url: string; w: number; h: number };
+    try {
+      photo = await photoToDataUrl(f, 1280);
+    } catch {
+      // a file the browser cannot decode (a .txt, an iPhone HEIC in Chrome) says so instead of doing nothing
+      if (runId.current === my) setPhase("error");
+      return;
+    }
+    if (runId.current !== my) return;
     setSceneKey("upload");
-    analyse("upload", { url, w: c.width, h: c.height });
+    analyse("upload", photo);
   };
 
   const attach = () => {
@@ -274,6 +346,9 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
   useEffect(() => {
     kitchenApi.current = {
       runSample: async (k = "kitchen") => {
+        // the studio analyses its scene on mount: join that run (in flight or done) rather than start a second one
+        const cur = inflight.current;
+        if (cur && cur.key === k && cur.id === runId.current) return cur.done;
         setSceneKey(k);
         await analyse(k);
       },
@@ -304,7 +379,9 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
 
   const sceneW = assets?.scene.width ?? 1600;
   const sceneH = assets?.scene.height ?? 1000;
-  const photoUrl = assets?.scene.image ?? (sceneKey === "bathroom" ? "/scenes/bathroom.jpg" : "/scenes/kitchen.jpg");
+  // while a run analyses (or after it failed) the stage shows that run's photo, not the last result
+  const preview = pending && (phase === "analysing" || phase === "error") ? pending : null;
+  const photoUrl = preview?.url ?? assets?.scene.image ?? (sceneKey === "bathroom" ? "/scenes/bathroom.jpg" : "/scenes/kitchen.jpg");
 
   return (
     <section id={compact ? undefined : "kitchen"} className={`${compact ? "" : "paper stone-edge-top"} relative`} aria-labelledby="kitchen-title">
@@ -349,8 +426,19 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
               {k === "kitchen" ? t.kitchen.sceneKitchen : t.kitchen.sceneBath}
             </button>
           ))}
-          <label className={`btn !min-h-[38px] cursor-pointer text-[0.85rem] ${sceneKey === "upload" ? "btn-solid" : ""}`}>
-            <input type="file" accept="image/*" className="sr-only" onChange={(e) => onUpload(e.target.files?.[0])} />
+          {/* the file input is visually hidden, so its keyboard focus ring is drawn on the label */}
+          <label
+            className={`btn !min-h-[38px] cursor-pointer text-[0.85rem] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[3px] has-[:focus-visible]:outline-verde ${sceneKey === "upload" ? "btn-solid" : ""}`}
+          >
+            <input
+              type="file"
+              accept="image/*"
+              className="sr-only"
+              onChange={(e) => {
+                onUpload(e.target.files?.[0]);
+                e.target.value = ""; // the same photo can be chosen again
+              }}
+            />
             {t.kitchen.upload}
           </label>
           <span className="ms-auto font-mono text-[0.72rem] muted">
@@ -366,7 +454,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
         <div
           ref={stage}
           className="relative mt-5 w-full overflow-hidden bg-basalt select-none"
-          style={{ aspectRatio: `${sceneW} / ${sceneH}` }}
+          style={{ aspectRatio: `${preview?.w ?? sceneW} / ${preview?.h ?? sceneH}` }}
           onPointerMove={onCornerMove}
           onPointerUp={() => (dragCorner.current = null)}
           data-ap="kitchen-stage"
@@ -374,7 +462,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
           {/* before */}
           <img
             src={photoUrl}
-            alt={sceneKey === "bathroom" ? t.kitchen.sceneBath : t.kitchen.sceneKitchen}
+            alt={sceneKey === "upload" ? (lang === "he" ? "התמונה שהעליתם" : "Your photo") : sceneKey === "bathroom" ? t.kitchen.sceneBath : t.kitchen.sceneKitchen}
             className="absolute inset-0 h-full w-full object-cover transition-[filter] duration-700"
             style={{ filter: phase === "analysing" ? "grayscale(0.7) brightness(0.62)" : "none" }}
             draggable={false}
@@ -400,9 +488,9 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
             <CompareHandle value={compare} onChange={setCompare} label={t.kitchen.sliderLabel} before={t.kitchen.before} after={t.kitchen.after} rtl={lang === "he"} />
           )}
 
-          {/* manual corners */}
+          {/* manual corners: only the circles take presses, the rest falls through to the before/after slider */}
           {phase === "manual" && manualQuad && (
-            <svg className="absolute inset-0 h-full w-full" viewBox={`0 0 ${sceneW} ${sceneH}`} preserveAspectRatio="none">
+            <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox={`0 0 ${sceneW} ${sceneH}`} preserveAspectRatio="none">
               <polygon points={manualQuad.map((p) => p.join(",")).join(" ")} fill="none" stroke="#d9a441" strokeWidth={2} strokeDasharray="8 6" vectorEffect="non-scaling-stroke" />
               {manualQuad.map(([x, y], i) => (
                 <circle
@@ -414,7 +502,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
                   stroke="#d9a441"
                   strokeWidth={2}
                   vectorEffect="non-scaling-stroke"
-                  className="cursor-grab"
+                  className="pointer-events-auto cursor-grab"
                   onPointerDown={(e) => {
                     (e.target as Element).setPointerCapture?.(e.pointerId);
                     dragCorner.current = i;
@@ -430,7 +518,7 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
 
           {/* slab tag */}
           {(phase === "ready" || phase === "manual") && (
-            <div className="pointer-events-none absolute bottom-3 start-3 bg-basalt/85 px-3 py-2 text-carrara">
+            <div className="pointer-events-none absolute bottom-3 start-3 bg-basalt px-3 py-2 text-carrara">
               <p className="font-display text-[1.15rem] leading-none">{slab.name[lang]}</p>
               <p className="font-mono mt-1 text-[0.65rem] text-vein ltr-nums">
                 {slab.id} · {t.slab.finishes[slab.finish]}
@@ -548,23 +636,20 @@ function CompareHandle({ value, onChange, label, before, after, rtl }: { value: 
     const el = ref.current?.parentElement;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    let v = (clientX - r.left) / r.width;
-    if (!rtl) v = (clientX - r.left) / r.width;
-    onChange(Math.min(1, Math.max(0, v)));
+    onChange(Math.min(1, Math.max(0, (clientX - r.left) / r.width)));
   };
+  // the track and the knob on top of it both drag (pan-y: a horizontal touch drag is ours, a vertical one scrolls)
+  const down = (e: React.PointerEvent) => {
+    dragging.current = true;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    set(e.clientX);
+  };
+  const move = (e: React.PointerEvent) => dragging.current && set(e.clientX);
+  const up = () => (dragging.current = false);
   const x = value * 100;
   return (
     <>
-      <div
-        className="absolute inset-0 cursor-ew-resize"
-        onPointerDown={(e) => {
-          dragging.current = true;
-          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-          set(e.clientX);
-        }}
-        onPointerMove={(e) => dragging.current && set(e.clientX)}
-        onPointerUp={() => (dragging.current = false)}
-      />
+      <div className="absolute inset-0 cursor-ew-resize touch-pan-y" onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} />
       <div ref={ref} className="pointer-events-none absolute inset-y-0 w-px bg-carrara" style={{ left: `${x}%` }}>
         <div
           role="slider"
@@ -577,7 +662,11 @@ function CompareHandle({ value, onChange, label, before, after, rtl }: { value: 
             if (e.key === "ArrowLeft") onChange(Math.max(0, value - 0.05));
             if (e.key === "ArrowRight") onChange(Math.min(1, value + 0.05));
           }}
-          className="pointer-events-auto absolute top-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize place-items-center rounded-full border border-carrara bg-basalt text-carrara"
+          onPointerDown={down}
+          onPointerMove={move}
+          onPointerUp={up}
+          onPointerCancel={up}
+          className="pointer-events-auto absolute left-0 top-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-pan-y place-items-center rounded-full border border-carrara bg-basalt text-carrara"
           data-ap="compare"
         >
           <svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true">

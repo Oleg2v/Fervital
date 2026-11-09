@@ -42,7 +42,7 @@ interface RackState {
   showSlab: (id: string) => void;
 }
 
-export const useRack = create<RackState>()((set) => ({
+export const useRack = create<RackState>()((set, get) => ({
   index: 0,
   override: null,
   pullTarget: 0,
@@ -59,8 +59,12 @@ export const useRack = create<RackState>()((set) => ({
   setScrollDriven: (scrollDriven) => set({ scrollDriven }),
   showSlab: (id) => {
     const inA = RACK_A.findIndex((s) => s.id === id);
-    if (inA >= 0) set({ index: inA, override: null });
-    else set({ override: id });
+    // Scroll-driven hero: the caller (pullFromRack) scrolls to the pulled-out position. Pull here too, so a key or
+    // click that pushed the last slab back in at that depth can't keep this one in the rack (RackHero's scroll
+    // takeover keeps a target set by hand). presentSlab calls this while busy and pulls once the camera is there.
+    const pull = get().scrollDriven && !get().busy ? { pullTarget: 1 } : {};
+    if (inA >= 0) set({ index: inA, override: null, ...pull });
+    else set({ override: id, ...pull });
   },
 }));
 
@@ -71,6 +75,8 @@ export function frontSlab(state = useRack.getState()): Slab {
 
 const until = (cond: () => boolean, timeout = 4000) =>
   new Promise<void>((resolve) => {
+    // only the WebGL frame loop advances `anim`: in the video / static tiers nothing would ever satisfy cond
+    if (!anim.ready) return resolve();
     const t0 = performance.now();
     const tick = () => {
       if (cond() || performance.now() - t0 > timeout) resolve();

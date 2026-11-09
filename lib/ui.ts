@@ -77,7 +77,9 @@ export const useUi = create<UiState>()(
 
 export function useT() {
   const lang = useUi((s) => s.lang);
-  return { lang, t: dict[lang], fmt, dir: lang === "he" ? ("rtl" as const) : ("ltr" as const) };
+  // forward / back glyphs follow the reading direction ("next" points left in Hebrew)
+  const arrow = lang === "he" ? { fwd: "←", back: "→" } : { fwd: "→", back: "←" };
+  return { lang, t: dict[lang], fmt, arrow, dir: lang === "he" ? ("rtl" as const) : ("ltr" as const) };
 }
 
 export const personaName = (id: string, lang: Lang) => CUSTOMERS.find((c) => c.id === id)?.name[lang] ?? "";

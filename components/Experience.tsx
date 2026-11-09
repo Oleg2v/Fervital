@@ -88,7 +88,10 @@ function KitchenModal() {
           role="dialog"
           aria-modal="true"
           aria-label={t.kitchen.title}
-          className="paper absolute inset-0 z-[60] overflow-auto pane-scroll"
+          // its own scroller, so the autopilot scrolls the modal and not the pane it is pinned to;
+          // the bottom padding lets the attach button clear the autopilot bar
+          data-scroller=""
+          className="paper absolute inset-0 z-[60] overflow-auto pane-scroll pb-24"
           initial={{ clipPath: "inset(0 0 0 100%)" }}
           animate={{ clipPath: "inset(0 0 0 0%)" }}
           exit={{ clipPath: "inset(0 100% 0 0)" }}
@@ -149,7 +152,15 @@ export default function Experience() {
     if (qLang === "en" || qLang === "he") useUi.getState().setLang(qLang);
     let auto: number | undefined;
     if (sp.get("autopilot") === "1") {
-      auto = window.setTimeout(() => import("@/components/autopilot/engine").then((m) => m.startAutopilot()), 1800);
+      auto = window.setTimeout(
+        () =>
+          import("@/components/autopilot/engine").then((m) => {
+            // every recorded take starts from the same seed, whatever this browser profile rehearsed before
+            useDemo.getState().resetDemo();
+            m.startAutopilot();
+          }),
+        1800,
+      );
     }
     const tick = window.setInterval(() => useDemo.getState().expireDue(), 1000);
     // the CSS preloader hides itself (visibility) after ~1 s; React owns the node, so it stays

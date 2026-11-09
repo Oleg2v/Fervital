@@ -12,21 +12,24 @@ const EDGE =
 export default function StoneWipe() {
   const n = useUi((s) => s.wipe.n);
   const label = useUi((s) => s.wipe.label);
-  const dir = useUi((s) => (s.lang === "he" ? -1 : 1));
   const reduced = useReducedMotion();
+  const reducedRef = useRef(reduced);
+  reducedRef.current = reduced;
   const panel = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
     if (n === 0 || !panel.current) return;
     const el = panel.current;
-    if (reduced) {
+    if (reducedRef.current) {
       setShown(true);
       gsap.fromTo(el, { opacity: 1, xPercent: 0 }, { opacity: 0, duration: 0.35, delay: 0.4, onComplete: () => setShown(false) });
       return;
     }
     setShown(true);
-    // RTL: the slab enters from the inline-start (right) edge.
+    // RTL: the slab enters from the inline-start (right) edge. The direction is fixed when the wipe starts:
+    // the language toggle calls setLang at full cover, and that must not restart the wipe from the far side.
+    const dir = useUi.getState().lang === "he" ? -1 : 1;
     const from = dir === -1 ? 112 : -112;
     const tl = gsap.timeline({ onComplete: () => setShown(false) });
     tl.set(el, { xPercent: from, opacity: 1 })
@@ -35,7 +38,7 @@ export default function StoneWipe() {
     return () => {
       tl.kill();
     };
-  }, [n, dir, reduced]);
+  }, [n]);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[150] overflow-hidden" aria-hidden="true" style={{ visibility: shown ? "visible" : "hidden" }}>

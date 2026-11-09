@@ -25,7 +25,7 @@ export default function StaticWall({ compact = false }: { compact?: boolean }) {
         <div className={compact ? "" : "lg:col-span-7"}>
           <figure className="relative m-0 aspect-[16/9] overflow-hidden bg-[#1a1a1a]">
             <img src={cropUrl(slab.id, 960)} alt={`${slab.name[lang]} — ${slab.desc[lang]}`} className="h-full w-full object-cover" />
-            <figcaption className="font-mono absolute bottom-0 start-0 bg-basalt/85 px-2 py-1 text-[0.7rem] text-vein ltr-nums">
+            <figcaption className="font-mono absolute bottom-0 start-0 bg-basalt px-2 py-1 text-[0.7rem] text-vein ltr-nums">
               {slab.rack.label} · {slab.id}
             </figcaption>
           </figure>

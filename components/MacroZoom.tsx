@@ -38,9 +38,10 @@ function MacroZoom({ slab }: { slab: Slab }) {
   const close = () => useUi.getState().openZoom(null);
 
   useEffect(() => {
-    closeBtn.current?.focus();
+    // remember the opener before focus moves into the dialog; it gets the focus back on close
     const prev = document.activeElement as HTMLElement | null;
-    return () => prev?.focus?.();
+    closeBtn.current?.focus();
+    return () => prev?.focus?.({ preventScroll: true });
   }, []);
 
   useEffect(() => {
@@ -162,6 +163,22 @@ function MacroZoom({ slab }: { slab: Slab }) {
   };
 
   const onKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Tab") {
+      // aria-modal: Tab / Shift+Tab cycle through the dialog's own buttons
+      const root = e.currentTarget as HTMLElement;
+      const btns = Array.from(root.querySelectorAll<HTMLElement>("button"));
+      const first = btns[0];
+      const last = btns[btns.length - 1];
+      const a = document.activeElement;
+      if (e.shiftKey && (a === first || a === root)) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && (a === last || a === root)) {
+        e.preventDefault();
+        first?.focus();
+      }
+      return;
+    }
     const v = view.current;
     const step = 0.08 / v.z;
     if (e.key === "Escape") close();
@@ -190,6 +207,7 @@ function MacroZoom({ slab }: { slab: Slab }) {
       exit={{ clipPath: "inset(50% 0% 50% 0%)", transition: { duration: 0.45, ease: [0.76, 0, 0.18, 1] } }}
       transition={{ duration: 0.7, ease: [0.76, 0, 0.18, 1] }}
       onKeyDown={onKey}
+      tabIndex={-1}
     >
       <canvas
         ref={canvas}

@@ -39,6 +39,7 @@ export interface Seam {
   pieceId: string;
   kind: PieceKind;
   atMm: number;
+  along?: boolean; // lengthwise seam: the piece is deeper than the slab and split across its depth
 }
 export interface YieldResult {
   pieces: Piece[];
@@ -130,17 +131,22 @@ export function computeYield(i: YieldInput): YieldResult {
   const seams: Seam[] = [];
   for (const p of pieces) {
     const L = p.L;
-    let D = p.D;
-    // a piece deeper than the slab can only go in rotated
-    const canRotate = !i.veinMatch;
-    if (D > usable.H && !(canRotate && D <= usable.L)) D = Math.min(D, usable.H);
-    const maxLen = D <= usable.H ? usable.L : usable.H;
-    const n = Math.max(1, Math.ceil((L + 1) / (maxLen + 1)));
-    const segLen = Math.ceil(L / n / 5) * 5;
-    for (let k = 0; k < n; k++) {
-      const w = k === n - 1 ? L - segLen * (n - 1) : segLen;
-      segments.push({ pieceId: p.id, kind: p.kind, seg: k + 1, segs: n, w, h: D });
-      if (k > 0) seams.push({ pieceId: p.id, kind: p.kind, atMm: segLen * k });
+    // a piece deeper than the slab goes in rotated when that is allowed; otherwise it is split
+    // across its depth into full-height rows plus a remainder strip (a lengthwise seam)
+    const rotates = p.D > usable.H && !i.veinMatch && p.D <= usable.L;
+    const maxLen = rotates ? usable.H : usable.L;
+    const maxDepth = rotates ? p.D : usable.H;
+    const rows = Math.max(1, Math.ceil(p.D / maxDepth));
+    const n = Math.max(1, Math.ceil(L / maxLen));
+    const segLen = Math.min(maxLen, Math.ceil(L / n / 5) * 5);
+    for (let r = 0; r < rows; r++) {
+      const h = r < rows - 1 ? maxDepth : p.D - maxDepth * (rows - 1);
+      for (let k = 0; k < n; k++) {
+        const w = k === n - 1 ? L - segLen * (n - 1) : segLen;
+        segments.push({ pieceId: p.id, kind: p.kind, seg: r * n + k + 1, segs: rows * n, w, h });
+        if (r === 0 && k > 0) seams.push({ pieceId: p.id, kind: p.kind, atMm: segLen * k });
+      }
+      if (r > 0) seams.push({ pieceId: p.id, kind: p.kind, atMm: maxDepth * r, along: true });
     }
     if (p.kind === "ret") seams.push({ pieceId: p.id, kind: p.kind, atMm: 0 }); // corner butt joint
   }
@@ -162,8 +168,11 @@ export function computeYield(i: YieldInput): YieldResult {
       const mr = new MaxRects(usable.L + KERF, usable.H + KERF);
       const f = mr.find(s.w + KERF, s.h + KERF, !i.veinMatch);
       if (!f) {
-        // should not happen after splitting; clamp
-        bins.push({ mr, placed: [{ ...s, x: 0, y: 0, rotated: false, w: Math.min(s.w, usable.L), h: Math.min(s.h, usable.H) }] });
+        // should not happen after splitting; clamp, and take the space so nothing is nested on top of it
+        const w = Math.min(s.w, usable.L);
+        const h = Math.min(s.h, usable.H);
+        mr.place({ x: 0, y: 0, w: w + KERF, h: h + KERF });
+        bins.push({ mr, placed: [{ ...s, x: 0, y: 0, rotated: false, w, h }] });
         continue;
       }
       mr.place(f.r);
@@ -176,14 +185,16 @@ export function computeYield(i: YieldInput): YieldResult {
   const wasteM2 = Math.max(0, slabAreaM2 - usedM2);
   const yieldPct = slabAreaM2 ? (usedM2 / slabAreaM2) * 100 : 0;
 
-  // demo pricing (ILS)
+  // demo pricing (ILS): island edges and waterfalls only for the pieces buildPieces actually cut
+  const hasIsland = pieces.some((p) => p.kind === "island");
+  const falls = pieces.filter((p) => p.kind === "fall").length;
   const stone = slabAreaM2 * i.priceM2;
   const edgeM =
-    (i.worktopL + Math.max(0, i.returnL - i.worktopD) + (i.islandL > 0 ? 2 * (i.islandL + i.islandW) : 0)) / 1000;
+    (i.worktopL + Math.max(0, i.returnL - i.worktopD) + (hasIsland ? 2 * (i.islandL + i.islandW) : 0)) / 1000;
   const fab = edgeM * 240 + segments.length * 180 + seams.length * 260;
   const cutouts = (i.worktopL > 0 ? 2 : 0) * 550;
-  const waterfalls = i.waterfalls * 1450;
-  const install = 1900 + usedM2 * 190;
+  const waterfalls = falls * 1450;
+  const install = pieces.length ? 1900 + usedM2 * 190 : 0;
   const net = stone + fab + cutouts + waterfalls + install;
   const vat = net * 0.18;
   return {

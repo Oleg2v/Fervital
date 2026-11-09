@@ -14,6 +14,7 @@ export default function YourSlab({ contained = false }: { contained?: boolean })
   const events = useDemo((s) => s.events);
   const job = useDemo((s) => (id ? s.jobs.find((j) => j.slabId === id) : undefined));
   const seen = useRef<string | null | undefined>(undefined);
+  const rootRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   // open automatically when the yard converts this client's hold
@@ -37,8 +38,12 @@ export default function YourSlab({ contained = false }: { contained?: boolean })
   }, [events, persona]);
 
   useEffect(() => {
-    if (id) closeRef.current?.focus();
-  }, [id]);
+    if (!id) return;
+    // contained, the reveal sits at the pane's scroll origin: bring that into view, or a scrolled pane
+    // shows it pushed up under the header with the dock below it
+    if (contained) rootRef.current?.closest<HTMLElement>("[data-scroller]")?.scrollTo({ top: 0 });
+    closeRef.current?.focus();
+  }, [id, contained]);
 
   const s = id ? SLAB_BY_ID[id] : null;
   const stage = job ? STAGES.indexOf(job.stage) : 0;
@@ -46,6 +51,7 @@ export default function YourSlab({ contained = false }: { contained?: boolean })
     <AnimatePresence>
       {s && (
         <motion.div
+          ref={rootRef}
           role="dialog"
           aria-modal="true"
           aria-label={`${t.slab.yours} — ${s.name[lang]}`}

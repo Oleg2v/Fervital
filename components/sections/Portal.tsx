@@ -1,10 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { CUSTOMERS, cropUrl, PROJECTS, PROJECT_BY_ID, SLAB_BY_ID, STAGES } from "@/lib/data";
 import { useSimNow, useYardFlash } from "@/lib/hooks";
-import { money } from "@/lib/i18n";
+import { days, money } from "@/lib/i18n";
 import { frontSlab, useRack } from "@/lib/rack";
 import { formatCountdown, useDemo } from "@/lib/store";
 import { useT, useUi } from "@/lib/ui";
@@ -102,8 +102,8 @@ export function OrderTrack({ j, compact = false }: { j: Job; compact?: boolean }
         <img src={cropUrl(s.id, 400)} alt="" className="h-10 w-14 object-cover" />
         <div className="min-w-0">
           <p className="font-display truncate text-[1.15rem] leading-tight">{s.name[lang]}</p>
-          <p className="font-mono text-[0.65rem] muted ltr-nums">
-            {s.id} · {t.portal.yoursLine.replace("{rack}", s.rack.label)}
+          <p className="font-mono text-[0.65rem] muted">
+            <span className="ltr-nums">{s.id}</span> · {t.portal.yoursLine.replace("{rack}", s.rack.label)}
           </p>
         </div>
       </div>
@@ -119,9 +119,14 @@ export function OrderTrack({ j, compact = false }: { j: Job; compact?: boolean }
         <p className="font-mono mt-3 text-[0.7rem] muted">
           {t.portal.slot}:{" "}
           {j.deliverySlot ? (
-            <span className="ltr-nums">
-              {j.deliverySlot.day < 0 ? `${lang === "he" ? "סופק לפני" : "delivered"} ${-j.deliverySlot.day}d` : `+${j.deliverySlot.day}d`} · {j.deliverySlot.window}
-            </span>
+            <>
+              {j.deliverySlot.day < 0
+                ? lang === "he"
+                  ? `סופק ${days(lang, j.deliverySlot.day)}`
+                  : `delivered ${-j.deliverySlot.day}d`
+                : days(lang, j.deliverySlot.day)}{" "}
+              · <span className="ltr-nums">{j.deliverySlot.window}</span>
+            </>
           ) : (
             t.portal.noSlot
           )}
@@ -147,6 +152,7 @@ export default function Portal() {
   const myQuote = quotes.find((q) => q.projectId === projectId);
   const quoteFlash = useYardFlash((e) => e.type === "quote.sent" && e.customerId === persona);
   const [pdfBusy, setPdfBusy] = useState(false);
+  const uid = useId();
   useRack((s) => s.index);
 
   const requestQuote = async () => {
@@ -261,18 +267,27 @@ export default function Portal() {
                         const st = liveSlabs[id]?.status ?? "available";
                         return (
                           <li key={id} className="flex items-center gap-2">
-                            <button type="button" onClick={() => pullFromRack(id)} className="flex min-w-0 flex-1 items-center gap-2 text-start">
+                            <button
+                              type="button"
+                              onClick={() => pullFromRack(id)}
+                              className="flex min-w-0 flex-1 items-center gap-2 text-start"
+                              aria-describedby={`${uid}-${room.id}-${id}`}
+                            >
                               <img src={cropUrl(id, 400)} alt="" className="h-8 w-12 shrink-0 object-cover" />
                               <span className="min-w-0">
                                 <span className="block truncate text-[0.85rem]">{s?.name[lang]}</span>
                                 <span className="font-mono block text-[0.6rem] muted ltr-nums">{id}</span>
                               </span>
                             </button>
-                            <span
-                              className="h-2 w-2 shrink-0 rounded-full"
-                              style={{ background: st === "sold" ? "#7a2e2e" : st === "held" ? "#d9a441" : "#2e4a3d" }}
-                              aria-label={t.yard.legend[st]}
-                            />
+                            {/* status as text, not only the dot colour */}
+                            <span id={`${uid}-${room.id}-${id}`} className="flex shrink-0 items-center gap-1.5 text-[0.7rem] muted">
+                              <span
+                                aria-hidden="true"
+                                className="h-2 w-2 rounded-full"
+                                style={{ background: st === "sold" ? "#7a2e2e" : st === "held" ? "#d9a441" : "#2e4a3d" }}
+                              />
+                              {t.yard.legend[st]}
+                            </span>
                           </li>
                         );
                       })}
@@ -309,8 +324,8 @@ export default function Portal() {
                   {(pstate?.layouts ?? []).map((l) => (
                     <li key={l.id} className="hair p-2 text-[0.8rem]">
                       {l.summary[lang]}
-                      <span className="font-mono block text-[0.65rem] muted ltr-nums">
-                        {l.seams} {t.yield.seams} · {money(lang, l.total)}
+                      <span className="font-mono block text-[0.65rem] muted">
+                        {l.seams} {t.yield.seams} · <span className="ltr-nums">{money(lang, l.total)}</span>
                       </span>
                     </li>
                   ))}

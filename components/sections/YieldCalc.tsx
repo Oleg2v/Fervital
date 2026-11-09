@@ -13,9 +13,10 @@ import Reveal from "@/components/chrome/Reveal";
 
 export const yieldSnapshot: { current: { slabId: string; result: YieldResult; input: YieldInput } | null } = { current: null };
 
-function NumField({ label, value, onChange, step = 10, min = 0, max = 9000, unit = "mm" }: {
+function NumField({ label, value, onChange, step = 10, min = 0, max = 9000, unit }: {
   label: string; value: number; onChange: (v: number) => void; step?: number; min?: number; max?: number; unit?: string;
 }) {
+  const { t } = useT();
   const id = useId();
   return (
     <div>
@@ -35,14 +36,14 @@ function NumField({ label, value, onChange, step = 10, min = 0, max = 9000, unit
           className="font-mono w-full bg-transparent py-2 text-[1.05rem] text-carrara focus:outline-none ltr-nums"
           dir="ltr"
         />
-        <span className="font-mono text-[0.7rem] text-vein">{unit}</span>
+        <span className="font-mono text-[0.7rem] text-vein">{unit ?? t.yield.mm}</span>
       </div>
     </div>
   );
 }
 
 export default function YieldCalc() {
-  const { t, lang } = useT();
+  const { t, lang, arrow } = useT();
   const rackIndex = useRack((s) => s.index);
   const [slabId, setSlabId] = useState<string>(RACK_A[0].id);
   const slab = SLAB_BY_ID[slabId];
@@ -57,6 +58,9 @@ export default function YieldCalc() {
     veinMatch: true,
   });
   const set = <K extends keyof typeof inp>(k: K, v: (typeof inp)[K]) => setInp((s) => ({ ...s, [k]: v }));
+  // no island (length or width 0) means no waterfalls: show 0 and lock the choice until the island is back
+  const hasIsland = inp.islandL > 0 && inp.islandW > 0;
+  const falls = hasIsland ? inp.waterfalls : 0;
   const input: YieldInput = useMemo(
     () => ({ ...inp, slabL: slab.lengthMm, slabH: slab.heightMm, thickness: slab.thicknessMm, priceM2: slab.priceM2 }),
     [inp, slab],
@@ -132,16 +136,22 @@ export default function YieldCalc() {
               </div>
               <div className="mt-5">
                 <span className="eyebrow text-vein !text-[0.62rem]">{t.yield.waterfall}</span>
-                <div className="mt-2 flex border border-[var(--hair-strong)]" role="radiogroup" aria-label={t.yield.waterfall}>
+                <div
+                  className="mt-2 flex border border-[var(--hair-strong)]"
+                  role="radiogroup"
+                  aria-label={t.yield.waterfall}
+                  style={hasIsland ? undefined : { opacity: 0.45 }}
+                >
                   {([0, 1, 2] as const).map((n) => (
                     <button
                       key={n}
                       type="button"
                       role="radio"
-                      aria-checked={inp.waterfalls === n}
+                      aria-checked={falls === n}
+                      disabled={!hasIsland}
                       onClick={() => set("waterfalls", n)}
                       className="font-mono h-10 flex-1 text-[0.85rem]"
-                      style={inp.waterfalls === n ? { background: "#f3f1ec", color: "#0e0e0e" } : undefined}
+                      style={falls === n ? { background: "#f3f1ec", color: "#0e0e0e" } : undefined}
                     >
                       {n}
                     </button>
@@ -187,7 +197,7 @@ export default function YieldCalc() {
               ].map(([l, v]) => (
                 <div key={l} className="border-b border-[var(--hair)] py-5 pe-4 md:border-e md:last:border-e-0 md:ps-5 md:first:ps-0">
                   <dt className="eyebrow text-vein !text-[0.62rem]">{l}</dt>
-                  <dd className="font-mono mt-2 whitespace-nowrap text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none ltr-nums">{v}</dd>
+                  <dd className="font-mono mt-2 whitespace-nowrap text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -201,10 +211,16 @@ export default function YieldCalc() {
                   {r.seams.map((s, i) => (
                     <li key={i} className="flex items-center gap-2">
                       <span className="inline-block h-px w-5 border-t border-dashed border-amber" />
-                      {t.yield.pieces[s.kind]} — {s.atMm === 0 ? (lang === "he" ? "חיבור פינה" : "corner joint") : `${t.yield.seamAt.replace("{mm}", nf(lang, s.atMm))}`}
+                      {t.yield.pieces[s.kind]} —{" "}
+                      {s.along
+                        ? t.yield.seamAlong.replace("{mm}", nf(lang, s.atMm))
+                        : s.atMm === 0
+                          ? (lang === "he" ? "חיבור פינה" : "corner joint")
+                          : `${t.yield.seamAt.replace("{mm}", nf(lang, s.atMm))}`}
                     </li>
                   ))}
                 </ul>
+                {r.seams.some((s) => s.along) && <p className="mt-3 text-[0.8rem] text-amber">{t.yield.tooDeep}</p>}
               </div>
               <div className="xl:col-span-3">
                 <p className="eyebrow mb-3 text-vein">{lang === "he" ? "חיתוך על הלוחות" : "Nesting on the slabs"}</p>
@@ -233,16 +249,20 @@ export default function YieldCalc() {
                     <tr key={k} className="border-b border-[var(--hair)]">
                       <th scope="row" className="py-2.5 text-start font-[400] text-[#d5d2cc]" style={{ fontFamily: "var(--font-ui)" }}>
                         {t.yield.lines[k]}
-                        {note && <span className="block text-[0.7rem] text-vein ltr-nums">{note}</span>}
+                        {note && <span className="block text-[0.7rem] text-vein">{note}</span>}
                       </th>
-                      <td className="py-2.5 text-end ltr-nums">{money(lang, v)}</td>
+                      <td className="py-2.5 text-end">
+                        <span className="ltr-nums">{money(lang, v)}</span>
+                      </td>
                     </tr>
                   ))}
                   <tr>
                     <th scope="row" className="pt-4 text-start text-[1rem]" style={{ fontFamily: "var(--font-ui)" }}>
                       {t.yield.lines.total}
                     </th>
-                    <td className="pt-4 text-end text-[1.5rem] text-amber ltr-nums">{money(lang, r.price.total)}</td>
+                    <td className="pt-4 text-end text-[1.5rem] text-amber">
+                      <span className="ltr-nums">{money(lang, r.price.total)}</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -252,7 +272,7 @@ export default function YieldCalc() {
                   {attached ? t.yield.attached : t.yield.attach}
                 </button>
                 <a href="#portal" className="btn justify-center" onClick={(e) => { e.preventDefault(); document.getElementById("portal")?.scrollIntoView({ behavior: "smooth" }); }}>
-                  {t.portal.quote} →
+                  {t.portal.quote} {arrow.fwd}
                 </a>
               </div>
             </div>
@@ -325,7 +345,8 @@ function PlanView({ input, result, slab }: { input: YieldInput; result: YieldRes
   const avail = Lr > D ? Lw - D - 250 : Lw;
   const islandX = 100 + Math.max(0, (avail - input.islandL) / 2);
   const islandY = 100 + D + gap;
-  const seam = (kind: string) => result.seams.filter((s) => s.kind === kind && s.atMm > 0);
+  const seam = (kind: string) => result.seams.filter((s) => s.kind === kind && s.atMm > 0 && !s.along);
+  const islandAlong = result.seams.filter((s) => s.kind === "island" && s.along);
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-label={t.yield.title}>
       <defs>
@@ -345,6 +366,9 @@ function PlanView({ input, result, slab }: { input: YieldInput; result: YieldRes
       {Lr > D && <line x1={100 + Lw - D - 20} y1={100 + D} x2={100 + Lw + 20} y2={100 + D} stroke="#d9a441" strokeWidth="14" strokeDasharray="40 30" />}
       {seam("island").map((s, i) => (
         <line key={`i${i}`} x1={islandX + s.atMm} y1={islandY - 20} x2={islandX + s.atMm} y2={islandY + input.islandW + 20} stroke="#d9a441" strokeWidth="14" strokeDasharray="40 30" />
+      ))}
+      {islandAlong.map((s, i) => (
+        <line key={`ia${i}`} x1={islandX - 20} y1={islandY + s.atMm} x2={islandX + input.islandL + 20} y2={islandY + s.atMm} stroke="#d9a441" strokeWidth="14" strokeDasharray="40 30" />
       ))}
       {/* dims */}
       <text x={100 + Lw / 2} y="70" fill="#8e8b85" fontSize="90" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" direction="ltr">

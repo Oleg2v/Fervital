@@ -30,6 +30,10 @@ export function scrollToId(id: string, opts: { offset?: number; immediate?: bool
 }
 
 export function resetDemoWithWipe(label: string) {
+  // a run left going against the reseeded data would stall on targets that are gone, then claim a sale
+  void import("@/components/autopilot/engine").then((m) => {
+    if (useUi.getState().autopilot.running) m.stopAutopilot();
+  });
   useUi.getState().triggerWipe(label);
   window.setTimeout(async () => {
     const { useDemo } = await import("@/lib/store");

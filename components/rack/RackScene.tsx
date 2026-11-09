@@ -66,6 +66,13 @@ function Controller() {
   const parallax = useRef(new THREE.Vector2());
   const last = useRef({ pulledOut: false });
   const tmp = useMemo(() => ({ a: new THREE.Vector3(), b: new THREE.Vector3(), p: new THREE.Vector3(), l: new THREE.Vector3() }), []);
+  // anim.ready = "a frame loop is integrating anim": lib/rack.ts only waits on anim while it is true
+  useEffect(
+    () => () => {
+      anim.ready = false;
+    },
+    [],
+  );
 
   useFrame((state, rawDt) => {
     const cap = (window as unknown as { __captureDt?: number }).__captureDt;
@@ -350,6 +357,16 @@ function ActivePartition({ quality, steel, edge }: { quality: Quality; steel: TH
     m.side = THREE.DoubleSide;
     return m;
   }, [material, slab]);
+
+  // Each new material brings new crop clones. Dispose the superseded ones once the new material is committed,
+  // so three can free their GPU copies (a 4K map + 2K normal per hero). The shared base images stay cached
+  // in textures.ts, and the materials themselves are left to GC so their shader programs stay shared.
+  const clones = useRef<THREE.Texture[]>([]);
+  useEffect(() => {
+    const inUse = [material.map, material.normalMap, twinMaterial.map, twinMaterial.normalMap].filter((t): t is THREE.Texture => !!t);
+    for (const t of clones.current) if (!inUse.includes(t)) t.dispose();
+    clones.current = inUse;
+  }, [material, twinMaterial]);
 
   useFrame((state) => {
     if (!group.current || !swing.current) return;

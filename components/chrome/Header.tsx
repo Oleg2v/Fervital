@@ -5,11 +5,13 @@ import { useDemo } from "@/lib/store";
 import { useT, useUi, type View } from "@/lib/ui";
 import { scrollToId } from "@/components/nav";
 import { WORDMARK_HE, WORDMARK_HE_WIDTH } from "./wordmark-paths";
-import { startAutopilot } from "@/components/autopilot/engine";
+import { startAutopilot, stopAutopilot } from "@/components/autopilot/engine";
 
 export function switchView(v: View, label = "") {
   const ui = useUi.getState();
   if (ui.view === v) return;
+  // the presenter is taking over: stop a running demo now, not 420 ms later when the view changes
+  if (ui.autopilot.running && v !== "live") stopAutopilot();
   ui.triggerWipe(label);
   window.setTimeout(() => {
     useUi.getState().setView(v);
@@ -41,6 +43,8 @@ export default function Header() {
     }
     if (resetTimer.current) window.clearTimeout(resetTimer.current);
     setConfirmReset(false);
+    // a run left going against the reseeded data would stall on targets that are gone, then claim a sale
+    if (useUi.getState().autopilot.running) stopAutopilot();
     useUi.getState().triggerWipe(t.nav.reset);
     window.setTimeout(() => {
       useDemo.getState().resetDemo();
@@ -64,7 +68,9 @@ export default function Header() {
 
   const go = (id: string) => {
     setMenu(false);
-    if (useUi.getState().view === "yard") {
+    // live mounts only the rack and the client dock, so #search/#kitchen/#yield/#portal exist only in the
+    // client view. Keep the yard check: #rack stays mounted (in the hidden client pane) in yard view.
+    if (useUi.getState().view === "yard" || !document.getElementById(id)) {
       switchView("customer");
       window.setTimeout(() => scrollToId(id, { immediate: true }), 600);
     } else scrollToId(id, { offset: id === "rack" ? 0 : -80 });
@@ -151,6 +157,7 @@ export default function Header() {
             type="button"
             onClick={() => startAutopilot()}
             disabled={running}
+            aria-label={t.nav.autopilot}
             className="btn btn-amber !min-h-[36px] !px-3 text-[0.8rem]"
             data-ap="autopilot"
           >

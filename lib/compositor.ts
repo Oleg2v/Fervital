@@ -66,7 +66,7 @@ vec3 slabAt(vec2 mm, float kind, out float seam) {
   vec2 m = mod(cell, 2.0);
   f = mix(f, 1.0 - f, m);                                         // bookmatched panels
   if (uRot > 0.5) f = 1.0 - f;
-  vec2 tc = vec2(uCrop.x + f.x * uCrop.z, uCrop.y + (1.0 - f.y) * uCrop.w);
+  vec2 tc = vec2(uCrop.x + f.x * uCrop.z, uCrop.y + f.y * uCrop.w);
   vec2 e = min(fract(g), 1.0 - fract(g)) * cellSize;
   float edgeMm = (kind > 1.5 && kind < 2.5) ? min(e.x, e.y) : e.x;
   seam = 1.0 - smoothstep(0.6, 2.4, edgeMm);
@@ -349,7 +349,8 @@ export class Compositor {
     gl.uniform4fv(gl.getUniformLocation(this.prog, "uSurf"), new Float32Array(surf));
     gl.uniform4fv(gl.getUniformLocation(this.prog, "uRefC"), new Float32Array(refc));
     const { u, v, w, h, rot } = o.slab.crop;
-    gl.uniform4f(this.uni.uCrop, u, 1 - v - h, w, h);
+    // textures are uploaded without a Y flip, so t = 0 is the image's top row, the same way crop V runs
+    gl.uniform4f(this.uni.uCrop, u, v, w, h);
     gl.uniform1f(this.uni.uRot, rot === 180 ? 1 : 0);
     gl.uniform2f(this.uni.uSlabMm, o.slab.lengthMm, o.slab.heightMm);
     const passes = a.diffuse && a.gloss ? 1 : 0;

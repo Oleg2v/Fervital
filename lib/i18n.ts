@@ -200,6 +200,8 @@ const he = {
     pieces: { worktop: "משטח", ret: "פינה", island: "אי", fall: "מפל", splash: "חיפוי" },
     slabN: "לוח {n}",
     tooLong: "חלק ארוך מהלוח — חולק עם תפר",
+    tooDeep: "חלק עמוק מהלוח — חולק עם תפר אורכי",
+    seamAlong: "תפר אורכי ב-{mm} מ״מ",
   },
   portal: {
     eyebrow: "פורטל לקוחות ואדריכלים",
@@ -516,6 +518,8 @@ const en: Dict = {
     pieces: { worktop: "Worktop", ret: "Return", island: "Island", fall: "Fall", splash: "Splash" },
     slabN: "Slab {n}",
     tooLong: "Piece longer than the slab, split with a seam",
+    tooDeep: "Piece deeper than the slab, split with a lengthwise seam",
+    seamAlong: "lengthwise seam at {mm} mm",
   },
   portal: {
     eyebrow: "Client & architect portal",
@@ -644,3 +648,11 @@ export const nf = (lang: Lang, n: number, digits = 0) =>
   }).format(n);
 
 export const money = (lang: Lang, n: number) => `₪${nf(lang, Math.round(n))}`;
+
+/** Delivery day relative to today: "+3d" / "-5d", or "בעוד 3 ימים" / "לפני יומיים". Render it outside .ltr-nums. */
+export const days = (lang: Lang, n: number) => {
+  if (lang !== "he") return `${n >= 0 ? "+" : ""}${n}d`;
+  if (n === 0) return "היום";
+  const a = Math.abs(n);
+  return (n < 0 ? "לפני " : "בעוד ") + (a === 1 ? "יום" : a === 2 ? "יומיים" : `${a} ימים`);
+};
