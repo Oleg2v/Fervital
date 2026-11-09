@@ -249,6 +249,7 @@ def light(name, kind, loc, rot=(0, 0, 0), energy=10.0, color=(1, 1, 1), size=0.1
 # --------------------------------------------------------------------------------------
 
 REPLACEABLE_MATS = set()
+EMITTER_MATS = set()   # pure emitters keep their shader in every mode (see add_overrides)
 
 
 def _new_mat(name):
@@ -423,6 +424,7 @@ def mat_emission(name, color, strength, camera_only=False):
     em.inputs["Color"].default_value = (*color, 1.0)
     em.inputs["Strength"].default_value = strength
     nt.links.new(em.outputs[0], out.inputs["Surface"])
+    EMITTER_MATS.add(m.name)
     return m
 
 
@@ -469,12 +471,20 @@ def mat_exterior(name, strength=6.0, hedge=None):
         nt.links.new(sky.outputs[0], mx.inputs[7])
         nt.links.new(mx.outputs[2], em.inputs["Color"])
     nt.links.new(em.outputs[0], out.inputs["Surface"])
+    EMITTER_MATS.add(m.name)
     return m
 
 
 def add_overrides():
-    """Insert the camera-ray override mix into every material (see module docstring)."""
+    """Insert the camera-ray override mix into every material (see module docstring).
+
+    Pure emitters (bulbs, window backdrops) are left untouched: wrapping an emission shader
+    in a Light Path mix changes how Cycles samples it as a mesh light, which made the gloss
+    render lose ~40% of the frosted window's reflection. Their pixels never fall inside a
+    replaceable-surface mask, so they may stay visible in the diffuse/gloss images."""
     for m in bpy.data.materials:
+        if m.name in EMITTER_MATS:
+            continue
         nt = m.node_tree
         out = next(n for n in nt.nodes if n.type == "OUTPUT_MATERIAL")
         if not out.inputs["Surface"].links:
