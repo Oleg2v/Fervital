@@ -174,7 +174,7 @@ const STEPS: StepFn[] = [
   // 2 · bookmatch
   async (my, step) => {
     await clickEl("customer", "bookmatch", my, step);
-    await wait(1900, my, step);
+    await wait(1650, my, step);
   },
   // 3 · my kitchen in stone
   async (my, step) => {
@@ -223,8 +223,8 @@ const STEPS: StepFn[] = [
       const yr = paneRoot("yard")?.getBoundingClientRect();
       if (yr) useCursors.getState().set("yard", { x: yr.left + yr.width * 0.7, y: yr.top + yr.height * 0.6, visible: true });
     }
-    await moveTo("yard", card, 800, my, step, [0.3, 0.25]);
-    await wait(1000, my, step);
+    await moveTo("yard", card, 750, my, step, [0.3, 0.25]);
+    await wait(850, my, step);
   },
   // 6 · the yard confirms
   async (my, step) => {
@@ -247,7 +247,7 @@ const STEPS: StepFn[] = [
   async (my, step) => {
     useUi.getState().setYourSlab(SLAB);
     useCursors.getState().set("yard", { visible: false });
-    await wait(3800, my, step);
+    await wait(3400, my, step);
   },
 ];
 
