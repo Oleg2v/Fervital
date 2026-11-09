@@ -11,7 +11,6 @@ import { useT, useUi } from "@/lib/ui";
 import type { Hold, Job } from "@/lib/types";
 import Reveal from "@/components/chrome/Reveal";
 import { pullFromRack } from "@/components/nav";
-import { yieldSnapshot } from "./YieldCalc";
 
 export function PersonaSwitch({ compact = false }: { compact?: boolean }) {
   const { t, lang } = useT();
@@ -152,11 +151,13 @@ export default function Portal() {
   const myQuote = quotes.find((q) => q.projectId === projectId);
   const quoteFlash = useYardFlash((e) => e.type === "quote.sent" && e.customerId === persona);
   const [pdfBusy, setPdfBusy] = useState(false);
+  const [pdfError, setPdfError] = useState(false);
   const uid = useId();
   useRack((s) => s.index);
 
   const requestQuote = async () => {
     setPdfBusy(true);
+    setPdfError(false);
     const rooms = pstate?.rooms ?? {};
     const slabIds = [...new Set(Object.values(rooms).flat())];
     const layout = pstate?.layouts[0] ?? null;
@@ -164,26 +165,22 @@ export default function Portal() {
     const estimate = layout?.total ?? items.reduce((a, s) => a + s.areaM2 * s.priceM2, 0) * 1.18;
     useDemo.getState().requestQuote(projectId, persona, Math.round(estimate));
     try {
-      const r = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          lang,
-          projectId,
-          customerId: persona,
-          slabIds,
-          layout,
-          yieldInput: yieldSnapshot.current?.input ?? null,
-          renders: (pstate?.renders ?? []).slice(0, 2).map((r) => r.thumb),
-        }),
-      });
-      const blob = await r.blob();
-      const url = URL.createObjectURL(blob);
+      // built here in the browser (pdf-lib + fontkit, loaded on first use): it is too heavy for a Worker request
+      const { buildQuote, browserIO } = await import("@/lib/quote/pdf");
+      const r = await buildQuote(
+        { lang, projectId, customerId: persona, slabIds, layout, renders: (pstate?.renders ?? []).slice(0, 2).map((r) => r.thumb) },
+        browserIO,
+      );
+      if (!("pdf" in r)) throw new Error(r.error);
+      const url = URL.createObjectURL(new Blob([r.pdf as Uint8Array<ArrayBuffer>], { type: "application/pdf" }));
       const a = document.createElement("a");
       a.href = url;
       a.download = `fervital-quote-${projectId}.pdf`;
       a.click();
       setTimeout(() => URL.revokeObjectURL(url), 4000);
+    } catch (e) {
+      console.warn("quote pdf", e);
+      setPdfError(true);
     } finally {
       setPdfBusy(false);
     }
@@ -350,6 +347,9 @@ export default function Portal() {
               <button type="button" className="btn btn-solid mt-4 w-full justify-center" onClick={requestQuote} disabled={pdfBusy} data-ap="quote">
                 {pdfBusy ? "…" : t.portal.quote}
               </button>
+              <p className="mt-2 text-[0.8rem] text-rosso empty:hidden" role="status">
+                {pdfError ? t.portal.pdfError : ""}
+              </p>
               <p className="mt-2 text-[0.7rem] muted">{t.portal.pdf} · {t.yield.note}</p>
             </div>
           </div>

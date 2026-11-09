@@ -8,6 +8,7 @@ import { dict } from "@/lib/i18n";
 import { useT, useUi } from "@/lib/ui";
 import type { L10n } from "@/lib/types";
 import Reveal from "@/components/chrome/Reveal";
+import { photoQuery } from "@/lib/vision/photo";
 import { goKitchen, pullFromRack } from "@/components/nav";
 
 interface Result {
@@ -25,15 +26,6 @@ interface Response {
   results: Result[];
 }
 
-async function fileToDataUrl(file: File, max = 512): Promise<string> {
-  const bmp = await createImageBitmap(file);
-  const s = Math.min(1, max / Math.max(bmp.width, bmp.height));
-  const c = document.createElement("canvas");
-  c.width = Math.round(bmp.width * s);
-  c.height = Math.round(bmp.height * s);
-  c.getContext("2d")!.drawImage(bmp, 0, 0, c.width, c.height);
-  return c.toDataURL("image/jpeg", 0.86);
-}
 
 export default function VeinSearch() {
   const { t, lang, fmt } = useT();
@@ -47,7 +39,7 @@ export default function VeinSearch() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const run = useCallback(
-    async (payload: { q?: string; image?: string }) => {
+    async (payload: { q?: string; vector?: number[]; lab?: number[] }) => {
       setBusy(true);
       setErr(null);
       const status = Object.fromEntries(Object.entries(useDemo.getState().slabs).map(([k, v]) => [k, v.status]));
@@ -60,10 +52,12 @@ export default function VeinSearch() {
         });
         if (!r.ok) throw new Error(String(r.status));
         const data = (await r.json()) as Response;
+        // the time shown is the round trip as the visitor felt it (a Worker's own clock stands still while it computes)
+        const ms = Math.round(performance.now() - started);
         // let the scan read for a beat — it is part of the explanation
         const wait = Math.max(0, 650 - (performance.now() - started));
         await new Promise((ok) => setTimeout(ok, wait));
-        setRes(data);
+        setRes({ ...data, ms });
       } catch {
         setErr("search");
       } finally {
@@ -114,14 +108,15 @@ export default function VeinSearch() {
 
   const onFile = async (f?: File | null) => {
     if (!f) return;
-    // a file the browser cannot decode (e.g. an iPhone HEIC in Chrome) says so instead of doing nothing
-    const url = f.type.startsWith("image/") ? await fileToDataUrl(f).catch(() => null) : null;
-    if (!url) {
+    // embedded on this device with the scans' own descriptor; the API only ranks the 12-number vector.
+    // A file the browser cannot decode (e.g. an iPhone HEIC in Chrome) says so instead of doing nothing.
+    const p = await photoQuery(f).catch(() => null);
+    if (!p) {
       setErr("image");
       return;
     }
-    setImg(url);
-    run({ image: url });
+    setImg(p.preview);
+    run({ vector: p.vector, lab: p.lab });
   };
 
   const engineLabel = res ? (res.engine === "claude" ? t.search.engineClaude : res.engine === "descriptor" ? (lang === "he" ? "וקטור מינרלי · תמונה" : "mineral vector · image") : t.search.engineLocal) : "";

@@ -1,0 +1,24 @@
+// Cloudflare deployment: Worker "fervital" on fervital.kikkey.com (the convention of the other Kikkey demos).
+// Build with `npm run cf:build` (static export into out/), deploy with `npm run cf:deploy`.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fervital",
+  "account_id": "be9447e281c6e9198712ade2d0241029",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-02",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // served only on the kikkey.com subdomain (Workers Custom Domain: DNS record and certificate are managed by Cloudflare)
+  "routes": [{ "pattern": "fervital.kikkey.com", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    // everything is a static file except the three API routes, and the video (byte ranges, see worker/index.ts)
+    "run_worker_first": ["/api/*", "/video/*"],
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "alias": { "server-only": "./worker/shims/server-only.ts" },
+  "observability": { "enabled": true }
+}

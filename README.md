@@ -43,9 +43,25 @@ FERVITAL_VISION_MODEL=...      # optional override (default claude-opus-5-5)
 
 Requests use structured outputs and opt into server-side refusal fallbacks (`fallbacks: "default"`).
 
-## Deploy (Vercel)
+## Deploy
 
-1. Import the repo into Vercel (framework: Next.js; no build settings needed).
+### Cloudflare (live: fervital.kikkey.com)
+
+The demo runs as the Worker `fervital` (account of kikkey.com), like the other Kikkey demos: the page is a static export served from Workers static assets, and a small Worker (`worker/index.ts`) answers `/api/*` with the same `lib/server` modules the Next.js routes use. It also serves `/video/*` with byte ranges, which iOS Safari needs to play MP4.
+
+```bash
+export CLOUDFLARE_API_TOKEN=...   # needs Workers Scripts: Edit (and Workers Routes for the custom domain)
+npm run cf:deploy                 # = npm run cf:build (static export into out/) + wrangler deploy
+```
+
+- `npm run cf:build` builds the export in a temporary copy without `app/api`, then writes `out/_headers` (noindex everywhere, immutable `/_next/static`).
+- `npm run cf:dev` runs it locally on the Workers runtime (http://localhost:8787) after a `cf:build`.
+- Optional Claude features: `npx wrangler secret put ANTHROPIC_API_KEY` (and `FERVITAL_TEXT_MODEL` / `FERVITAL_VISION_MODEL` as vars).
+- The Worker needs the Workers Paid plan's CPU allowance for the PDF and photo search (the Free plan's 10 ms is not enough).
+
+### Vercel / any Node host
+
+1. Import the repo into Vercel (framework: Next.js; no build settings needed), or `npm run build && npm start`.
 2. Optionally add `ANTHROPIC_API_KEY` in Project → Settings → Environment Variables.
 3. Keep the URL unlisted. The build already sends `X-Robots-Tag: noindex`, `robots.txt` disallows everything, and the HTML carries `noindex, nofollow`.
 
@@ -60,7 +76,7 @@ Requests use structured outputs and opt into server-side refusal fallbacks (`fal
 
 ## Stack
 
-Next.js 15 · TypeScript · Tailwind v4 · React Three Fiber + drei · GSAP + Lenis · Framer Motion · Zustand · sharp · pdf-lib.
+Next.js 15 · TypeScript · Tailwind v4 · React Three Fiber + drei · GSAP + Lenis · Framer Motion · Zustand · pdf-lib · jpeg-js · Cloudflare Workers (sharp for the asset build scripts).
 
 ## Held for follow-up (not built)
 

@@ -166,6 +166,8 @@ for (const s of slabs) {
   const buf = await img.toBuffer();
   await sharp(buf).resize(960).webp({ quality: 78 }).toFile(path.join(CROPS, `${s.id}-960.webp`));
   await sharp(buf).resize(400).webp({ quality: 72 }).toFile(path.join(CROPS, `${s.id}-400.webp`));
+  // the PDF quote (built in the browser with pdf-lib, which reads JPEG/PNG only) embeds a small JPEG
+  await sharp(buf).resize(160).jpeg({ quality: 78 }).toFile(path.join(CROPS, `${s.id}-160.jpg`));
   const W = 256;
   const { data, info } = await sharp(buf).resize(W).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const f = computeFeatures(data, info.width, info.height, 3);

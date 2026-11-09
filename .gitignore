@@ -10,3 +10,6 @@ next-env.d.ts
 /scratch
 __pycache__/
 *.pyc
+# Cloudflare (wrangler dev state)
+/.wrangler
+.dev.vars*
