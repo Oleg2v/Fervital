@@ -832,10 +832,12 @@ def build_bathroom():
     box("win_frame_b", fx0, fx1, wy0, wy1, wz0, wz0 + ft, m_black, bevel=0.002)
     box("win_mullion", fx0 + 0.008, fx1 - 0.008, (wy0 + wy1) / 2 - 0.016, (wy0 + wy1) / 2 + 0.016, wz0, wz1,
         m_black, bevel=0.002)
+    # camera-only backdrop: the window area light sits just behind it, so the pane must not be
+    # visible to glossy/diffuse rays either (an emitter that BSDF rays can hit but shadow rays pass
+    # through breaks Cycles' MIS weighting and under-lights the wall's reflection of the window)
     pane = box("win_pane", x_left - 0.125, x_left - 0.12, wy0, wy1, wz0, wz1, m_frost)
     for attr in ("visible_diffuse", "visible_glossy", "visible_transmission", "visible_shadow"):
         setattr(pane, attr, False)
-    pane.visible_glossy = True   # seen in the mirror
 
     # ---- floating vanity 1600 x 560, stone top 40 mm -----------------------------
     vx0, vx1 = 0.85, 2.45
