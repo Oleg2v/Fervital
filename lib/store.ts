@@ -218,7 +218,7 @@ export const useDemo = create<DemoStore>()(
             h.touchedAt = now;
             return [
               makeEvent(now, "yard", "hold.confirmed", {
-                he: `המחסן אישר את ההחזקה על ${label(h.slabId)}`,
+                he: `המחסן אישר את השריון של ${label(h.slabId)}`,
                 en: `The yard confirmed the hold on ${label(h.slabId)}`,
               }, { slabId: h.slabId, holdId, customerId: h.customerId }),
             ];
@@ -233,7 +233,7 @@ export const useDemo = create<DemoStore>()(
             h.touchedAt = now;
             return [
               makeEvent(now, "yard", "hold.extended", {
-                he: `ההחזקה על ${label(h.slabId)} הוארכה ב-${hours} שעות`,
+                he: `השריון של ${label(h.slabId)} הוארך ב-${hours} שעות`,
                 en: `Hold on ${label(h.slabId)} extended by ${hours} h`,
               }, { slabId: h.slabId, holdId, customerId: h.customerId }),
             ];
@@ -400,7 +400,7 @@ export const useDemo = create<DemoStore>()(
               h.status = "expired";
               d.slabs[h.slabId] = { status: "available" };
               return makeEvent(h.expiresAt, "system", "hold.expired", {
-                he: `ההחזקה על ${label(h.slabId)} פגה — הלוח חזר למדף`,
+                he: `השריון של ${label(h.slabId)} פג — הלוח חזר למדף`,
                 en: `Hold on ${label(h.slabId)} expired, the slab is back on the rack`,
               }, { id: `exp-${h.id}`, slabId: h.slabId, holdId: h.id, customerId: h.customerId });
             }),
