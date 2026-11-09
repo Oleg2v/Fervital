@@ -539,7 +539,8 @@ export default function KitchenStudio({ compact = false }: { compact?: boolean }
               className="chip !text-[0.72rem] !normal-case !tracking-normal"
               style={enabled[s.id] !== false ? { background: "currentColor" } : undefined}
             >
-              <span style={enabled[s.id] !== false ? { color: compact ? "#0e0e0e" : "#f3f1ec", mixBlendMode: "normal" } : undefined}>
+              {/* both the section and the live-mode window are light (paper): the filled chip is basalt, its label carrara */}
+              <span style={enabled[s.id] !== false ? { color: "#f3f1ec" } : undefined}>
                 {enabled[s.id] !== false ? "✓ " : ""}
                 {s.label[lang]}
               </span>
