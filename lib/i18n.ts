@@ -53,7 +53,7 @@ const he = {
     description: "תיאור",
     bookmatch: "Bookmatch",
     bookmatchOff: "סגירת Bookmatch",
-    zoom: "הגדלה עד הוריד",
+    zoom: "הגדלה עד הווריד",
     kitchen: "המטבח שלי באבן",
     hold: "שריינו לי ל-48 שעות",
     prev: "הקודם",
@@ -71,7 +71,7 @@ const he = {
     kinds: { marble: "שיש", travertine: "טרוורטין", onyx: "אוניקס", granite: "גרניט", basalt: "בזלת" },
   },
   zoom: {
-    title: "הגדלה עד הוריד",
+    title: "הגדלה עד הווריד",
     hint: "הזיזו את הסמן כדי לנוע על פני הלוח · גלגלת להגדלה",
     scan: "סריקה",
     perPx: "מ״מ לפיקסל",
