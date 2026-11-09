@@ -69,5 +69,52 @@
         "bbox": [0, 631, 1600, 1000]
       }
     ]
+  },
+  "bathroom": {
+    "image": "/scenes/bathroom.jpg",
+    "width": 1600,
+    "height": 1000,
+    "diffuse": "/scenes/bathroom_diffuse.png",
+    "diffuseScale": 1.07,
+    "gloss": "/scenes/bathroom_gloss.jpg",
+    "albedo": 0.78,
+    "surfaces": [
+      {
+        "id": "vanity",
+        "mask": "/scenes/bathroom_mask_vanity.png",
+        "quad": [[556.5, 529.1], [1277.7, 604.3], [1248.2, 698.6], [385.4, 581.7]],
+        "sizeMm": [1600, 560],
+        "orientation": "horizontal",
+        "label": {
+          "he": "משטח רחצה",
+          "en": "Vanity top"
+        },
+        "bbox": [385, 528, 1279, 728]
+      },
+      {
+        "id": "wall",
+        "mask": "/scenes/bathroom_mask_wall.png",
+        "quad": [[293.3, -175.2], [1952.2, -521.4], [1952.2, 1272.8], [293.3, 840.0]],
+        "sizeMm": [3400, 2700],
+        "orientation": "vertical",
+        "label": {
+          "he": "קיר",
+          "en": "Wall"
+        },
+        "bbox": [292, 0, 1600, 1000]
+      },
+      {
+        "id": "floor",
+        "mask": "/scenes/bathroom_mask_floor.png",
+        "quad": [[293.3, 840.0], [1952.2, 1272.8], [2468.2, 2172.0], [-105.4, 1046.9]],
+        "sizeMm": [3400, 980],
+        "orientation": "horizontal",
+        "label": {
+          "he": "רצפה",
+          "en": "Floor"
+        },
+        "bbox": [0, 839, 911, 1000]
+      }
+    ]
   }
 }
